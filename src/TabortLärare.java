@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Hogwartsprojektet;
+
 
 
 import java.awt.HeadlessException;
@@ -114,9 +114,9 @@ public class TabortLärare extends javax.swing.JFrame {
                     String  id = idb.fetchSingle("select larar_id from larare where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
                     
             
-            } catch (InfException ex) { 
-                    Logger.getLogger(TaBortKurs.class.getName()).log(Level.SEVERE, null, ex);JOptionPane.showMessageDialog(null, " Något gick fel, Angiven Lärare finns inte");
-                    
+            }  catch (HeadlessException | NumberFormatException | InfException ex) 
+      {JOptionPane.showMessageDialog(null, " Något gick fel");
+            Logger.getLogger(GeAdminStatus.class.getName()).log(Level.SEVERE, null, ex);
                    
                 }
             
@@ -155,6 +155,7 @@ public class TabortLärare extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TabortLärare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
