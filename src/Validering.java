@@ -63,7 +63,19 @@ if(!kollatecken.matcher(rutanAttKolla.getText()).matches())
   
 }
 return resultat;
-  }}
+  }
+public String kollaid(JTextField rutanAttKolla, JTextField rutanattkolla2 ) throws InfException {
+boolean ok = true;
+ String resultat = "";
+
+
+ String id = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where fornamn=" + "'" + rutanAttKolla.getText() + "'" + "and efternamn=" + "'" + rutanattkolla2.getText() + "'");
+                     if(id == null){ ok =false;  JOptionPane.showMessageDialog(null," Läraren finns inte");}
+                     if(ok=true) { resultat = id;}
+return resultat;     }                
+}
+
+}
 
 
 
