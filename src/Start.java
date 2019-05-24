@@ -4,10 +4,35 @@
  * and open the template in the editor.
  */
 
+
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
  * @author Gabriel
  */
 public class Start {
+
+    private static InfDB idb;
+ 
+
     
+public static void main(String[] args) throws InfException
+{
+   try {
+       idb = new InfDB("c:\\db\\hogdb.fdb");
+   }
+   catch(InfException ettUndantag) {
+   JOptionPane.showMessageDialog(null,"något gick fel!");
+   System.out.println("internt felmeddelande" + ettUndantag.getMessage());
+   
+   }
+    
+    
+    
+    new Startsida(idb).setVisible(true);
+}
+  
 }
