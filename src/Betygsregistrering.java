@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 
 import java.util.ArrayList;
@@ -12,15 +7,10 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Admin
- */
+
 public class Betygsregistrering extends javax.swing.JFrame {
 private final InfDB idb;
-    /**
-     * Creates new form BETYGREGISTRERING
-     */
+    
     public Betygsregistrering() throws InfException {
         initComponents();
           idb = new InfDB("c:\\db\\hogdb.fdb");
@@ -120,7 +110,9 @@ private final InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+         //Ger felmeddeland vid tomma inmatingsrutor. 
+        if (Validering.textNamnHarVarde(fornamn, efternamn) && 
+         (Validering.textFaltHarVarde(betyg)) && (Validering.textFaltHarVarde(kurs))){
         
         try{  
             
@@ -137,19 +129,22 @@ private final InfDB idb;
              //Hämtar kurs id från kurs med hjäp av det inmatade kursnamnet
            
            String k =  idb.fetchSingle("SELECT KURS_ID from KURS where KURSNAMN="+"'" + kursen + "'");
+           //Kontrollerar att kursen finns.
            if(k == null){ JOptionPane.showMessageDialog(null," Kursen finns inte");}
            
            
            else{
             //Hämtar elev id från elev med hjäp av inmatat för och eftternamn 
            String idf =  idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn +"'" + "and efternamn=" + "'" + enamn + "'");
-            if(idf == null){ JOptionPane.showMessageDialog(null," Eleven finns inte");}
+           //Kontrollerar att Eleven finns. 
+           if(idf == null){ JOptionPane.showMessageDialog(null," Eleven finns inte");}
             
             
             else{
              //Hämtar elevens betyg  i vald kurs med hjälpa av elev id oc kurs id
             String a =  idb.fetchSingle("SELECT KURSBETYG FROM HAR_BETYG_I where ELEV_ID="+ "'" + idf + "'" + "and KURS_ID=" + "'" + k + "'");
-           if( !(null ==a)){JOptionPane.showMessageDialog(null, "Eleven har redan betyg i kursen. Välj ändra uppdatea betyg för ändring");}
+           //Kollar att eleven inte redan har betyg i kursen.
+            if( !(null ==a)){JOptionPane.showMessageDialog(null, "Eleven har redan betyg i kursen. Välj ändra uppdatea betyg för ändring");}
             
             
            else{
@@ -174,7 +169,7 @@ private final InfDB idb;
              Logger.getLogger(Betygsregistrering.class.getName()).log(Level.SEVERE, null, ex);
          }                   
                    
-                   
+    }           
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

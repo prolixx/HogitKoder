@@ -23,7 +23,18 @@ public class Validering {
  
  idb = new InfDB("c:\\db\\hogdb.fdb");
  }
+    public static boolean textNamnHarVarde(JTextField rutanAttKolla, JTextField rutanAttKolla2) {
 
+        boolean resultat = true;
+
+        if (rutanAttKolla.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Inmatningsrutan är tom!");
+            resultat = false;
+         
+        }
+        return resultat;
+    }
+ 
     public static boolean textFaltHarVarde(JTextField rutanAttKolla) {
 
         boolean resultat = true;
@@ -73,8 +84,6 @@ boolean ok = true;
                      if(id == null){ ok =false;  JOptionPane.showMessageDialog(null," Läraren finns inte");}
                      if(ok=true) { resultat = id;}
 return resultat;     }                
-}
-
 }
 
 
