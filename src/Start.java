@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Programmets Uppstartings Klass
+
  */
 
 
@@ -18,7 +16,7 @@ public class Start {
     private static InfDB idb;
  
 
-    
+    //Enda main klassen, Skickar med databasens egenskaper.
 public static void main(String[] args) throws InfException
 {
    try {
@@ -31,7 +29,7 @@ public static void main(String[] args) throws InfException
    }
     
     
-    
+    //Skickar dig vidare till startsidan
     new Startsida(idb).setVisible(true);
 }
   

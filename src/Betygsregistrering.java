@@ -1,4 +1,6 @@
-
+/* Klass för att registra nytt betyg för elev.
+    För ändring av betyg används en annan klass.
+*/
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -110,66 +112,63 @@ private final InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         //Ger felmeddeland vid tomma inmatingsrutor. 
-        if (Validering.textNamnHarVarde(fornamn, efternamn) && 
-         (Validering.textFaltHarVarde(betyg)) && (Validering.textFaltHarVarde(kurs))){
-        
-        try{  
-            
-            //Deklarerar variabler
-            String fnamn = fornamn.getText();
-            String enamn = efternamn.getText();
-            String b = betyg.getText();
-            
-           String kursen = kurs.getText();
-           
-             boolean ok = true;
-            
-             
-             //Hämtar kurs id från kurs med hjäp av det inmatade kursnamnet
-           
-           String k =  idb.fetchSingle("SELECT KURS_ID from KURS where KURSNAMN="+"'" + kursen + "'");
-           //Kontrollerar att kursen finns.
-           if(k == null){ JOptionPane.showMessageDialog(null," Kursen finns inte");}
-           
-           
-           else{
-            //Hämtar elev id från elev med hjäp av inmatat för och eftternamn 
-           String idf =  idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn +"'" + "and efternamn=" + "'" + enamn + "'");
-           //Kontrollerar att Eleven finns. 
-           if(idf == null){ JOptionPane.showMessageDialog(null," Eleven finns inte");}
-            
-            
-            else{
-             //Hämtar elevens betyg  i vald kurs med hjälpa av elev id oc kurs id
-            String a =  idb.fetchSingle("SELECT KURSBETYG FROM HAR_BETYG_I where ELEV_ID="+ "'" + idf + "'" + "and KURS_ID=" + "'" + k + "'");
-           //Kollar att eleven inte redan har betyg i kursen.
-            if( !(null ==a)){JOptionPane.showMessageDialog(null, "Eleven har redan betyg i kursen. Välj ändra uppdatea betyg för ändring");}
-            
-            
-           else{
-            //Skapar en ArrayList av befitliga betygsbetckningar
-            ArrayList <String> bs = idb.fetchColumn("SELECT BETYGSBETECKNING from BETYG");
-            
-            // Kontrollera om valt betyg finns i listan
-             if(!bs.contains(b)){ok = false;JOptionPane.showMessageDialog(null, "Betyg finns ej i skalan");}
-             
-            if(ok=true){
-                 
-                 
-           
-            
-                // Lägg till i tabellen har betyg i; elevens id, kursens id och valt betyg
-                idb.insert("insert into HAR_BETYG_I values"+"("+"'"+idf+"'"+","+"'"+k+"'"+","+"'"+b+"')");
-                JOptionPane.showMessageDialog(null, "Nytt betyg är nu registrerat");}}
-                }}
-             
-             
- } catch (InfException ex) {
-             Logger.getLogger(Betygsregistrering.class.getName()).log(Level.SEVERE, null, ex);
-         }                   
-                   
-    }           
+        //Ger felmeddeland vid tomma inmatingsrutor. 
+        if (Validering.textNamnHarVarde(fornamn, efternamn)
+                && (Validering.textFaltHarVarde(betyg)) && (Validering.textFaltHarVarde(kurs))) {
+
+            try {
+
+                //Deklarerar variabler
+                String fnamn = fornamn.getText();
+                String enamn = efternamn.getText();
+                String b = betyg.getText();
+
+                String kursen = kurs.getText();
+
+                boolean ok = true;
+
+                //Hämtar kurs id från kurs med hjäp av det inmatade kursnamnet
+                String k = idb.fetchSingle("SELECT KURS_ID from KURS where KURSNAMN=" + "'" + kursen + "'");
+                //Kontrollerar att kursen finns.
+                if (k == null) {
+                    JOptionPane.showMessageDialog(null, " Kursen finns inte");
+                } else {
+                    //Hämtar elev id från elev med hjäp av inmatat för och eftternamn 
+                    String idf = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
+                    //Kontrollerar att Eleven finns. 
+                    if (idf == null) {
+                        JOptionPane.showMessageDialog(null, " Eleven finns inte");
+                    } else {
+                        //Hämtar elevens betyg  i vald kurs med hjälpa av elev id oc kurs id
+                        String a = idb.fetchSingle("SELECT KURSBETYG FROM HAR_BETYG_I where ELEV_ID=" + "'" + idf + "'" + "and KURS_ID=" + "'" + k + "'");
+                        //Kollar att eleven inte redan har betyg i kursen.
+                        if (!(null == a)) {
+                            JOptionPane.showMessageDialog(null, "Eleven har redan betyg i kursen. Välj ändra uppdatea betyg för ändring");
+                        } else {
+                            //Skapar en ArrayList av befitliga betygsbetckningar
+                            ArrayList<String> bs = idb.fetchColumn("SELECT BETYGSBETECKNING from BETYG");
+
+                            // Kontrollera om valt betyg finns i listan
+                            if (!bs.contains(b)) {
+                                ok = false;
+                                JOptionPane.showMessageDialog(null, "Betyg finns ej i skalan");
+                            }
+
+                            if (ok = true) {
+
+                                // Lägg till i tabellen har betyg i; elevens id, kursens id och valt betyg
+                                idb.insert("insert into HAR_BETYG_I values" + "(" + "'" + idf + "'" + "," + "'" + k + "'" + "," + "'" + b + "')");
+                                JOptionPane.showMessageDialog(null, "Nytt betyg är nu registrerat");
+                            }
+                        }
+                    }
+                }
+
+            } catch (InfException ex) {
+                Logger.getLogger(Betygsregistrering.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

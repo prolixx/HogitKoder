@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Startsidan ger användaren möjligheten att loggain 
+eller att fortsätta utan behörighet.
  */
 
 
@@ -81,35 +80,35 @@ public class Startsida extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
+                .addComponent(vidare, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(vidare, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loggInKnapp)
+                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(141, Short.MAX_VALUE))
+                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(loggInKnapp))
+                    .addComponent(jLabel2)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(vidare, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(loggInKnapp)
-                .addGap(91, 91, 91))
+                    .addComponent(loggInKnapp)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -120,38 +119,38 @@ public class Startsida extends javax.swing.JFrame {
     }//GEN-LAST:event_userActionPerformed
 
     private void loggInKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggInKnappActionPerformed
-        if(Validering.textFaltHarVarde(user) && (Validering.textFaltHarVarde(password))){
-        try {
-            String larare = user.getText();
-            String pass = password.getText();
-        
-            String fraga = idb.fetchSingle("SELECT LARAR_ID from LARARE where LOSENORD=" + "'" + pass + "'");
-            String fraga2 = idb.fetchSingle("SELECT LOSENORD from LARARE where LOSENORD=" + "'" + pass + "'");
-            String fraga3 = idb.fetchSingle(
-                  "Select LARAR_ID from larare where LOSENORD =" +  "'" + pass + "'" + "and administrator = 'T'");
-             
-           if (user.getText().equals(fraga3) && password.getText().equals(fraga2))
-              
-             {
-                  new Admin().setVisible(true);}
-               
-            else if  (user.getText().equals(fraga) && password.getText().equals(fraga2)){
-                          
-              new Larare().setVisible(true);   
-                
+        //kontrollerar inmatningsrutorna
+        if (Validering.textFaltHarVarde(user) && (Validering.textFaltHarVarde(password))) {
+            try {
+                // deklarerar variabler
+                String larare = user.getText();
+                String pass = password.getText();
+                // Sql frågor hämtar Lösenord och ID från Lösenordet som inmatas
+                String fraga = idb.fetchSingle("SELECT LARAR_ID from LARARE where LOSENORD=" + "'" + pass + "'");
+                String fraga2 = idb.fetchSingle("SELECT LOSENORD from LARARE where LOSENORD=" + "'" + pass + "'");
+                //Sql fråga för att stämma av om läraren är Admin
+                String fraga3 = idb.fetchSingle(
+                        "Select LARAR_ID from larare where LOSENORD =" + "'" + pass + "'" + "and administrator = 'T'");
+                //Loggin för admin kontrollerar inmating gentemot Sql-frågorna.
+                if (user.getText().equals(fraga3) && password.getText().equals(fraga2)) // om Användaren är Administratör kommer den skickas till Admin Klassen
+                {
+                    new Admin().setVisible(true);
+                } //Pass och ID kontrolleras mot sql-frågorna.
+                else if (user.getText().equals(fraga) && password.getText().equals(fraga2)) {
+                    // för lärare utan administratörs status öppnas larare-klassen            
+                    new Larare().setVisible(true);
+
+                } //Vid fel lösenord eller användarnamn kommer ett felmeddelande
+                else {
+                    JOptionPane.showMessageDialog(null, "Fyll i ID och lösenord korrekt!");
+
+                }
+
+            } catch (InfException ex) {
+                Logger.getLogger(Startsida.class.getName()).log(Level.SEVERE, null, ex);
+
             }
-            else {
-                  JOptionPane.showMessageDialog(null, "Fyll i ID och lösenord korrekt!");
-                    
-                    }   
-            
 
-
-        } catch (InfException ex) {
-            Logger.getLogger(Startsida.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
-        
     }              // TODO add your handling code here:
     }//GEN-LAST:event_loggInKnappActionPerformed
 

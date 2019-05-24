@@ -1,9 +1,6 @@
-    /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/* Ge administratörs status till valfri lärare
 
+ */
 
 import java.awt.HeadlessException;
 import java.util.ArrayList;
@@ -18,17 +15,12 @@ import oru.inf.InfException;
  * @author Admin
  */
 public class GeAdminStatus extends javax.swing.JFrame {
-    
-    private final InfDB idb;
-    
-  
 
-    /**
-     * Creates new form GeAdminStatus
-     */
+    private final InfDB idb;
+
     public GeAdminStatus() throws InfException {
         initComponents();
-        
+
         idb = new InfDB("c:\\db\\hogdb.fdb");
     }
 
@@ -110,38 +102,37 @@ public class GeAdminStatus extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Ger felmeddelande vid tomma inmatningsrutor.
-        if(Validering.textNamnHarVarde(fornamn,efternamn))
-        try {
-             //Deklarerar variabler
-            String fnamn = fornamn.getText();
-            String enamn = efternamn.getText();
-            String setToAdmin = "'T'";
-            
-             //Hämtar lärar id från lärare med hjäp av inmatat för och eftternamn 
-         String id = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
-         // Kontrollerar att läraren finns          
-         if(id == null){ JOptionPane.showMessageDialog(null," Läraren finns inte");}
-              
-                     else{
-             // Kollar om läraren redan är administratör 
-            String a = idb.fetchSingle("SELECT ADMINISTRATOR from LARARE where LARAR_ID=" + id);
-        
-           if(a.startsWith("T")){ JOptionPane.showMessageDialog(null, " Läraren är redan administratör");
+        if (Validering.textNamnHarVarde(fornamn, efternamn)) {
+            try {
+                //Deklarerar variabler
+                String fnamn = fornamn.getText();
+                String enamn = efternamn.getText();
+                String setToAdmin = "'T'";
+
+                //Hämtar lärar id från lärare med hjäp av inmatat för och eftternamn 
+                String id = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
+                // Kontrollerar att läraren finns          
+                if (id == null) {
+                    JOptionPane.showMessageDialog(null, " Läraren finns inte");
+                } else {
+                    // Kollar om läraren redan är administratör 
+                    String a = idb.fetchSingle("SELECT ADMINISTRATOR from LARARE where LARAR_ID=" + id);
+
+                    if (a.startsWith("T")) {
+                        JOptionPane.showMessageDialog(null, " Läraren är redan administratör");
+                    } else {
+                        // Ger en popup som visar namnet på den du vill ge admin med allternativ att avbryta.
+                        if (JOptionPane.showConfirmDialog(null, "Ge admin till: " + fnamn + " " + enamn + " " + " med ID:" + id, "Admin",
+                                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                            idb.update("UPDATE LARARE SET ADMINISTRATOR=" + setToAdmin + "where LARAR_ID=" + id);
+                        }
+
+                    }
+                }
+            } catch (HeadlessException | NumberFormatException | InfException ex) {
+                JOptionPane.showMessageDialog(null, " Något gick fel");
+                Logger.getLogger(GeAdminStatus.class.getName()).log(Level.SEVERE, null, ex);
             }
-         
-           else{
-                    
-                   
-                        //Uppdaterat till administratörsstatus
-                        idb.update("UPDATE LARARE SET ADMINISTRATOR=" + setToAdmin + "where LARAR_ID=" + id);
-                        
-                        JOptionPane.showMessageDialog(null, " Behörighet nu updaterad");
-                        
-           
-                    }}
-        } catch (HeadlessException | NumberFormatException | InfException ex) 
-      {JOptionPane.showMessageDialog(null, " Något gick fel");
-            Logger.getLogger(GeAdminStatus.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
