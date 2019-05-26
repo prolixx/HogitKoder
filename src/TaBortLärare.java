@@ -109,7 +109,8 @@ public class TaBortLärare extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if (Validering.textNamnHarVarde(fornamn, efternamn)) 
+     // Kontrollerar att inmatningsrutorna har värden
+        if (Validering.textNamnHarVarde(fornamn, efternamn)) 
            try {
          //Deklarerar variabler
                  String enamn = efternamn.getText();
