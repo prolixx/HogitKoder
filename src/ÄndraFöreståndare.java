@@ -4,7 +4,7 @@
 
 
 
-import Hogwartsprojektet.Validering;
+
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.logging.Level;
