@@ -5,7 +5,7 @@ angivna elvehemmmet.
 
 
 
-import Hogwartsprojektet.Validering;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -113,7 +113,7 @@ public class ListaEleverpåElevhem extends javax.swing.JFrame {
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // Ger felmeddelande vid tomma inmatningsrutor samt felaktig tecken inmatning.
-        if(Validering.textFaltHarVarde(elevhem) && (Validering.kollatecken(elevhem)))
+        if(Validering.textFaltHarVarde(elevhem))
            
             
             try {
