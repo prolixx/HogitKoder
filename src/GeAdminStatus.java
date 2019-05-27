@@ -104,11 +104,11 @@ public class GeAdminStatus extends javax.swing.JFrame {
         // Ger felmeddelande vid tomma inmatningsrutor.
         if (Validering.textNamnHarVarde(fornamn, efternamn)) {
             try {
-                //Deklarerar variabler
-                String fnamn = fornamn.getText();
-                String enamn = efternamn.getText();
+                //Deklarerar variabler samt hämtar uppercase metod.
+                String fnamn = Validering.storBokstav(fornamn.getText());
+                String enamn = Validering.storBokstav(efternamn.getText());
                 String setToAdmin = "'T'";
-
+                
                 //Hämtar lärar id från lärare med hjäp av inmatat för och eftternamn 
                 String id = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
                 // Kontrollerar att läraren finns          

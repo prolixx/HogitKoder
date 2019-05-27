@@ -82,9 +82,15 @@ public class Validering {
             ok = false;
             JOptionPane.showMessageDialog(null, " Läraren finns inte");
         }
-        if (ok = true) {
+        else if (ok = true) {
             resultat = id;
         }
         return resultat;
     }
+
+    public static String storBokstav(String str) {
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
 }
+
