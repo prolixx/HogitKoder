@@ -142,18 +142,23 @@ public class ÄndraFöreståndare extends javax.swing.JFrame {
               //Kontrollerar att inmatat namn finns i listan,  om inte skickar felmeddelande  
               if(!(h.contains(hem))){JOptionPane.showMessageDialog(null,"Elevhemmet finns inte, kontrollera stavningen");}
                  
+              else{
                  // Hämta Lärar id för inmatat för och efternamn
                     String id = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
                     //Kontrollerar så att idet finns, om inte skickar felmeddelande  
                     if(id == null){ JOptionPane.showMessageDialog(null," Läraren finns inte");}
          
-         
+             
         
-                     else{
+                     else{String finns = idb.fetchSingle("SELECT FORESTANDARE FROM ELEVHEM where forestandare =" + id);
+                       if(!(finns == null)){ JOptionPane.showMessageDialog(null," Läraren är redan föreståndare för ett elevhem");} 
+                       
+                        
+                       else{      
         //Om idet finns sätts detta som föreståndare för angivet elevhem
             idb.update("UPDATE ELEVHEM SET FORESTANDARE=" + id + "where ELEVHEMSNAMN=" + "'" + hem + "'");
             //Meddelar att uppdateringen är gjord
-             JOptionPane.showMessageDialog(null, hem + "s föreståndare är nu updaterad");}
+             JOptionPane.showMessageDialog(null, hem + "s föreståndare är nu updaterad");}}}
             
            
        
