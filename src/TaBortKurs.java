@@ -130,13 +130,10 @@ public class TaBortKurs extends javax.swing.JFrame {
                String b = idb.fetchSingle("Select KURS_ID from REGISTRERAD_PA where KURS_ID="+"'"+ id+"'");
               if(!(null ==b)){
                   
-                 
+               // Tar bort kursen, visar meddelande att kursen är borttagen  
               idb.delete("delete from REGISTRERAD_PA WHERE KURS_ID="+"'"+id+"'");
               }
                 
-  
-                 
-               // Tar bort kursen, visar meddelande att kursen är borttagen
                
                idb.delete("Delete from kurs where KURS_ID=" + "'" + id + "'");
                
