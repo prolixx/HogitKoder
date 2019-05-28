@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Klass för att söka fram vilka kurser en elev har läst
  */
 
 
@@ -41,7 +39,7 @@ public class SökKurserElevLäst extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        förnamn = new javax.swing.JTextField();
+        fornamn = new javax.swing.JTextField();
         efternamn = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -88,50 +86,61 @@ public class SökKurserElevLäst extends javax.swing.JFrame {
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(efternamn, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                                    .addComponent(förnamn)))
+                                    .addComponent(fornamn)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37))))))
+                                .addGap(40, 40, 40))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(förnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                    .addComponent(fornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(efternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(efternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Kontrollerar inmatade värden 
+        if(Validering.textNamnHarVarde(efternamn, fornamn)){
         
-        try {
-            String enamn = efternamn.getText();
+      //Deklerar variabler och använder en toUpperCase metod på inmatningen 
+            String enamn = Validering.storBokstav(efternamn.getText());
             
-            String fnamn = förnamn.getText();
+            String fnamn = Validering.storBokstav(fornamn.getText());
             
+            
+              try {
+                  //Hämtar elev id från elev utifrån inmatat för och efternamn
             String id =  idb.fetchSingle("SELECT ELEV_ID FROM ELEV where FORNAMN=" + "'" + fnamn + "'" +"and EFTERNAMN=" +"'" + enamn+ "'" );
-            
-            ArrayList <String> kurser = idb.fetchColumn("SELECT KURSNAMN from KURS join REGISTRERAD_PA on"
+             //Om inget id hittas, skriv ut felmeddelande 
+                    if(id == null){ JOptionPane.showMessageDialog(null," Eleven finns inte");}
+          
+                    else{
+                        
+                        // Skapar en arraylist med alla kurser som eleven varit registrerad på
+                    ArrayList <String> kurser = idb.fetchColumn("SELECT KURSNAMN from KURS join REGISTRERAD_PA on"
                     + " KURS.KURS_ID = REGISTRERAD_PA.KURS_ID where ELEV_ID="+ "'" + id +"'");
-            
+                    // Om elev inte varit registrerad på någon kurs, skicka ut felmeddelande
+                    if(kurser == null){ JOptionPane.showMessageDialog(null," Eleven har ej läst någon kurs");}
+                    
+                    else{                            
+                        // Skapar en string med kurser och presenterar den i resultatrutan
              String svar ="";
            
           for ( int i = 0; i<kurser.size();i++)
@@ -140,13 +149,13 @@ public class SökKurserElevLäst extends javax.swing.JFrame {
           }
            
            
-          resultat.setText(svar);
+          resultat.setText(svar);}}
                 
       
             
         } catch (InfException ex) {
             Logger.getLogger(SökKurserElevLäst.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -191,7 +200,7 @@ public class SökKurserElevLäst extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField efternamn;
-    private javax.swing.JTextField förnamn;
+    private javax.swing.JTextField fornamn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
