@@ -141,8 +141,8 @@ public class NyElev extends javax.swing.JFrame {
 // Deklarera variabler
         
        try {
-            String fnamn = fornamn.getText();
-            String enamn = efternamn.getText();
+            String fnamn =  Validering.storBokstav(fornamn.getText());
+            String enamn = Validering.storBokstav(efternamn.getText());
             String sov = sovsal.getText();
             
             //Kollar om det redan finns en elev registrerarad med samm för och efternamn
