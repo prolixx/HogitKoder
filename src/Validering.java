@@ -91,6 +91,5 @@ public class Validering {
     public static String storBokstav(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
-
 }
 

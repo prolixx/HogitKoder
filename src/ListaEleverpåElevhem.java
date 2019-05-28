@@ -3,9 +3,6 @@
 angivna elvehemmmet. 
  */
 
-
-
-
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,18 +15,21 @@ import oru.inf.InfException;
  * @author Admin
  */
 public class ListaEleverpåElevhem extends javax.swing.JFrame {
-    
-  private final InfDB idb;
-    /**
-    /**
+
+    private final InfDB idb;
 
     /**
+     * /**
+     *
+     * /**
      * Creates new form ListaEleverpåElevhem
+     *
      * @throws oru.inf.InfException
      */
     public ListaEleverpåElevhem() throws InfException {
         initComponents();
-      idb = new InfDB("c:\\db\\hogdb.fdb");}
+        idb = new InfDB("c:\\db\\hogdb.fdb");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,7 +52,7 @@ public class ListaEleverpåElevhem extends javax.swing.JFrame {
 
         jLabel1.setText("Lista Elever på Elevhem");
 
-        jLabel2.setText(" Elevhem Namn");
+        jLabel2.setText(" Elevhems Namn");
 
         ok.setText("OK");
         ok.addActionListener(new java.awt.event.ActionListener() {
@@ -113,55 +113,52 @@ public class ListaEleverpåElevhem extends javax.swing.JFrame {
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // Ger felmeddelande vid tomma inmatningsrutor samt felaktig tecken inmatning.
-        if(Validering.textFaltHarVarde(elevhem))
-           
-            
+        if (Validering.textFaltHarVarde(elevhem)) {
             try {
-                
-                //Deklarea variabel
-                  String hem = elevhem.getText();
-                  
-                  //Skapa en ArrayLista med alla elevhems namn
-              ArrayList <String> h = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
-              //Kontrollerar att inmatat namn finns i listan
-              if(!(h.contains(hem))){JOptionPane.showMessageDialog(null,"Elevhemmet finns inte, kontrollera stavningen");}
-     
 
-              else{
-          // Skapa en ArrayList med alla förnamn på valt elevhem
-          ArrayList <String> fornamn = idb.fetchColumn("SELECT FORNAMN from ELEV\n" +
-"join SOVSAL\n" +
-"on ELEV.SOVSAL = SOVSAL_ID\n" +
-"Join ELEVHEM\n" +
-"on ELEVHEM_ID = SOVSAL.ELEVHEM\n" +
-"WHERE ELEVHEMSNAMN =" + "'" + hem + "'");
-         
-          // Skapa en ArrayList med alla efternamn på valt elevhem
-           ArrayList <String> efternamn = idb.fetchColumn("SELECT EFTERNAMN from ELEV\n" +
-"join SOVSAL\n" +
-"on ELEV.SOVSAL = SOVSAL_ID\n" +
-"Join ELEVHEM\n" +
-"on ELEVHEM_ID = SOVSAL.ELEVHEM\n" +
-"WHERE ELEVHEMSNAMN =" + "'" + hem + "'");
-          
-           // Sätt ihop förnamn och efternamn i en String efter index
-           String svar ="";
-           
-          for ( int i = 0; i<fornamn.size();i++)
-          { 
-            svar +=   fornamn.get(i)+ " " + efternamn.get(i) + "\n";
-          }
-           
-          // Presenterar svaret i rutan 
-          resultat.setText(svar);}
-         
-         
-      } catch (InfException ex) {
-          Logger.getLogger(ListaEleverpåElevhem.class.getName()).log(Level.SEVERE, null, ex);
-      }
-        
-        
-       
+                //Deklarea variabel
+                String hem = Validering.storBokstav(elevhem.getText());
+
+                //Skapa en ArrayList med alla elevhems namn
+                ArrayList<String> h = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
+                //Kontrollerar att inmatat namn finns i listan
+                if (!(h.contains(hem))) {
+                    JOptionPane.showMessageDialog(null, "Elevhemmet finns inte, kontrollera stavningen");
+                } else {
+                    // Skapa en ArrayList med alla förnamn på valt elevhem
+                    ArrayList<String> fornamn = idb.fetchColumn("SELECT FORNAMN from ELEV\n"
+                            + "join SOVSAL\n"
+                            + "on ELEV.SOVSAL = SOVSAL_ID\n"
+                            + "Join ELEVHEM\n"
+                            + "on ELEVHEM_ID = SOVSAL.ELEVHEM\n"
+                            + "WHERE ELEVHEMSNAMN =" + "'" + hem + "'");
+
+                    // Skapa en ArrayList med alla efternamn på valt elevhem
+                    ArrayList<String> efternamn = idb.fetchColumn("SELECT EFTERNAMN from ELEV\n"
+                            + "join SOVSAL\n"
+                            + "on ELEV.SOVSAL = SOVSAL_ID\n"
+                            + "Join ELEVHEM\n"
+                            + "on ELEVHEM_ID = SOVSAL.ELEVHEM\n"
+                            + "WHERE ELEVHEMSNAMN =" + "'" + hem + "'");
+
+                    // Sätter ihop förnamn och efternamn i en String efter index
+                    String svar = "";
+
+                    for (int i = 0; i < fornamn.size(); i++) {
+                        svar += fornamn.get(i) + " " + efternamn.get(i) + "\n";
+                    }
+
+                    // Presenterar svaret i rutan 
+                    resultat.setText(svar);
+                }
+
+            } catch (InfException ex) {
+                Logger.getLogger(ListaEleverpåElevhem.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
+            }
+        }
+
+
     }//GEN-LAST:event_okActionPerformed
 
     /**
