@@ -2,7 +2,6 @@
  * Klass för att söka fram vilka kurser en elev har läst
  */
 
-
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,13 +15,13 @@ import oru.inf.InfException;
  */
 public class SökKurserElevLäst extends javax.swing.JFrame {
 
-    
     private final InfDB idb;
+
     /**
      * Creates new form SökKurserElevLäst
      */
     public SökKurserElevLäst() throws InfException {
-        
+
         idb = new InfDB("c:\\db\\hogdb.fdb");
         initComponents();
     }
@@ -117,45 +116,43 @@ public class SökKurserElevLäst extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Kontrollerar inmatade värden 
-        if(Validering.textNamnHarVarde(efternamn, fornamn)){
-        
-      //Deklerar variabler och använder en toUpperCase metod på inmatningen 
+        if (Validering.textNamnHarVarde(efternamn, fornamn)) {
+
+            //Deklerar variabler och använder en toUpperCase metod på inmatningen 
             String enamn = Validering.storBokstav(efternamn.getText());
-            
+
             String fnamn = Validering.storBokstav(fornamn.getText());
-            
-            
-              try {
-                  //Hämtar elev id från elev utifrån inmatat för och efternamn
-            String id =  idb.fetchSingle("SELECT ELEV_ID FROM ELEV where FORNAMN=" + "'" + fnamn + "'" +"and EFTERNAMN=" +"'" + enamn+ "'" );
-             //Om inget id hittas, skriv ut felmeddelande 
-                    if(id == null){ JOptionPane.showMessageDialog(null," Eleven finns inte");}
-          
-                    else{
-                        
-                        // Skapar en arraylist med alla kurser som eleven varit registrerad på
-                    ArrayList <String> kurser = idb.fetchColumn("SELECT KURSNAMN from KURS join REGISTRERAD_PA on"
-                    + " KURS.KURS_ID = REGISTRERAD_PA.KURS_ID where ELEV_ID="+ "'" + id +"'");
+
+            try {
+                //Hämtar elev id från elev utifrån inmatat för och efternamn
+                String id = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where FORNAMN=" + "'" + fnamn + "'" + "and EFTERNAMN=" + "'" + enamn + "'");
+                //Om inget id hittas, skriv ut felmeddelande 
+                if (id == null) {
+                    JOptionPane.showMessageDialog(null, " Eleven finns inte");
+                } else {
+
+                    // Skapar en arraylist med alla kurser som eleven varit registrerad på
+                    ArrayList<String> kurser = idb.fetchColumn("SELECT KURSNAMN from KURS join REGISTRERAD_PA on"
+                            + " KURS.KURS_ID = REGISTRERAD_PA.KURS_ID where ELEV_ID=" + "'" + id + "'");
                     // Om elev inte varit registrerad på någon kurs, skicka ut felmeddelande
-                    if(kurser == null){ JOptionPane.showMessageDialog(null," Eleven har ej läst någon kurs");}
-                    
-                    else{                            
+                    if (kurser == null) {
+                        JOptionPane.showMessageDialog(null, " Eleven har ej läst någon kurs");
+                    } else {
                         // Skapar en string med kurser och presenterar den i resultatrutan
-             String svar ="";
-           
-          for ( int i = 0; i<kurser.size();i++)
-          { 
-            svar +=   kurser.get(i)+ "\n";
-          }
-           
-           
-          resultat.setText(svar);}}
-                
-      
-            
-        } catch (InfException ex) {
-            Logger.getLogger(SökKurserElevLäst.class.getName()).log(Level.SEVERE, null, ex);
-        }}
+                        String svar = "";
+
+                        for (int i = 0; i < kurser.size(); i++) {
+                            svar += kurser.get(i) + "\n";
+                        }
+
+                        resultat.setText(svar);
+                    }
+                }
+
+            } catch (InfException ex) {
+                Logger.getLogger(SökKurserElevLäst.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
