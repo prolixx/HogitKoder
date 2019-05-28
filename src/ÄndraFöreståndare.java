@@ -149,7 +149,7 @@ public class ÄndraFöreståndare extends javax.swing.JFrame {
                     if(id == null){ JOptionPane.showMessageDialog(null," Läraren finns inte");}
          
              
-        
+        //Kollar om läraren redan är föreståndare och skikcar i så fall felmeddelande
                      else{String finns = idb.fetchSingle("SELECT FORESTANDARE FROM ELEVHEM where forestandare =" + id);
                        if(!(finns == null)){ JOptionPane.showMessageDialog(null," Läraren är redan föreståndare för ett elevhem");} 
                        
