@@ -14,7 +14,9 @@ import oru.inf.InfException;
  * @author Admin
  */
 public class RegistreraochAvegistreraElevPåKurs extends javax.swing.JFrame {
-     private InfDB idb;
+
+    private InfDB idb;
+
     /**
      * Creates new form RegistreraElevPåKurs
      */
@@ -126,89 +128,98 @@ public class RegistreraochAvegistreraElevPåKurs extends javax.swing.JFrame {
     private void tabortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabortActionPerformed
         //// Ger felmeddelande vid tomma inmatningsrutor.
         if (Validering.textFaltHarVarde(kurs)) {
-            if (Validering.textNamnHarVarde(fornamn, efternamn)){
-                
+            if (Validering.textNamnHarVarde(fornamn, efternamn)) {
+
                 try {
                     //Deklerar variabler och använder en toUpperCase metod på inmatningen
                     String enamn = Validering.storBokstav(efternamn.getText());
-                    
+
                     String fnamn = Validering.storBokstav(fornamn.getText());
-                    
+
                     String kursen = Validering.storBokstav(kurs.getText());
-                    
+
                     String id;
-                    
+
                     id = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
                     //Om inget id hittas, skriv ut felmeddelande
-                     if(id == null){ JOptionPane.showMessageDialog(null," Eleven finns inte, kontrollera inmatningen");}
-                    
-                       else{ // Hämta kurs id för inmatat kursnamn
+                    if (id == null) {
+                        JOptionPane.showMessageDialog(null, " Eleven finns inte, kontrollera inmatningen");
+                    } else { // Hämta kurs id för inmatat kursnamn
                         String kid = idb.fetchSingle("select kurs_id from kurs where kursnamn=" + "'" + kursen + "'");
                         //Kontrollerar så att idet finns, om inte skickar felmeddelande
                         if (kid == null) {
-                            JOptionPane.showMessageDialog(null, " Kursen finns inte, kontrollera inmatningen");}
-                        
-                       else{ //Kollar att eleven  är  registreard på kursen med hjälpa av elev id oc kurs id
-                        String a = idb.fetchSingle("SELECT KURS_ID FROM REGISTRERAD_PA where ELEV_ID=" + "'" + id + "'" + "and KURS_ID=" + "'" + kid + "'");
-                      
-                        if (null == a) {
-                            JOptionPane.showMessageDialog(null, "Eleven är inte registrerad kursen");}
-                        else{
-                            
-                        // Ta bort eleven från kursen, skriv ut bekräftelse
-                           idb.delete("DELETE from REGISTRERAD_PA where ELEV_ID=" +"'"+ id+"'");{JOptionPane.showMessageDialog(null,"  Eleven är nu borttagen från kursen");}}}}
-                  
+                            JOptionPane.showMessageDialog(null, " Kursen finns inte, kontrollera inmatningen");
+                        } else { //Kollar att eleven  är  registreard på kursen med hjälpa av elev id oc kurs id
+                            String a = idb.fetchSingle("SELECT KURS_ID FROM REGISTRERAD_PA where ELEV_ID=" + "'" + id + "'" + "and KURS_ID=" + "'" + kid + "'");
+
+                            if (null == a) {
+                                JOptionPane.showMessageDialog(null, "Eleven är inte registrerad kursen");
+                            } else {
+
+                                // Ta bort eleven från kursen, skriv ut bekräftelse
+                                idb.delete("DELETE from REGISTRERAD_PA where ELEV_ID=" + "'" + id + "'");
+                                {
+                                    JOptionPane.showMessageDialog(null, "  Eleven är nu borttagen från kursen");
+                                }
+                            }
+                        }
+                    }
+
                 } catch (InfException ex) {
                     Logger.getLogger(RegistreraochAvegistreraElevPåKurs.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            
-            }}
+
+            }
+        }
     }//GEN-LAST:event_tabortActionPerformed
 
     private void registreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraActionPerformed
         //// Ger felmeddelande vid tomma inmatningsrutor.
         if (Validering.textFaltHarVarde(kurs)) {
-            if (Validering.textNamnHarVarde(fornamn, efternamn)){
-                
+            if (Validering.textNamnHarVarde(fornamn, efternamn)) {
+
             }
- //Deklerar variabler och använder en toUpperCase metod på inmatningen 
+            //Deklerar variabler och använder en toUpperCase metod på inmatningen 
             String enamn = Validering.storBokstav(efternamn.getText());
 
             String fnamn = Validering.storBokstav(fornamn.getText());
-            
-            String kursen = Validering.storBokstav(kurs.getText());
-            
-            //Tar fram elevens id med hjälp av inmatat för och efternamn
-           
-            String id;
-         try {
-             id = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
-         //Om inget id hittas, skriv ut felmeddelande 
-                    if(id == null){ JOptionPane.showMessageDialog(null," Eleven finns inte, kontrollera inmatningen");}
 
-                    else{ // Hämta kurs id för inmatat kursnamn
-                        String kid = idb.fetchSingle("select kurs_id from kurs where kursnamn=" + "'" + kursen + "'");
-                        //Kontrollerar så att idet finns, om inte skickar felmeddelande
-                        if (kid == null) {
-                            JOptionPane.showMessageDialog(null, " Kursen finns inte, kontrollera inmatningen");}
-                        
-                        else{ //Kollar o eleven redan är  reggistreard på kursen med hjälpa av elev id oc kurs id
+            String kursen = Validering.storBokstav(kurs.getText());
+
+            //Tar fram elevens id med hjälp av inmatat för och efternamn
+            String id;
+            try {
+                id = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
+                //Om inget id hittas, skriv ut felmeddelande 
+                if (id == null) {
+                    JOptionPane.showMessageDialog(null, " Eleven finns inte, kontrollera inmatningen");
+                } else { // Hämta kurs id för inmatat kursnamn
+                    String kid = idb.fetchSingle("select kurs_id from kurs where kursnamn=" + "'" + kursen + "'");
+                    //Kontrollerar så att idet finns, om inte skickar felmeddelande
+                    if (kid == null) {
+                        JOptionPane.showMessageDialog(null, " Kursen finns inte, kontrollera inmatningen");
+                    } else { //Kollar o eleven redan är  reggistreard på kursen med hjälpa av elev id oc kurs id
                         String a = idb.fetchSingle("SELECT KURS_ID FROM REGISTRERAD_PA where ELEV_ID=" + "'" + id + "'" + "and KURS_ID=" + "'" + kid + "'");
                         //Kollar att eleven inte redan är registrerad på kursen.
                         if (!(null == a)) {
-                            JOptionPane.showMessageDialog(null, "Eleven är redan registrerad på kursen");}
-                        
-                        // Registrerar elveven på kursen
-                        else{idb.insert("insert into REGISTRERAD_PA values" + "(" + "'" + id + "'" + "," + "'" + kid + "')");{
-                        //Meddelar att registrering är genomförd
-                            JOptionPane.showMessageDialog(null, "Eleven är nu registrerad på kursen");}}}
-         
-                     }} catch (InfException ex) {
-             Logger.getLogger(RegistreraochAvegistreraElevPåKurs.class.getName()).log(Level.SEVERE, null, ex);
-         }}
-                 
-        
-        
+                            JOptionPane.showMessageDialog(null, "Eleven är redan registrerad på kursen");
+                        } // Registrerar elveven på kursen
+                        else {
+                            idb.insert("insert into REGISTRERAD_PA values" + "(" + "'" + id + "'" + "," + "'" + kid + "')");
+                            {
+                                //Meddelar att registrering är genomförd
+                                JOptionPane.showMessageDialog(null, "Eleven är nu registrerad på kursen");
+                            }
+                        }
+                    }
+
+                }
+            } catch (InfException ex) {
+                Logger.getLogger(RegistreraochAvegistreraElevPåKurs.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+
     }//GEN-LAST:event_registreraActionPerformed
 
     /**
