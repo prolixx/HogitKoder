@@ -121,48 +121,44 @@ public class VisaKursBetyg extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
  // Ger felmeddelande vid tomma inmatningsrutor.
-        if(Validering.textFaltHarVarde(kurs))    
-            if (Validering.textNamnHarVarde(fornamn, efternamn)) 
-            
-            try{
-//Deklarerar variabler
-        String enamn = efternamn.getText();
-        String fnamn = fornamn.getText();
-        String kursen = kurs.getText(); 
-        
-    
-       
-          
-              // Hämtar Elev id för inmatat för och efternamn
-       String  eid = idb.fetchSingle("select elev_id from elev where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
-                 //Kontrollerar att idet finns, om inte skickar felmeddelande  
-                    if(eid == null){ JOptionPane.showMessageDialog(null," Eleven finns inte, kontrollera inmatningen");}
-                    
-                    
-                    else{
+        if (Validering.textFaltHarVarde(kurs)) {
+            if (Validering.textNamnHarVarde(fornamn, efternamn)) {
+                try {
+//Deklarerar variabler och ger Uppercase till inmatningen 
+                    String enamn = Validering.storBokstav(efternamn.getText());
+                    String fnamn = Validering.storBokstav(fornamn.getText());
+                    String kursen = Validering.storBokstav(kurs.getText());
+
+                    // Hämtar Elev id för inmatat för och efternamn
+                    String eid = idb.fetchSingle("select elev_id from elev where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
+                    //Kontrollerar att idet finns, om inte skickar felmeddelande  
+                    if (eid == null) {
+                        JOptionPane.showMessageDialog(null, " Eleven finns inte, kontrollera inmatningen");
+                    } else {
                         // Hämta kurs id för inmatat kursnamn
-            String kid = idb.fetchSingle("select kurs_id from kurs where kursnamn="+ "'" + kursen + "'");
-            //Kontrollerar så att idet finns, om inte skickar felmeddelande
-            if(kid == null){ JOptionPane.showMessageDialog(null," Kursen finns inte, kontrollera inmatningen");}
-             
-            else{
-            // Hämtar elevens beltyg i angiven kurs
-            String
-                     fraga = idb.fetchSingle("SELECT KURSBETYG from HAR_BETYG_I where ELEV_ID=" + "'" + eid + "'" + "and KURS_ID=" + "'" + kid + "'");
-                            if(fraga == null){ JOptionPane.showMessageDialog(null," Eleven har inget betyg i kursen");}
-                    
-                            else{
+                        String kid = idb.fetchSingle("select kurs_id from kurs where kursnamn=" + "'" + kursen + "'");
+                        //Kontrollerar så att idet finns, om inte skickar felmeddelande
+                        if (kid == null) {
+                            JOptionPane.showMessageDialog(null, " Kursen finns inte, kontrollera inmatningen");
+                        } else {
+                            // Hämtar elevens beltyg i angiven kurs
+                            String fraga = idb.fetchSingle("SELECT KURSBETYG from HAR_BETYG_I where ELEV_ID=" + "'" + eid + "'" + "and KURS_ID=" + "'" + kid + "'");
+                            if (fraga == null) {
+                                JOptionPane.showMessageDialog(null, " Eleven har inget betyg i kursen");
+                            } else {
                                 // Visar betygsbeteckning i rutan
-             Resultat.setText(fraga);}}}
-             
-             
-      
-             
-         } catch (InfException ex) {
-             Logger.getLogger(VisaKursBetyg.class.getName()).log(Level.SEVERE, null, ex);
-         }
-                 
-                 
+                                Resultat.setText(fraga);
+                            }
+                        }
+                    }
+
+                } catch (InfException ex) {
+                    Logger.getLogger(VisaKursBetyg.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
