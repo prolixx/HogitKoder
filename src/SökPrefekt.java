@@ -1,5 +1,5 @@
 /*
- * Klass för att söka ut förnamn och efternam för prefketen på angivet elevhem 
+ * Klass för att söka ut förnamn och efternam för prefekten på angivet elevhem 
  */
 
 
@@ -88,14 +88,14 @@ private final InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // Ger felmeddelande vid tomma inmatningsrutor samt felaktig tecken inmatning.
+        // Ger felmeddelande vid tomma inmatningsrutor.
         if(Validering.textFaltHarVarde(elevhem))
            
             
             try {
                 
-                //Deklarear variabel
-                  String hem = elevhem.getText();
+                //Deklarear variabel och hämtar medtod för Upppercase
+                  String hem = Validering.storBokstav(elevhem.getText());
                   
                   //Skapa en ArrayLista med alla elevhems namn
               ArrayList <String> h = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
