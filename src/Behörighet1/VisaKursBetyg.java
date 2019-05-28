@@ -1,9 +1,12 @@
+package Behörighet1;
+
 /*
  * Klass för att visa en elevs betyg i angiven kurs
  */
 
 
 
+import StartPaket.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;

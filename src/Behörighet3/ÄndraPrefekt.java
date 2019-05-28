@@ -1,7 +1,11 @@
+package Behörighet3;
+
 /*
  * Klass för att ändra vilken elev som är prefekt på ett angivet elevhem
  */
 
+import StartPaket.Validering;
+import Behörighet3.ÄndraFöreståndare;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.logging.Level;

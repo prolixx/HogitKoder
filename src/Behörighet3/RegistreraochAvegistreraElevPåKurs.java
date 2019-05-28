@@ -1,4 +1,7 @@
+package Behörighet3;
 
+
+import StartPaket.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;

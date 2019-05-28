@@ -1,7 +1,10 @@
+package Behörighet1;
+
 /*
  * Klass för att söka fram vilka kurser en elev har läst
  */
 
+import StartPaket.Validering;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;

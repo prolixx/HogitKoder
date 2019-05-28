@@ -1,3 +1,5 @@
+package Behörighet2;
+
 /*
  * Klass som ändrar en elevns betyg i kurs där betyg redan är registerat sedan tidigare 
  */
@@ -5,6 +7,7 @@
 
 
 
+import StartPaket.Validering;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;

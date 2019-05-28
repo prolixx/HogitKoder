@@ -1,9 +1,16 @@
+package StartPaket;
+
+
+
 /*
 Startsidan ger användaren möjligheten att loggain 
 eller att fortsätta utan behörighet.
  */
 
 
+import Behörighet2.Larare;
+import Behörighet3.Admin;
+import StartPaket.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;

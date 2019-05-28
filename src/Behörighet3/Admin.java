@@ -1,3 +1,5 @@
+package Behörighet3;
+
 
 
 /*
@@ -7,9 +9,15 @@
  */
 
 
+import Behörighet1.ListaEleverpåElevhem;
+import Behörighet1.SökPrefekt;
+import Behörighet1.VisaKursBetyg;
+import Behörighet2.Poang;
+import Behörighet2.ÄndraLosenord;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -20,14 +28,14 @@ import oru.inf.InfException;
 public class Admin extends javax.swing.JFrame {
  
     private InfDB idb;
-
+    
     /**
     * Creates new form Larare
      */
     public Admin(InfDB idb) {
         initComponents();
-        this.idb = idb;
-       
+        this.idb=idb;
+        //idb = new InfDB("c:\\db\\hogdb.fdb");
      }
     
 
@@ -50,6 +58,9 @@ public class Admin extends javax.swing.JFrame {
         listaElever = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         geAdmin = new javax.swing.JButton();
+        VisaStallning = new javax.swing.JButton();
+        nyLarare = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,12 +82,7 @@ public class Admin extends javax.swing.JFrame {
         resultat.setColumns(20);
         resultat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         resultat.setRows(5);
-        resultat.setText("Håll musen över!!\n för Ställning i \nElevhemsPokalen!");
-        resultat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                resultatMouseEntered(evt);
-            }
-        });
+        resultat.setText("\n");
         jScrollPane1.setViewportView(resultat);
 
         visaBetyg.setText("Visa elev betyg");
@@ -109,10 +115,31 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        geAdmin.setText("Ge admin");
+        geAdmin.setText("Hantera Lärare");
         geAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 geAdminActionPerformed(evt);
+            }
+        });
+
+        VisaStallning.setText("Visa Elevhems poäng");
+        VisaStallning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VisaStallningActionPerformed(evt);
+            }
+        });
+
+        nyLarare.setText("Skapa ny lärare");
+        nyLarare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nyLarareActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Registrera nykurs");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -126,14 +153,21 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(SokPrefekt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(listaElever, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(larareKurser, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(startaAndraLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(visaBetyg, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(geAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(VisaStallning, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(startaAndraLosenord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(visaBetyg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(geAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nyLarare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,8 +189,14 @@ public class Admin extends javax.swing.JFrame {
                         .addComponent(geAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(VisaStallning)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nyLarare, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -166,11 +206,7 @@ public class Admin extends javax.swing.JFrame {
     
     private void startaAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startaAndraLosenordActionPerformed
      
-        try {
-            new AndraLosenord().setVisible(true);
-        } catch (InfException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new ÄndraLosenord(idb).setVisible(true);
     }//GEN-LAST:event_startaAndraLosenordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -186,7 +222,7 @@ public class Admin extends javax.swing.JFrame {
 
     private void SokPrefektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SokPrefektActionPerformed
         try {
-            new SokPrefekt().setVisible(true);
+            new SökPrefekt().setVisible(true);
         } catch (InfException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -213,28 +249,36 @@ dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void geAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_geAdminActionPerformed
-        try {
-            new GeAdminStatus().setVisible(true);
-        } catch (InfException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new AdminÄndraInfoLarare(idb).setVisible(true);
+        
+        
+        
+   
     }//GEN-LAST:event_geAdminActionPerformed
 
-    private void resultatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultatMouseEntered
-//        pokalen.visaStallning();
-//        
-//        resultat.setText();
-//       
-    }//GEN-LAST:event_resultatMouseEntered
-   
+    private void VisaStallningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisaStallningActionPerformed
+
+    }//GEN-LAST:event_VisaStallningActionPerformed
+
+    private void nyLarareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyLarareActionPerformed
+       new NyLarare(idb).setVisible(true);
+    }//GEN-LAST:event_nyLarareActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      new NyKurs(idb).setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton SokPrefekt;
+    private javax.swing.JButton VisaStallning;
     private javax.swing.JButton geAdmin;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton larareKurser;
     private javax.swing.JButton listaElever;
+    private javax.swing.JButton nyLarare;
     private javax.swing.JTextArea resultat;
     private javax.swing.JButton startaAndraLosenord;
     private javax.swing.JToggleButton visaBetyg;

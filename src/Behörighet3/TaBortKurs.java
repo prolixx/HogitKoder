@@ -1,8 +1,11 @@
+package Behörighet3;
+
 /*
  * Klass för att ta bort kurser ut databasen 
  */
 
 
+import StartPaket.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;

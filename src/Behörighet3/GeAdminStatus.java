@@ -1,7 +1,10 @@
+package Behörighet3;
+
 /* Ge administratörs status till valfri lärare
 
  */
 
+import StartPaket.Validering;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.logging.Level;

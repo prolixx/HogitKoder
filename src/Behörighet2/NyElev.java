@@ -1,3 +1,5 @@
+package Behörighet2;
+
 /*
  * Klass för att registera ny elev
  */
@@ -6,6 +8,7 @@
 
 
 
+import StartPaket.Validering;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;

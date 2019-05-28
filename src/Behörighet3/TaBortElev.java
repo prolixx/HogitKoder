@@ -1,3 +1,5 @@
+package Behörighet3;
+
 
 
 /*
@@ -7,6 +9,7 @@
  */
 
 
+import StartPaket.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,13 +20,13 @@ import oru.inf.InfException;
  *
  * @author Admin
  */
-public class TaBortElevNy extends javax.swing.JFrame {
+public class TaBortElev extends javax.swing.JFrame {
  
          private final InfDB idb;
     /**
      * Creates new form TaBortElev
      */
-    public TaBortElevNy() throws InfException {
+    public TaBortElev() throws InfException {
         initComponents();
         
         idb = new InfDB("c:\\db\\hogdb.fdb");
@@ -161,7 +164,7 @@ public class TaBortElevNy extends javax.swing.JFrame {
                      idb.delete("DELETE from ELEV where ELEV_ID=" +"'"+ id+"'");{JOptionPane.showMessageDialog(null,"  Eleven är nu borttagen");}}}}}
                      
                  } catch (InfException ex) {
-                     Logger.getLogger(TaBortElevNy.class.getName()).log(Level.SEVERE, null, ex);
+                     Logger.getLogger(TaBortElev.class.getName()).log(Level.SEVERE, null, ex);
                  }
                  
                
@@ -194,14 +197,18 @@ public class TaBortElevNy extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TaBortElevNy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaBortElev.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TaBortElevNy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaBortElev.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TaBortElevNy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaBortElev.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TaBortElevNy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaBortElev.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -211,9 +218,9 @@ public class TaBortElevNy extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new TaBortElevNy().setVisible(true);
+                    new TaBortElev().setVisible(true);
                 } catch (InfException ex) {
-                    Logger.getLogger(TaBortElevNy.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TaBortElev.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

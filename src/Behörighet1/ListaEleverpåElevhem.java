@@ -1,8 +1,11 @@
+package Behörighet1;
+
 /*
  * Klass som listar för och efternamn på alla elever som är registerade på det 
 angivna elvehemmmet. 
  */
 
+import StartPaket.Validering;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;

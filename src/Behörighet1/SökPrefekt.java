@@ -1,9 +1,12 @@
+package Behörighet1;
+
 /*
  * Klass för att söka ut förnamn och efternam för prefekten på angivet elevhem 
  */
 
 
 
+import StartPaket.Validering;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;

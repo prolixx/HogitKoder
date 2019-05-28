@@ -1,7 +1,10 @@
+package Behörighet3;
+
 /*
  * Klass för att ändra vilken lärare som är föreståndare på ett angivet elevhem
  */
 
+import StartPaket.Validering;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.logging.Level;
