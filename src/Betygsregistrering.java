@@ -1,4 +1,4 @@
-/* Klass för att registra nytt betyg för elev.
+    /* Klass för att registra nytt betyg för elev.
     För ändring av betyg används en annan klass.
 */
 

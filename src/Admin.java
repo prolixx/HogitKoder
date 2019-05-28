@@ -20,16 +20,14 @@ import oru.inf.InfException;
 public class Admin extends javax.swing.JFrame {
  
     private InfDB idb;
-   private ElevhemsPokalen pokalen;
+
     /**
     * Creates new form Larare
      */
-    public Admin() {
+    public Admin(InfDB idb) {
         initComponents();
-        try {
-            idb = new InfDB("c:\\db\\hogdb.fdb");
-        } catch (InfException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex); }
+        this.idb = idb;
+       
      }
     
 

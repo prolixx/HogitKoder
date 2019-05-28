@@ -40,7 +40,7 @@ public class Startsida extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         loggInKnapp = new javax.swing.JToggleButton();
         password = new javax.swing.JPasswordField();
-        vidare = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,23 +67,14 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
 
-        vidare.setText("Fortsätt utan loggin!");
-        vidare.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vidareActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(vidare, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(91, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -94,13 +85,17 @@ public class Startsida extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(loggInKnapp))
                     .addComponent(jLabel2)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(vidare, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -134,11 +129,13 @@ public class Startsida extends javax.swing.JFrame {
                 //Loggin för admin kontrollerar inmating gentemot Sql-frågorna.
                 if (user.getText().equals(fraga3) && password.getText().equals(fraga2)) // om Användaren är Administratör kommer den skickas till Admin Klassen
                 {
-                    new Admin().setVisible(true);
+                    new Admin(idb).setVisible(true);
+                    dispose();
                 } //Pass och ID kontrolleras mot sql-frågorna.
                 else if (user.getText().equals(fraga) && password.getText().equals(fraga2)) {
                     // för lärare utan administratörs status öppnas larare-klassen            
-                    new Larare().setVisible(true);
+                    new Larare(idb).setVisible(true);
+                    dispose();
 
                 } //Vid fel lösenord eller användarnamn kommer ett felmeddelande
                 else {
@@ -158,17 +155,13 @@ public class Startsida extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
 
-    private void vidareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vidareActionPerformed
-        new Elev().setVisible(true);
-    }//GEN-LAST:event_vidareActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JToggleButton loggInKnapp;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField user;
-    private javax.swing.JButton vidare;
     // End of variables declaration//GEN-END:variables
 }
