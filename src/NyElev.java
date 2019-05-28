@@ -133,7 +133,7 @@ public class NyElev extends javax.swing.JFrame {
     }//GEN-LAST:event_fornamnActionPerformed
 
     private void skapaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaKnappActionPerformed
-// Ger felmeddelande vid tomma inmatningsrutor.
+// Ger felmeddelande vid tomma inmatningsrutor samt felaktiga inmatning
         if(Validering.isHeltal(sovsal) &&(Validering.textNamnHarVarde(fornamn,efternamn)) && (Validering.textFaltHarVarde(sovsal)));{
             
              
