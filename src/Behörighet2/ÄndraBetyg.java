@@ -20,13 +20,16 @@ import oru.inf.InfException;
  * @author Admin
  */
 public class ÄndraBetyg extends javax.swing.JFrame {
-  private final InfDB idb;
+
+    private final InfDB idb;
+
     /**
      * Creates new form ÄndraBetyg
+     *
      * @throws oru.inf.InfException
      */
     public ÄndraBetyg() throws InfException {
-         idb = new InfDB("c:\\db\\hogdb.fdb");
+        idb = new InfDB("c:\\db\\hogdb.fdb");
         initComponents();
     }
 
@@ -124,70 +127,58 @@ public class ÄndraBetyg extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
 
-          // Ger felmeddelande vid tomma inmatningsrutor
-          if(Validering.textFaltHarVarde(kurs)
-                  &&(Validering.textNamnHarVarde(fornamn,efternamn)) && (Validering.textFaltHarVarde(betyg)));
-          
-          
-                try {
-          //Deklarerar varibler och använder to Uppercase metod
-          String kursen = Validering.storBokstav(kurs.getText());
-          
-          String enamn =  Validering.storBokstav(efternamn.getText());
-          
-          String fnamn = Validering.storBokstav(fornamn.getText());
-          
-          String betyget = Validering.storBokstav(betyg.getText());
-          
-      
-          
-          
-       
-          //Skapar en ArrayList över alla betygsbeteckningar
-          ArrayList <String> betygsLista = idb.fetchColumn("SELECT BETYGSBETECKNING from BETYG");
-          
-          
-          
-          // Kontrollerar att att Listan innehåller det inmatade betyget
-          if(!betygsLista.contains(betyget)){
-              //Om inte skriv ut felmeddelande
-              JOptionPane.showMessageDialog(null, "Betyg finns ej i skalan");}
-          
-          //Om betyget finns i listan
-        else{
-              
-              
-              //Välj kurs id för inmatat kursnamn
-              String kid =  idb.fetchSingle("SELECT KURS_ID FROM KURS where KURSNAMN=" + "'" + kursen + "'");
-              //Kontrollerar så att idet finns, om inte skickar felmeddelande
-              if(kid == null){ JOptionPane.showMessageDialog(null," Kursen finns inte, kontrollera inmatningen");}
-              
-              else{
-                  // Hämtar elev id från elev baserat på angivet för och efternamn
-                  String eid = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
-                  //Kontrollerar så att idet finns, om inte skikcar felmeddelande
-                  if(eid == null){ JOptionPane.showMessageDialog(null," Eleven finns inte, kontrollera inmatningen");}
-                  
-                  else{
-                      //Uppdaterar elevens betyg i kursen
-                      idb.update("UPDATE HAR_BETYG_I SET KURSBETYG=" +"'"+ betyget + "'" + "where ELEV_ID=" + "'" + eid + "'" +"and kurs_id=" + "'" + kid + "'");
-                      
-// Visar meddelande om utförd uppdateringen
-JOptionPane.showMessageDialog(null, fnamn + " " + enamn + " har nu betyg " + betyget + " i kurs " + kursen );}}
-          
-          
-          
-          
-          
-          
-          }     } catch (InfException ex) {
-          Logger.getLogger(ÄndraBetyg.class.getName()).log(Level.SEVERE, null, ex);
-           JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
-      }
-            
-        
+        // Ger felmeddelande vid tomma inmatningsrutor
+        if (Validering.textFaltHarVarde(kurs)
+                && (Validering.textNamnHarVarde(fornamn, efternamn)) && (Validering.textFaltHarVarde(betyg)));
+
+        try {
+            //Deklarerar varibler och använder to Uppercase metod
+            String kursen = Validering.storBokstav(kurs.getText());
+
+            String enamn = Validering.storBokstav(efternamn.getText());
+
+            String fnamn = Validering.storBokstav(fornamn.getText());
+
+            String betyget = Validering.storBokstav(betyg.getText());
+
+            //Skapar en ArrayList över alla betygsbeteckningar
+            ArrayList<String> betygsLista = idb.fetchColumn("SELECT BETYGSBETECKNING from BETYG");
+
+            // Kontrollerar att att Listan innehåller det inmatade betyget
+            if (!betygsLista.contains(betyget)) {
+                //Om inte skriv ut felmeddelande
+                JOptionPane.showMessageDialog(null, "Betyg finns ej i skalan");
+            } //Om betyget finns i listan
+            else {
+
+                //Välj kurs id för inmatat kursnamn
+                String kid = idb.fetchSingle("SELECT KURS_ID FROM KURS where KURSNAMN=" + "'" + kursen + "'");
+                //Kontrollerar så att idet finns, om inte skickar felmeddelande
+                if (kid == null) {
+                    JOptionPane.showMessageDialog(null, " Kursen finns inte, kontrollera inmatningen");
+                } else {
+                    // Hämtar elev id från elev baserat på angivet för och efternamn
+                    String eid = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
+                    //Kontrollerar så att idet finns, om inte skikcar felmeddelande
+                    if (eid == null) {
+                        JOptionPane.showMessageDialog(null, " Eleven finns inte, kontrollera inmatningen");
+                    } else {
+                        //Uppdaterar elevens betyg i kursen
+                        idb.update("UPDATE HAR_BETYG_I SET KURSBETYG=" + "'" + betyget + "'" + "where ELEV_ID=" + "'" + eid + "'" + "and kurs_id=" + "'" + kid + "'");
+
+                        // Visar meddelande om utförd uppdateringen
+                        JOptionPane.showMessageDialog(null, fnamn + " " + enamn + " har nu betyg " + betyget + " i kurs " + kursen);
+                    }
+                }
+
+            }
+        } catch (InfException ex) {
+            Logger.getLogger(ÄndraBetyg.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

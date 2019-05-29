@@ -25,9 +25,10 @@ public class Poang extends javax.swing.JFrame {
      */
     public Poang() throws InfException {
         initComponents();
-      idb = new InfDB("c:\\db\\hogdb.fdb");
-     
+        idb = new InfDB("c:\\db\\hogdb.fdb");
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -144,44 +145,44 @@ public class Poang extends javax.swing.JFrame {
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
 
         // Ger felmeddelande vid tomma inmatningsrutor samt felaktig inmatning
-        if(Validering.textFaltHarVarde(hem) && (Validering.isHeltal(antal))){
+        if (Validering.textFaltHarVarde(hem) && (Validering.isHeltal(antal))) {
 
             // Deklarerar varibler  och kör toUpperCase metod
-        try {      
-            String namn = Validering.storBokstav(hem.getText());
-            // Kontrollerar att valt elevhem finns 
-            String svar = idb.fetchSingle("SELECT ELEVHEMSNAMN from ELEVHEM where ELEVHEMSNAMN =" + "'" + namn + "'");
-             if(svar == null){ JOptionPane.showMessageDialog(null," Elevhemmet finns inte, kontrollera inmatningen");}
-             
-             else{
-                 // Hämtar nuvarande poäng
-            String hamtad = idb.fetchSingle("SELECT HUSPOANG from ELEVHEM where ELEVHEMSNAMN =" + "'" + namn + "'");
+            try {
+                String namn = Validering.storBokstav(hem.getText());
+                // Kontrollerar att valt elevhem finns 
+                String svar = idb.fetchSingle("SELECT ELEVHEMSNAMN from ELEVHEM where ELEVHEMSNAMN =" + "'" + namn + "'");
+                if (svar == null) {
+                    JOptionPane.showMessageDialog(null, " Elevhemmet finns inte, kontrollera inmatningen");
+                } else {
+                    // Hämtar nuvarande poäng
+                    String hamtad = idb.fetchSingle("SELECT HUSPOANG from ELEVHEM where ELEVHEMSNAMN =" + "'" + namn + "'");
 
-            // Konverterar Strängar till int för att kunna summera
-            String talstrang = antal.getText();
-            String talstrang2 = hamtad;
+                    // Konverterar Strängar till int för att kunna summera
+                    String talstrang = antal.getText();
+                    String talstrang2 = hamtad;
 
-            int tal1 = Integer.parseInt(talstrang);
-            int tal2 = Integer.parseInt(talstrang2);
+                    int tal1 = Integer.parseInt(talstrang);
+                    int tal2 = Integer.parseInt(talstrang2);
 
-            int summa = tal1 + tal2;
-            // konverterar tillbaka till Sträng för
-            // sedan skicka tillbaka resultatet till FDB
-            String summaStrang = Integer.toString(summa);
+                    int summa = tal1 + tal2;
+                    // konverterar tillbaka till Sträng för
+                    // sedan skicka tillbaka resultatet till FDB
+                    String summaStrang = Integer.toString(summa);
 
-               // Ändrar poängen till den gamla poängen + den nya
-            idb.update("UPDATE ELEVHEM SET HUSPOANG=" + summaStrang + "where ELEVHEMSNAMN=" + "'" + namn + "'");
+                    // Ändrar poängen till den gamla poängen + den nya
+                    idb.update("UPDATE ELEVHEM SET HUSPOANG=" + summaStrang + "where ELEVHEMSNAMN=" + "'" + namn + "'");
 
-            // Meddelar uppdateringen som skett
-            
-            JOptionPane.showMessageDialog(null, svar + " har fått " + talstrang + " poäng" + " "
-                    + " total " + summaStrang);}
-            // catch för att hindra crash
-        } catch (HeadlessException | NumberFormatException | InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande" + e.getMessage());
+                    // Meddelar uppdateringen som skett
+                    JOptionPane.showMessageDialog(null, svar + " har fått " + talstrang + " poäng" + " "
+                            + " total " + summaStrang);
+                }
+                // catch för att hindra crash
+            } catch (HeadlessException | NumberFormatException | InfException e) {
+                JOptionPane.showMessageDialog(null, "Något gick fel!");
+                System.out.println("Internt felmeddelande" + e.getMessage());
+            }
         }
-        }  
     }//GEN-LAST:event_okActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked

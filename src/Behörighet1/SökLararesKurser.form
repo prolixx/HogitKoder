@@ -53,8 +53,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="efternamn" min="-2" pref="104" max="-2" attributes="0"/>
                           <Component id="fornamn" min="-2" pref="104" max="-2" attributes="0"/>
-                          <Component id="fDatum" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="tDatum" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="fDatum" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tDatum" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -79,19 +79,14 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="fDatum" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="fDatum" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="tDatum" min="-2" pref="28" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="tDatum" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
@@ -107,16 +102,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="org.netbeans.modules.form.InvalidComponent" name="fDatum">
-      <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-      </Properties>
-    </Component>
-    <Component class="org.netbeans.modules.form.InvalidComponent" name="tDatum">
-      <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="efternamn">
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -163,6 +148,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Till"/>
       </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="fDatum">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="tDatum">
     </Component>
   </SubComponents>
 </Form>

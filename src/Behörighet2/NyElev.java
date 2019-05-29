@@ -133,11 +133,10 @@ public class NyElev extends javax.swing.JFrame {
 
     private void skapaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaKnappActionPerformed
 // Ger felmeddelande vid tomma inmatningsrutor samt felaktiga inmatning
-        if (Validering.isHeltal(sovsal) && 
-                Validering.textNamnHarVarde(fornamn, efternamn) && 
-                Validering.textFaltHarVarde(sovsal) &&Validering.ingaSiffror(efternamn)&&
-                (Validering.ingaSiffror(fornamn)))
-        {
+        if (Validering.isHeltal(sovsal)
+                && Validering.textNamnHarVarde(fornamn, efternamn)
+                && Validering.textFaltHarVarde(sovsal) && Validering.ingaSiffror(efternamn)
+                && (Validering.ingaSiffror(fornamn))) {
 
 // Deklarera variabler
             try {
@@ -146,8 +145,8 @@ public class NyElev extends javax.swing.JFrame {
                 String sov = sovsal.getText();
 
                 //Kollar om det redan finns en elev registrerarad med samm för och efternamn
-                String id = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" +
-                        "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
+                String id = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn="
+                        + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
                 //Om inget id hittas, skriv ut felmeddelande 
                 if (!(id == null)) {
                     JOptionPane.showMessageDialog(null, " Registrering ej möjlig elev med samma för och efternamn finns redan");
@@ -162,8 +161,8 @@ public class NyElev extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Sovsalen finns inte välj en annan");
                     } else {
 //Skapa ny rad i tabellen med id, förnamn, efternamn och sovsal utifrån inmatade värden
-                        idb.insert("insert into elev values" + "(" + "'" + nextID +
-                                "'" + "," + "'" + fnamn + "'" + "," + "'" + enamn + "'" + "," + "'" + sov + "')");
+                        idb.insert("insert into elev values" + "(" + "'" + nextID
+                                + "'" + "," + "'" + fnamn + "'" + "," + "'" + enamn + "'" + "," + "'" + sov + "')");
                         //Visar meddelande att eleven lagts till
                         JOptionPane.showMessageDialog(null, "Ny elev tilllaggd");
                     }

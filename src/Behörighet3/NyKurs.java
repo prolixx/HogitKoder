@@ -8,7 +8,9 @@ package Behörighet3;
 
 
 import StartPaket.Validering;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -158,57 +160,63 @@ public class NyKurs extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void skapaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaKnappActionPerformed
-       if(Validering.textNamnHarVarde(fornamn, efternamn) && Validering.textFaltHarVarde(kursnamn)
-           && Validering.textFaltHarVarde(amne));
-        
-        // importaerar simpelDateFormat för att kunda hämta tid från date picker.
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        //skapar variabler och anväder en upercase metod på all inmatnings rutor.
-        String fran = sdf.format(startd.getDate());
-        String till = sdf2.format(slutd.getDate());
-        String fnamn = Validering.storBokstav(fornamn.getText());
-        String enamn = Validering.storBokstav(efternamn.getText());
-        String ämne = Validering.storBokstav(amne.getText());
-        String k = Validering.storBokstav(kursnamn.getText());
+        try {   //Validerar inmatningsrutor
+            if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.textFaltHarVarde(kursnamn)
+                    && Validering.textFaltHarVarde(amne)) {
+                 // Dklarerar variabler och importarar simpelDateFormat till datepickern
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                String fran = sdf1.format(startd.getDate());
+                String till = sdf2.format(slutd.getDate());
 
-        try {
-            // rader med if och else sattser för att hindra programmet att krascha
-            //vid eventuella fel inmatningar.
-            String nextID = idb.getAutoIncrement("Kurs", "Kurs_id");
-            if (nextID == null) {
-                JOptionPane.showMessageDialog(null, "Kunde inte skapa nytt iD");
-            } else {
-                String idf = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where fornamn=" + "'"
-                        + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
-                if (idf == null) {
-                    JOptionPane.showMessageDialog(null, "Kunde inte hitta lärare");
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+
+                Date date1 = format.parse(fran);
+                Date date2 = format.parse(till);
+
+                //Kontrollerar att start datum inte är efter slutdatum
+                if (date1.after(date2)) {
+                    JOptionPane.showMessageDialog(null, "Kontrollera datum följden");
                 } else {
-                    String a = idb.fetchSingle("SELECT AMNE_ID FROM AMNE where AMNESNAMN=" + "'" + ämne + "'");
-                    if (a == null) {
-                        JOptionPane.showMessageDialog(null, "Fann inte tillhörande ämne");
+                    String fnamn = Validering.storBokstav(fornamn.getText());
+                    String enamn = Validering.storBokstav(efternamn.getText());
+                    String ämne = Validering.storBokstav(amne.getText());
+                    String k = Validering.storBokstav(kursnamn.getText());
+
+                    // rader med if och else sattser för att hindra programmet att krascha
+                    //vid eventuella fel inmatningar.
+                    String nextID = idb.getAutoIncrement("Kurs", "Kurs_id");
+                    if (nextID == null) {
+                        JOptionPane.showMessageDialog(null, "Kunde inte skapa nytt iD");
                     } else {
-                       // om allt var korrekt inmatat så skapas en nykurs i databasen
-                       
-                       
-                       
-                       idb.insert("insert into KURS values" + "(" + "'" + nextID + "'" + "," + "'" + k + "'" + "," + "'" + fran
-                                + "'" + "," + "'" + till + "'" + "," + "'" + idf + "'" + "," + "'" + a + "')");
-                        
-                        JOptionPane.showMessageDialog(null, "Ny kurs tilllaggd");
+                        String idf = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where fornamn=" + "'"
+                                + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
+                        if (idf == null) {
+                            JOptionPane.showMessageDialog(null, "Kunde inte hitta lärare");
+                        } else {
+                            String a = idb.fetchSingle("SELECT AMNE_ID FROM AMNE where AMNESNAMN=" + "'" + ämne + "'");
+                            if (a == null) {
+                                JOptionPane.showMessageDialog(null, "Fann inte tillhörande ämne");
+                            } else {
+                                // om allt var korrekt inmatat så skapas en nykurs i databasen
+
+                                idb.insert("insert into KURS values" + "(" + "'" + nextID + "'" + "," + "'" + k + "'" + "," + "'" + fran
+                                        + "'" + "," + "'" + till + "'" + "," + "'" + idf + "'" + "," + "'" + a + "')");
+
+                                JOptionPane.showMessageDialog(null, "Ny kurs tilllaggd");
+                            }
+                        }
                     }
                 }
             }
         } catch (InfException ex) {
             Logger.getLogger(NyKurs.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Något gick fel");
+        } catch (ParseException ex) {
+            Logger.getLogger(NyKurs.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
-        
-        
-        
-        
     }//GEN-LAST:event_skapaKnappActionPerformed
 
 

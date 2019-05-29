@@ -1,7 +1,9 @@
 package Behörighet3;
 
 /*
- * Klass för att ändra information om en lärare
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 
 
@@ -34,22 +36,16 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
         
     }
       public String getID() throws InfException{
-        if (Validering.textNamnHarVarde(fornamn, efternamn));
+          //deklarerar variabler
         String fnamn = Validering.storBokstav(fornamn.getText());
         String enamn = Validering.storBokstav(efternamn.getText());
-        
-        // Hämtar lärar id utifrån inmatat för och efternamn
-     
-
+        //hämtar id från för och efternamn
         String id = idb.fetchSingle("SELECT LARAR_ID FROM LARARE WHERE FORNAMN=" + "'" + fnamn + "'"
                 + "AND EFTERNAMN =" + "'" + enamn + "'");
-        if (id == null) {
-            
-            //Meddelar om id inte hittats
-            JOptionPane.showMessageDialog(null, "Kunde inte finna lärare");
-        }
+    
         return id;
-      }
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,12 +100,6 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
         andraKnapp3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 andraKnapp3ActionPerformed(evt);
-            }
-        });
-
-        efternamn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                efternamnActionPerformed(evt);
             }
         });
 
@@ -242,47 +232,66 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void andraKnapp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKnapp1ActionPerformed
-       //Kontrollerar att inmatningsrutor har värde
-        if (Validering.textFaltHarVarde(andraFornamn));
-        String fnamn = Validering.storBokstav(andraFornamn.getText());
+        //validerar inmatningsrutor
+        if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.textFaltHarVarde(andraFornamn)) {
+            //deklarerar variabler samt ger textfältet toUppercase
+            String fnamn = Validering.storBokstav(andraFornamn.getText());
 
-        try {
-            // Updaterar lärarens förnamn
-            idb.update("UPDATE LARARE SET FORNAMN=" + "'" + fnamn + "'" + "WHERE LARAR_ID=" + "'" + getID() + "'");
-        } catch (InfException ex) {
-            Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                //kollar att läraren finns
+                if (getID() == null) {
+                    JOptionPane.showMessageDialog(null, "läraren finns inte!");
+                } else {
+                    //uppdaterar fornamnet
+                    idb.update("UPDATE LARARE SET FORNAMN=" + "'" + fnamn + "'" + "WHERE LARAR_ID=" + "'" + getID() + "'");
+                    JOptionPane.showMessageDialog(null, "Namnet är nu uppdaterat!");
+                }
+            } catch (InfException ex) {
+                Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
 
     }//GEN-LAST:event_andraKnapp1ActionPerformed
 
     private void andraKnapp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKnapp2ActionPerformed
-        if (Validering.textFaltHarVarde(andraEfternamn));
-        String nyttEfternamn = andraEfternamn.getText();
-
-        try {
-            idb.update("UPDATE LARARE SET EFTERNAMN=" + "'" + nyttEfternamn + "'" + "WHERE LARAR_ID=" + "'" + getID() + "'");
-        } catch (InfException ex) {
-            Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
+        //validerar inmatningsrutor
+        if (Validering.textFaltHarVarde(andraEfternamn) && Validering.textNamnHarVarde(fornamn, efternamn)) {
+            //deklarerar variabler samt ger textfältet toUppercase
+            String nyttEfternamn = Validering.storBokstav(andraEfternamn.getText());
+            try {
+                //kollar att läraren finns
+                if (getID() == null) {
+                    JOptionPane.showMessageDialog(null, "läraren finns inte!");
+                } else {
+                    //uppdaterar efternamn
+                    idb.update("UPDATE LARARE SET EFTERNAMN=" + "'" + nyttEfternamn + "'" + "WHERE LARAR_ID=" + "'" + getID() + "'");
+                    JOptionPane.showMessageDialog(null, "namnet är nu uppdaterat!");
+                }
+            } catch (InfException ex) {
+                Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
 
     }//GEN-LAST:event_andraKnapp2ActionPerformed
 
     private void andraKnapp3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKnapp3ActionPerformed
-        try {
-            //återställer lösenord till defualt: 0000
-            idb.update("update larare set losenord= 0000 where larar_ID =" + "'" + getID() + "'");
-        } catch (InfException ex) {
-            Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
+        //validerar inmatningsrutor
+        if (Validering.textNamnHarVarde(fornamn, efternamn)) {
+            try {
+                //kollar att läraren finns
+                if (getID() == null) {
+                    JOptionPane.showMessageDialog(null, "läraren finns inte!");
+                } else {
+                    //återställer lösenord till defualt: 0000
+                    idb.update("update larare set losenord= '0000' where larar_ID =" + "'" + getID() + "'");
+                    JOptionPane.showMessageDialog(null, "Lösenordet är uppdaterat");
+                }
+            } catch (InfException ex) {
+                Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-
-
     }//GEN-LAST:event_andraKnapp3ActionPerformed
-
-    private void efternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_efternamnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_efternamnActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         dispose();
@@ -293,40 +302,27 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
         try {
             //deklarerar variabler
             String setToAdmin = "'T'";
-            String namn = idb.fetchSingle("Select Fornamn from Larare where larar_id=" + getID());
-            String efternamn = idb.fetchSingle("Select efternamn from larare where larar_id=" + getID());
             //kollar om läraren finns
-            ArrayList<String> b = idb.fetchColumn("SELECT LARAR_ID from LARARE");
-            {
-                boolean ok = false;
-
-                for (String b1 : b) {
-                    if (b.contains(getID())) {
-                        ok = true;
-                    }
-                }
-                // om läraren inte finns skickar ut fel medelande
-                if (ok = false) {
-                    JOptionPane.showMessageDialog(null, " Lärar ID finns ej");
-                }
-
-            }
-            // om läraren finns vill vi göra den till admin
-            String a = idb.fetchSingle("SELECT ADMINISTRATOR from LARARE where LARAR_ID=" + getID());
-            // men om läraren redan är administratör skickas meddelande ut
-            if (a.startsWith("T")) {
-                JOptionPane.showMessageDialog(null, " Läraren är redan administratör");
+            if (getID() == null) {
+                JOptionPane.showMessageDialog(null, "läraren finns inte!");
             } else {
-                try {
-                    // ConfirmDialog ger användaren alternativ att avbryta
-                    if (JOptionPane.showConfirmDialog(null, "Ge admin till: " + namn + " " + efternamn + " " + getID(), "Admin",
-                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                        idb.update("UPDATE LARARE SET ADMINISTRATOR=" + setToAdmin + "where LARAR_ID=" + getID());
-                        // om användaren väljer att fortsätta skickas bekräfftelse meddelande
-                        JOptionPane.showMessageDialog(null, " Behörighet nu updaterad");
+                // om läraren finns vill vi göra den till admin
+                String a = idb.fetchSingle("SELECT ADMINISTRATOR from LARARE where LARAR_ID=" + getID());
+                // men om läraren redan är administratör skickas meddelande ut
+                if (a.startsWith("T")) {
+                    JOptionPane.showMessageDialog(null, " Läraren är redan administratör");
+                } else {
+                    try {
+                        // ConfirmDialog ger användaren alternativ att avbryta
+                        if (JOptionPane.showConfirmDialog(null, "Ge admin till: " + fornamn.getText() + " " + efternamn.getText() + " " + getID(), "Admin",
+                                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                            idb.update("UPDATE LARARE SET ADMINISTRATOR=" + setToAdmin + "where LARAR_ID=" + getID());
+                            // om användaren väljer att fortsätta skickas bekräfftelse meddelande
+                            JOptionPane.showMessageDialog(null, " Behörighet nu updaterad");
+                        }
+                    } catch (InfException ex) {
+                        Logger.getLogger(GeAdminStatus.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (InfException ex) {
-                    Logger.getLogger(GeAdminStatus.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         } catch (HeadlessException | NumberFormatException | InfException ex) {
@@ -336,52 +332,53 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void taBortLarareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortLarareActionPerformed
-        boolean ok = true;
-        //deklarerar variabler
-        String tabortFnamn = fornamn.getText();
-        String tabortEnamn = efternamn.getText();
-        try {
-            // Kontrollerar om läraren har listad kompetens och tar i så fall bort denna
-            if (JOptionPane.showConfirmDialog(null, "vill du tabort lärare: " + tabortFnamn + " " + tabortEnamn + " " + getID(), "",
-                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-            String a = idb.fetchSingle("Select LARAR_ID from HAR_KOMPETENS_I where LARAR_ID=" + "'" + getID() + "'");
-            if (!(null == a)) {
-                ok = false;
-            }
-            {
-                idb.delete("delete from HAR_KOMPETENS_I WHERE LARAR_ID=" + "'" + getID() + "'");
-                ok = true;
-            }
+        if (Validering.textNamnHarVarde(fornamn, efternamn)) {
+            boolean ok = true;
 
-            if (ok = true) {
-                //Kontrollerar om läraren är ansvarig för en kurs, och skickar i så fall felmeddelande att borttag ej möjligt
-                String b = idb.fetchSingle("Select KURSLARARE from KURS where KURSLARARE=" + "'" + getID() + "'");
-                if (!(null == b)) {
-                    JOptionPane.showMessageDialog(null, " Läraran ansvarar för en kurs välj ny kursansvarig innan borttag");
-                }
-
-                if (b == null) {
-                    //Kontrollerar om läraren är föreståndare för ett elevhem och skickar i så fall felmeddelande att borttag ej möjligt
-                    String c = idb.fetchSingle("Select FORESTANDARE from ELEVHEM where FORESTANDARE=" + "'" + getID() + "'");
-                    if (!(null == c)) {
-                        JOptionPane.showMessageDialog(null, " Läraran är elevhemsföreståndare välj ny föreståndare innan borttag");
+            try {
+                // Kontrollerar om läraren har listad kompetens och tar i så fall bort denna
+                if (JOptionPane.showConfirmDialog(null, "vill du tabort lärare: " + fornamn.getText()
+                        + " " + efternamn.getText() + " " + getID(), "",
+                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    String a = idb.fetchSingle("Select LARAR_ID from HAR_KOMPETENS_I where LARAR_ID=" + "'" + getID() + "'");
+                    if (!(null == a)) {
+                        ok = false;
+                    }
+                    {
+                        idb.delete("delete from HAR_KOMPETENS_I WHERE LARAR_ID=" + "'" + getID() + "'");
+                        ok = true;
                     }
 
-                    if (c == null) {
-                        //Tar bort läraren ut tabellen
-                        idb.delete("DELETE from LARARE where LARAR_ID=" + "'" + getID() + "'");
-                        {
-                            JOptionPane.showMessageDialog(null, "  Läraren är nu borttagen");
-                        }}
+                    if (ok = true) {
+                        //Kontrollerar om läraren är ansvarig för en kurs, och skickar i så fall felmeddelande att borttag ej möjligt
+                        String b = idb.fetchSingle("Select KURSLARARE from KURS where KURSLARARE=" + "'" + getID() + "'");
+                        if (!(null == b)) {
+                            JOptionPane.showMessageDialog(null, " Läraran ansvarar för en kurs välj ny kursansvarig innan borttag");
+                        }
+
+                        if (b == null) {
+                            //Kontrollerar om läraren är föreståndare för ett elevhem och skickar i så fall felmeddelande att borttag ej möjligt
+                            String c = idb.fetchSingle("Select FORESTANDARE from ELEVHEM where FORESTANDARE=" + "'" + getID() + "'");
+                            if (!(null == c)) {
+                                JOptionPane.showMessageDialog(null, " Läraran är elevhemsföreståndare välj ny föreståndare innan borttag");
+                            }
+
+                            if (c == null) {
+                                //Tar bort läraren ut tabellen
+                                idb.delete("DELETE from LARARE where LARAR_ID=" + "'" + getID() + "'");
+                                {
+                                    JOptionPane.showMessageDialog(null, "  Läraren är nu borttagen");
+                                }
+                            }
+                        }
                     }
                 }
+            } catch (InfException ex) {
+                Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (InfException ex) {
-            Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 
-
-     
     }//GEN-LAST:event_taBortLarareActionPerformed
 
     

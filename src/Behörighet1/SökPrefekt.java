@@ -92,38 +92,37 @@ private final InfDB idb;
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // Ger felmeddelande vid tomma inmatningsrutor.
-        if(Validering.textFaltHarVarde(elevhem))
-           
-            
+        if (Validering.textFaltHarVarde(elevhem)) {
             try {
-                
+
                 //Deklarear variabel och hämtar medtod för Upppercase
-                  String hem = Validering.storBokstav(elevhem.getText());
-                  
-                  //Skapa en ArrayLista med alla elevhems namn
-              ArrayList <String> h = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
-              //Kontrollerar att inmatat namn finns i listan
-              if(!(h.contains(hem))){JOptionPane.showMessageDialog(null,"Elevhemmet finns inte, kontrollera stavningen");}
-              else
-                  //Söker fram elevidt på prefekten på angivet elevhem
-              { String id = idb.fetchSingle("SELECT PREFEKT FROM ELEVHEM\n" +
-                    "join ELEV \n" +
-                    "on ELEV_ID = PREFEKT\n" +
-                    "Where ELEVHEMSNAMN = " + "'" + hem + "'");
-              //Söker fram förnamn på det hittade idt
-               String fornamn = idb.fetchSingle(" SELECT FORNAMN from ELEV where ELEV_ID = " + "'" + id + "'");
-               //Söker fram efternamn på det hittade idt
-               String efternamn = idb.fetchSingle(" SELECT EFTERNAMN from ELEV where ELEV_ID = " + "'" + id + "'");
-                
-//Skriver ut för och efternamn på prefekten 
-              JOptionPane.showMessageDialog(null, fornamn +" "+ efternamn + " är prefekt på " + hem);}
-              
-              
-              
-      } catch (InfException ex) {
-                    Logger.getLogger(SökPrefekt.class.getName()).log(Level.SEVERE, null, ex);
-                    JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
+                String hem = Validering.storBokstav(elevhem.getText());
+
+                //Skapa en ArrayLista med alla elevhems namn
+                ArrayList<String> h = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
+                //Kontrollerar att inmatat namn finns i listan
+                if (!(h.contains(hem))) {
+                    JOptionPane.showMessageDialog(null, "Elevhemmet finns inte, kontrollera stavningen");
+                } else //Söker fram elevidt på prefekten på angivet elevhem
+                {
+                    String id = idb.fetchSingle("SELECT PREFEKT FROM ELEVHEM\n"
+                            + "join ELEV \n"
+                            + "on ELEV_ID = PREFEKT\n"
+                            + "Where ELEVHEMSNAMN = " + "'" + hem + "'");
+                    //Söker fram förnamn på det hittade idt
+                    String fornamn = idb.fetchSingle(" SELECT FORNAMN from ELEV where ELEV_ID = " + "'" + id + "'");
+                    //Söker fram efternamn på det hittade idt
+                    String efternamn = idb.fetchSingle(" SELECT EFTERNAMN from ELEV where ELEV_ID = " + "'" + id + "'");
+
+                    //Skriver ut för och efternamn på prefekten 
+                    JOptionPane.showMessageDialog(null, fornamn + " " + efternamn + " är prefekt på " + hem);
                 }
+
+            } catch (InfException ex) {
+                Logger.getLogger(SökPrefekt.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
+            }
+        }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**

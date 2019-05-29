@@ -115,11 +115,11 @@ public class VisaKursBetyg extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- // Ger felmeddelande vid tomma inmatningsrutor.
+        // Ger felmeddelande vid tomma inmatningsrutor.
         if (Validering.textFaltHarVarde(kurs)) {
             if (Validering.textNamnHarVarde(fornamn, efternamn)) {
                 try {
-//Deklarerar variabler och ger Uppercase till inmatningen 
+                    //Deklarerar variabler och ger Uppercase till inmatningen 
                     String enamn = Validering.storBokstav(efternamn.getText());
                     String fnamn = Validering.storBokstav(fornamn.getText());
                     String kursen = Validering.storBokstav(kurs.getText());

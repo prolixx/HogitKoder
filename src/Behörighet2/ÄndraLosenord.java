@@ -64,7 +64,8 @@ public class ÄndraLosenord extends javax.swing.JFrame {
             }
         });
 
-        tillbaka.setText("Tillbaka");
+        tillbaka.setText("<- Tillbaka");
+        tillbaka.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tillbakaMouseClicked(evt);
@@ -84,8 +85,8 @@ public class ÄndraLosenord extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(tillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(tillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(changePass)
                 .addGap(149, 149, 149))
             .addGroup(layout.createSequentialGroup()
@@ -139,8 +140,8 @@ public class ÄndraLosenord extends javax.swing.JFrame {
                         .addComponent(changePass))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(tillbaka)))
-                .addGap(102, 102, 102))
+                        .addComponent(tillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(81, 81, 81))
         );
 
         pack();
@@ -177,13 +178,14 @@ public class ÄndraLosenord extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
             }
 
-        }     
-        
+        }
+
 
     }//GEN-LAST:event_changePassActionPerformed
 
     private void tillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tillbakaMouseClicked
-dispose();
+        //Återgår till menys
+        dispose();
     }//GEN-LAST:event_tillbakaMouseClicked
 
     private void newPassword2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPassword2ActionPerformed
