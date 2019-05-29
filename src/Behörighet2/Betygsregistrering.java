@@ -1,6 +1,6 @@
 package Behörighet2;
 
-    /* Klass för att registra nytt betyg för elev.
+    /* Klass för att registrera nytt betyg för elev.
     För ändring av betyg används en annan klass.
 */
 
@@ -68,15 +68,13 @@ private final InfDB idb;
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jButton1))
-                        .addGap(12, 12, 12)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fornamn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -121,10 +119,10 @@ private final InfDB idb;
 
             try {
 
-                //Deklarerar variabler
-                String fnamn = fornamn.getText();
-                String enamn = efternamn.getText();
-                String b = betyg.getText();
+                //Deklarerar variabler och använder till Uppercase metod
+                String fnamn = Validering.storBokstav(fornamn.getText());
+                String enamn = Validering.storBokstav(efternamn.getText());
+                String b = Validering.storBokstav(betyg.getText());
 
                 String kursen = kurs.getText();
 
@@ -132,13 +130,13 @@ private final InfDB idb;
 
                 //Hämtar kurs id från kurs med hjäp av det inmatade kursnamnet
                 String k = idb.fetchSingle("SELECT KURS_ID from KURS where KURSNAMN=" + "'" + kursen + "'");
-                //Kontrollerar att kursen finns.
+                //Kontrollerar att kursen finns, annars skriver ut felmmedelande 
                 if (k == null) {
                     JOptionPane.showMessageDialog(null, " Kursen finns inte");
                 } else {
                     //Hämtar elev id från elev med hjäp av inmatat för och eftternamn 
                     String idf = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
-                    //Kontrollerar att Eleven finns. 
+                    //Kontrollerar att Eleven finns, annars skriver ut felmmedelande 
                     if (idf == null) {
                         JOptionPane.showMessageDialog(null, " Eleven finns inte");
                     } else {
@@ -159,7 +157,7 @@ private final InfDB idb;
 
                             if (ok = true) {
 
-                                // Lägg till i tabellen har betyg i; elevens id, kursens id och valt betyg
+                                // Lägger till i tabellen har betyg i; elevens id, kursens id och valt betyg
                                 idb.insert("insert into HAR_BETYG_I values" + "(" + "'" + idf + "'" + "," + "'" + k + "'" + "," + "'" + b + "')");
                                 JOptionPane.showMessageDialog(null, "Nytt betyg är nu registrerat");
                             }
@@ -169,7 +167,7 @@ private final InfDB idb;
 
             } catch (InfException ex) {
                 Logger.getLogger(Betygsregistrering.class.getName()).log(Level.SEVERE, null, ex);
-            }
+             JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");}
 
         }        
     }//GEN-LAST:event_jButton1ActionPerformed

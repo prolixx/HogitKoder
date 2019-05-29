@@ -39,8 +39,8 @@ public class SökLararesKurser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fDatum = new com.toedter.calendar.JDateChooser();
-        tDatum = new com.toedter.calendar.JDateChooser();
+        fDatum = new org.netbeans.modules.form.InvalidComponent();
+        tDatum = new org.netbeans.modules.form.InvalidComponent();
         efternamn = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         resultat = new javax.swing.JTextArea();
@@ -53,10 +53,6 @@ public class SökLararesKurser extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Agency FB", 0, 14)); // NOI18N
-
-        fDatum.setDateFormatString("yyyy-MM-dd");
-
-        tDatum.setDateFormatString("yyyy-MM-dd");
 
         resultat.setColumns(20);
         resultat.setRows(5);
@@ -240,6 +236,7 @@ public class SökLararesKurser extends javax.swing.JFrame {
                     new SökLararesKurser().setVisible(true);
                 } catch (InfException ex) {
                     Logger.getLogger(SökLararesKurser.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
                 }
             }
         });
@@ -247,7 +244,7 @@ public class SökLararesKurser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField efternamn;
-    private com.toedter.calendar.JDateChooser fDatum;
+    private org.netbeans.modules.form.InvalidComponent fDatum;
     private javax.swing.JTextField fornamn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -256,6 +253,6 @@ public class SökLararesKurser extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea resultat;
     private javax.swing.JButton sok;
-    private com.toedter.calendar.JDateChooser tDatum;
+    private org.netbeans.modules.form.InvalidComponent tDatum;
     // End of variables declaration//GEN-END:variables
 }

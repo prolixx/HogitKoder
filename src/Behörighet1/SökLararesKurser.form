@@ -107,12 +107,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="com.toedter.calendar.JDateChooser" name="fDatum">
+    <Component class="org.netbeans.modules.form.InvalidComponent" name="fDatum">
       <Properties>
         <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="tDatum">
+    <Component class="org.netbeans.modules.form.InvalidComponent" name="tDatum">
       <Properties>
         <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
       </Properties>

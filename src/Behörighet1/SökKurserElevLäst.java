@@ -97,9 +97,9 @@ public class SökKurserElevLäst extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(fornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -118,7 +118,7 @@ public class SökKurserElevLäst extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Kontrollerar inmatade värden 
+        //  Ger felmeddelande vid tomma inmatningsrutor
         if (Validering.textNamnHarVarde(efternamn, fornamn)) {
 
             //Deklerar variabler och använder en toUpperCase metod på inmatningen 
@@ -154,6 +154,7 @@ public class SökKurserElevLäst extends javax.swing.JFrame {
 
             } catch (InfException ex) {
                 Logger.getLogger(SökKurserElevLäst.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

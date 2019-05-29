@@ -122,6 +122,7 @@ private final InfDB idb;
               
       } catch (InfException ex) {
                     Logger.getLogger(SökPrefekt.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
                 }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 

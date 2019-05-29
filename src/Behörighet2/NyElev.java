@@ -3,11 +3,6 @@ package Behörighet2;
 /*
  * Klass för att registera ny elev
  */
-
-
-
-
-
 import StartPaket.Validering;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -21,13 +16,14 @@ import oru.inf.InfException;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Gabriel
  */
 public class NyElev extends javax.swing.JFrame {
+
     private InfDB idb;
+
     /**
      * Creates new form NyElev
      */
@@ -137,46 +133,49 @@ public class NyElev extends javax.swing.JFrame {
 
     private void skapaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaKnappActionPerformed
 // Ger felmeddelande vid tomma inmatningsrutor samt felaktiga inmatning
-        if(Validering.isHeltal(sovsal) &&(Validering.textNamnHarVarde(fornamn,efternamn)) && (Validering.textFaltHarVarde(sovsal)));{
-            
-             
+        if (Validering.isHeltal(sovsal) && 
+                Validering.textNamnHarVarde(fornamn, efternamn) && 
+                Validering.textFaltHarVarde(sovsal) &&Validering.ingaSiffror(efternamn)&&
+                (Validering.ingaSiffror(fornamn)))
+        {
 
 // Deklarera variabler
-        
-       try {
-            String fnamn =  Validering.storBokstav(fornamn.getText());
-            String enamn = Validering.storBokstav(efternamn.getText());
-            String sov = sovsal.getText();
-            
-            //Kollar om det redan finns en elev registrerarad med samm för och efternamn
-            String id = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
-                  //Om inget id hittas, skriv ut felmeddelande 
-                    if(!(id == null)){ JOptionPane.showMessageDialog(null," Registrering ej möjlig elev med samma för och efternamn finns redan");}
+            try {
+                String fnamn = Validering.storBokstav(fornamn.getText());
+                String enamn = Validering.storBokstav(efternamn.getText());
+                String sov = sovsal.getText();
 
-                    else{
+                //Kollar om det redan finns en elev registrerarad med samm för och efternamn
+                String id = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" +
+                        "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
+                //Om inget id hittas, skriv ut felmeddelande 
+                if (!(id == null)) {
+                    JOptionPane.showMessageDialog(null, " Registrering ej möjlig elev med samma för och efternamn finns redan");
+                } else {
 //Skapa id för den nya eleven
-            String nextID = idb.getAutoIncrement("elev","elev_id");
-            
-                   //Skapa en ArrayList med alla sovsalar
-              ArrayList <String> s = idb.fetchColumn("SELECT SOVSAL_ID from SOVSAL");
-              //Kontrollerar att inmatad sovsal finns i listan
-              if(!(s.contains(sov))){JOptionPane.showMessageDialog(null,"Sovsalen finns inte välj en annan");}
-             
-              else{
+                    String nextID = idb.getAutoIncrement("elev", "elev_id");
+
+                    //Skapa en ArrayList med alla sovsalar
+                    ArrayList<String> s = idb.fetchColumn("SELECT SOVSAL_ID from SOVSAL");
+                    //Kontrollerar att inmatad sovsal finns i listan
+                    if (!(s.contains(sov))) {
+                        JOptionPane.showMessageDialog(null, "Sovsalen finns inte välj en annan");
+                    } else {
 //Skapa ny rad i tabellen med id, förnamn, efternamn och sovsal utifrån inmatade värden
-            idb.insert("insert into elev values"+"("+"'"+nextID+"'"+","+"'"+fnamn+"'"+","+"'"+enamn+"'"+","+"'"+sov+"')");
-        //Visar meddelande att eleven lagts till
-            JOptionPane.showMessageDialog(null,"Ny elev tilllaggd");}}
-      
-       }  catch (InfException ex) {
-            Logger.getLogger(NyElev.class.getName()).log(Level.SEVERE, null, ex);
-        }}
-        
-        
-        
-        
-        
-        
+                        idb.insert("insert into elev values" + "(" + "'" + nextID +
+                                "'" + "," + "'" + fnamn + "'" + "," + "'" + enamn + "'" + "," + "'" + sov + "')");
+                        //Visar meddelande att eleven lagts till
+                        JOptionPane.showMessageDialog(null, "Ny elev tilllaggd");
+                    }
+                }
+
+            } catch (InfException ex) {
+                Logger.getLogger(NyElev.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
+            }
+        }
+
+
     }//GEN-LAST:event_skapaKnappActionPerformed
 
     /**

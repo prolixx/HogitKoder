@@ -1,9 +1,7 @@
 package Behörighet3;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Klass för att ändra information om en lärare
  */
 
 
@@ -39,10 +37,15 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
         if (Validering.textNamnHarVarde(fornamn, efternamn));
         String fnamn = Validering.storBokstav(fornamn.getText());
         String enamn = Validering.storBokstav(efternamn.getText());
+        
+        // Hämtar lärar id utifrån inmatat för och efternamn
+     
 
         String id = idb.fetchSingle("SELECT LARAR_ID FROM LARARE WHERE FORNAMN=" + "'" + fnamn + "'"
                 + "AND EFTERNAMN =" + "'" + enamn + "'");
         if (id == null) {
+            
+            //Meddelar om id inte hittats
             JOptionPane.showMessageDialog(null, "Kunde inte finna lärare");
         }
         return id;
@@ -239,10 +242,12 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void andraKnapp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKnapp1ActionPerformed
+       //Kontrollerar att inmatningsrutor har värde
         if (Validering.textFaltHarVarde(andraFornamn));
         String fnamn = Validering.storBokstav(andraFornamn.getText());
 
         try {
+            // Updaterar lärarens förnamn
             idb.update("UPDATE LARARE SET FORNAMN=" + "'" + fnamn + "'" + "WHERE LARAR_ID=" + "'" + getID() + "'");
         } catch (InfException ex) {
             Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);

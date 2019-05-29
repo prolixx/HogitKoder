@@ -74,6 +74,17 @@ public class Validering {
         }
         return resultat;
     }
+    
+    public static boolean ingaSiffror(JTextField rutanAttKolla)
+{
+    for (char c : rutanAttKolla.getText().toCharArray())
+    {
+        if (Character.isDigit(c)){ JOptionPane.showMessageDialog(null, " Kontrollera inmatningen inga siffror i namn!");
+            return false;}
+     
+    }
+    return true;
+}
 
     public String kollaid(JTextField rutanAttKolla, JTextField rutanattkolla2) throws InfException {
         boolean ok = true;

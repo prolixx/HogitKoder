@@ -139,9 +139,10 @@ public class VisaKursBetyg extends javax.swing.JFrame {
                             // Hämtar elevens beltyg i angiven kurs
                             String fraga = idb.fetchSingle("SELECT KURSBETYG from HAR_BETYG_I where ELEV_ID=" + "'" + eid + "'" + "and KURS_ID=" + "'" + kid + "'");
                             if (fraga == null) {
+                                //Meddelar om inget betyg hittats
                                 JOptionPane.showMessageDialog(null, " Eleven har inget betyg i kursen");
                             } else {
-                                // Visar betygsbeteckning i rutan
+                                // Visar betygsbeteckning 
                                 JOptionPane.showMessageDialog(null, "Har betyg: " +fraga+" i " +kursen);
                             }
                         }
@@ -149,7 +150,7 @@ public class VisaKursBetyg extends javax.swing.JFrame {
 
                 } catch (InfException ex) {
                     Logger.getLogger(VisaKursBetyg.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");}
             }
         }
 

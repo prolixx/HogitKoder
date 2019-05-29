@@ -1,9 +1,7 @@
 package Behörighet2;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Klass för lärarinloggning
  */
 
 
@@ -176,13 +174,13 @@ public class Larare extends javax.swing.JFrame {
 
     
     private void startaAndraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startaAndraLosenordActionPerformed
-     
+     // Visar funktion
         new ÄndraLosenord(idb).setVisible(true);
     }//GEN-LAST:event_startaAndraLosenordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-
+ // Visar funktion
         try {
             new Poang().setVisible(true);
         } catch (InfException ex) {

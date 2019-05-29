@@ -54,7 +54,7 @@ public class ÄndraBetyg extends javax.swing.JFrame {
 
         jLabel1.setText("Ändra Befintligt Betyg");
 
-        jLabel2.setText("Kursens namn");
+        jLabel2.setText("Kursens Namn");
 
         jLabel3.setText("Elev Förnamn");
 
@@ -85,7 +85,7 @@ public class ÄndraBetyg extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(kurs)
@@ -132,26 +132,26 @@ public class ÄndraBetyg extends javax.swing.JFrame {
           
           
                 try {
-          //Deklarerar varibler
-          String kursen = kurs.getText();
+          //Deklarerar varibler och använder to Uppercase metod
+          String kursen = Validering.storBokstav(kurs.getText());
           
-          String enamn = efternamn.getText();
+          String enamn =  Validering.storBokstav(efternamn.getText());
           
-          String fnamn = fornamn.getText();
+          String fnamn = Validering.storBokstav(fornamn.getText());
           
-          String b = betyg.getText();
+          String betyget = Validering.storBokstav(betyg.getText());
           
       
           
           
        
           //Skapar en ArrayList över alla betygsbeteckningar
-          ArrayList <String> bs = idb.fetchColumn("SELECT BETYGSBETECKNING from BETYG");
+          ArrayList <String> betygsLista = idb.fetchColumn("SELECT BETYGSBETECKNING from BETYG");
           
           
           
           // Kontrollerar att att Listan innehåller det inmatade betyget
-          if(!bs.contains(b)){
+          if(!betygsLista.contains(betyget)){
               //Om inte skriv ut felmeddelande
               JOptionPane.showMessageDialog(null, "Betyg finns ej i skalan");}
           
@@ -172,10 +172,10 @@ public class ÄndraBetyg extends javax.swing.JFrame {
                   
                   else{
                       //Uppdaterar elevens betyg i kursen
-                      idb.update("UPDATE HAR_BETYG_I SET KURSBETYG=" +"'"+ b + "'" + "where ELEV_ID=" + "'" + eid + "'" +"and kurs_id=" + "'" + kid + "'");
+                      idb.update("UPDATE HAR_BETYG_I SET KURSBETYG=" +"'"+ betyget + "'" + "where ELEV_ID=" + "'" + eid + "'" +"and kurs_id=" + "'" + kid + "'");
                       
 // Visar meddelande om utförd uppdateringen
-JOptionPane.showMessageDialog(null, fnamn + " " + enamn + " har nu betyg " + b + " i kurs " + kursen );}}
+JOptionPane.showMessageDialog(null, fnamn + " " + enamn + " har nu betyg " + betyget + " i kurs " + kursen );}}
           
           
           
@@ -184,6 +184,7 @@ JOptionPane.showMessageDialog(null, fnamn + " " + enamn + " har nu betyg " + b +
           
           }     } catch (InfException ex) {
           Logger.getLogger(ÄndraBetyg.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
       }
             
         

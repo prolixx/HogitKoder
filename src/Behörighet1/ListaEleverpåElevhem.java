@@ -4,7 +4,6 @@ package Behörighet1;
  * Klass som listar för och efternamn på alla elever som är registerade på det 
 angivna elvehemmmet. 
  */
-
 import StartPaket.Validering;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -115,11 +114,11 @@ public class ListaEleverpåElevhem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
-        // Ger felmeddelande vid tomma inmatningsrutor samt felaktig tecken inmatning.
+        // Ger felmeddelande vid tomma inmatningsrutor
         if (Validering.textFaltHarVarde(elevhem)) {
             try {
 
-                //Deklarea variabel
+                //Deklarear variabel
                 String hem = Validering.storBokstav(elevhem.getText());
 
                 //Skapa en ArrayList med alla elevhems namn
@@ -128,7 +127,7 @@ public class ListaEleverpåElevhem extends javax.swing.JFrame {
                 if (!(h.contains(hem))) {
                     JOptionPane.showMessageDialog(null, "Elevhemmet finns inte, kontrollera stavningen");
                 } else {
-                    // Skapa en ArrayList med alla förnamn på valt elevhem
+                    // Skapar en ArrayList med alla förnamn på valt elevhem
                     ArrayList<String> fornamn = idb.fetchColumn("SELECT FORNAMN from ELEV\n"
                             + "join SOVSAL\n"
                             + "on ELEV.SOVSAL = SOVSAL_ID\n"

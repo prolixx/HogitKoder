@@ -1,7 +1,7 @@
 package Behörighet2;
 
 /*
- * I denna klass finns en för att ge poäng till Elevhemen
+ * Klass för att ge  alternativt dra av poäng från Elevhemmen
  */
 
 import StartPaket.Validering;
@@ -65,7 +65,7 @@ public class Poang extends javax.swing.JFrame {
 
         jLabel2.setText("Elevhemsnamn:");
 
-        jLabel3.setText("ge poäng eller dra av:");
+        jLabel3.setText("Ge poäng eller dra av:");
 
         jLabel4.setText("<-Tillbaka");
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,12 +99,16 @@ public class Poang extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(antal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hem, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(ok))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(119, 119, 119)
+                                .addComponent(ok))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(antal)
+                                    .addComponent(hem))
+                                .addGap(52, 52, 52))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(info1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -114,24 +118,24 @@ public class Poang extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(antal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
+                            .addComponent(antal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(info1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(ok)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(info1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -139,16 +143,21 @@ public class Poang extends javax.swing.JFrame {
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
 
-        
+        // Ger felmeddelande vid tomma inmatningsrutor samt felaktig inmatning
         if(Validering.textFaltHarVarde(hem) && (Validering.isHeltal(antal))){
 
-            // Kod för att ge eller ta poäng
-        try {      // skickar frågor till FDB
+            // Deklarerar varibler  och kör toUpperCase metod
+        try {      
             String namn = Validering.storBokstav(hem.getText());
+            // Kontrollerar att valt elevhem finns 
             String svar = idb.fetchSingle("SELECT ELEVHEMSNAMN from ELEVHEM where ELEVHEMSNAMN =" + "'" + namn + "'");
+             if(svar == null){ JOptionPane.showMessageDialog(null," Elevhemmet finns inte, kontrollera inmatningen");}
+             
+             else{
+                 // Hämtar nuvarande poäng
             String hamtad = idb.fetchSingle("SELECT HUSPOANG from ELEVHEM where ELEVHEMSNAMN =" + "'" + namn + "'");
 
-            // konverterar Strängar till int för att kunna summera
+            // Konverterar Strängar till int för att kunna summera
             String talstrang = antal.getText();
             String talstrang2 = hamtad;
 
@@ -160,12 +169,13 @@ public class Poang extends javax.swing.JFrame {
             // sedan skicka tillbaka resultatet till FDB
             String summaStrang = Integer.toString(summa);
 
+               // Ändrar poängen till den gamla poängen + den nya
             idb.update("UPDATE ELEVHEM SET HUSPOANG=" + summaStrang + "where ELEVHEMSNAMN=" + "'" + namn + "'");
 
-            // popup för att visa vad som skett så att läraren ser
+            // Meddelar uppdateringen som skett
             
             JOptionPane.showMessageDialog(null, svar + " har fått " + talstrang + " poäng" + " "
-                    + " total " + summaStrang);
+                    + " total " + summaStrang);}
             // catch för att hindra crash
         } catch (HeadlessException | NumberFormatException | InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");

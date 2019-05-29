@@ -105,11 +105,13 @@ public class NyLarare extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void skapaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaKnappActionPerformed
-        // kollar inmatningsrutorna så de har ett värde
-        if (Validering.textNamnHarVarde(fornamn, efternamn)) {
+        // Kollar inmatningsrutorna så de har ett värde
+        if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.ingaSiffror(efternamn)
+                && Validering.ingaSiffror(fornamn)){
+     
 
             try {
-                // skapar variabler och använder en toUpperCase metod
+                // Skapar variabler och använder en toUpperCase metod
                 String fnamn = Validering.storBokstav(fornamn.getText());
                 String enamn = Validering.storBokstav(efternamn.getText());
                 String nextID = idb.getAutoIncrement("larare", "larar_id");
@@ -133,6 +135,7 @@ public class NyLarare extends javax.swing.JFrame {
                 }
             } catch (InfException ex) {
                 Logger.getLogger(NyLarare.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
             }
 
         }
