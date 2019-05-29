@@ -144,6 +144,7 @@ public class SökLararesKurser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokActionPerformed
+        // Kontrollerar att inmatningens rutorn inte är tomma
         if (Validering.textNamnHarVarde(fornamn, efternamn)) {
 
             try {
@@ -156,30 +157,36 @@ public class SökLararesKurser extends javax.swing.JFrame {
 
                 Date date1 = format.parse(fran);
                 Date date2 = format.parse(till);
-
+                
+                //Kontrollerar att start datum inte är efter slutdatum
                 if (date1.after(date2)) {
                     JOptionPane.showMessageDialog(null, "Kontrollera datum följden");
                 } else {
-
+                    
+                    //Deklarerar variabler och to Uppercase metod
                     String fnamn = Validering.storBokstav(fornamn.getText());
                     String enamn = Validering.storBokstav(efternamn.getText());
                     try {
-
+                        
+                        //Hämta lärar id utifrån inmatat för och efternamn
                         String lid = idb.fetchSingle("select larar_id from larare where fornamn=" + "'" + fnamn + "'"
                                 + "and efternamn=" + "'" + enamn + "'");
+                        //Kontrollerar att läraren finns, om inte skriver ut felmeddelande
                         if (lid == null) {
                             JOptionPane.showMessageDialog(null, "Kunde inte hitta lärare");
                         } else {
-
-                            ArrayList<String> datumen = idb.fetchColumn("SELECT  KURSNAMN from KURS where KURSLARARE="
+                            //Hämtar kurser med inmatad lärare samt inom valt datuminterall 
+                            ArrayList<String> kurser = idb.fetchColumn("SELECT  KURSNAMN from KURS where KURSLARARE="
                                     + "'" + lid + "'" + "and"
                                     + " KURSSTART   >=" + "'" + fran + "'" + "and Kursslut <=" + "'" + till + "'");
-                            if (datumen == null) {
-                                JOptionPane.showMessageDialog(null, "Kunde inte finna kurser innom tidsramen!");
+                            // Om inga kurser funna, skriv ut felmeddelande
+                            if (kurser == null) {
+                                JOptionPane.showMessageDialog(null, "Kunde inte finna kurser för läraren innom tidsramen!");
                             } else {
+                                //Om en eller fler kurser funna, sätter ihop en string presenterar svaret
                                 String svar = "";
 
-                                for (String s : datumen) {
+                                for (String s : kurser) {
                                     svar += s + "\t";
                                 }
 
