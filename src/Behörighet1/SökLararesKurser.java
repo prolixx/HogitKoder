@@ -191,11 +191,13 @@ public class SökLararesKurser extends javax.swing.JFrame {
                         }
                     } catch (InfException ex) {
                         Logger.getLogger(SökLararesKurser.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
 
                     }
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(SökLararesKurser.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
             }
 
         }

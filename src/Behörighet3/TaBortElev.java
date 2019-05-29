@@ -3,9 +3,7 @@ package Behörighet3;
 
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Klass för att ta bort elev ur databasen
  */
 
 
@@ -155,7 +153,7 @@ public class TaBortElev extends javax.swing.JFrame {
                        // Kolla om elevn är prefket på något elvehem
                        String c = idb.fetchSingle("Select PREFEKT from ELEVHEM where PREFEKT="+"'"+ id+"'"); 
                       //Om eleven är prefekt, skriv ut felmeddelande, borttag ej möjligt
-                       if(!(null ==c)){ JOptionPane.showMessageDialog(null," Eleven är prefket välj ny prefekt innan borttag");}
+                       if(!(null ==c)){ JOptionPane.showMessageDialog(null," Eleven är prefekt välj ny prefekt innan borttag");}
                        
                       
                       
@@ -165,6 +163,7 @@ public class TaBortElev extends javax.swing.JFrame {
                      
                  } catch (InfException ex) {
                      Logger.getLogger(TaBortElev.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
                  }
                  
                

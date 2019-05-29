@@ -1,15 +1,14 @@
 package Behörighet3;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Klass för att ändra information om elev
  */
 
 
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -211,6 +210,7 @@ public class AdminÄndraInfoElev extends javax.swing.JFrame {
 
         } catch (InfException ex) {
             Logger.getLogger(AdminÄndraInfoElev.class.getName()).log(Level.SEVERE, null, ex);
+               JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
         }
 
 
@@ -223,6 +223,7 @@ public class AdminÄndraInfoElev extends javax.swing.JFrame {
             idb.update("UPDATE elev SET EFTERNAMN=" + "'" + nyttEfternamn + "'" + "WHERE ELEV_ID=" + "'" + getID() + "'");
         } catch (InfException ex) {
             Logger.getLogger(AdminÄndraInfoElev.class.getName()).log(Level.SEVERE, null, ex);
+               JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
         }
      
     }//GEN-LAST:event_andraKnapp2ActionPerformed
@@ -234,6 +235,7 @@ public class AdminÄndraInfoElev extends javax.swing.JFrame {
             idb.update("UPDATE elev SET SOVSAL="+"'"+nySovsal+"'"+ "WHERE ELEV_ID="+"'"+getID()+"'");
         } catch (InfException ex) {
             Logger.getLogger(AdminÄndraInfoElev.class.getName()).log(Level.SEVERE, null, ex);
+               JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
         }
         
         
@@ -296,6 +298,7 @@ dispose();
                     new AdminÄndraInfoElev().setVisible(true);
                 } catch (InfException ex) {
                     Logger.getLogger(AdminÄndraInfoElev.class.getName()).log(Level.SEVERE, null, ex);
+                       JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
                 }
             }
         });

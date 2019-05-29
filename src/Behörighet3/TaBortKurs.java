@@ -104,6 +104,8 @@ public class TaBortKurs extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        //Ger felmeddeland vid tomma inmatningsrutor
         if(Validering.textFaltHarVarde(namn)&& Validering.textFaltHarVarde(id))
         
         //Deklarerar varibler
@@ -118,7 +120,7 @@ public class TaBortKurs extends javax.swing.JFrame {
              //Kontrollerar att det motsvarar inmatat id om inte skriv ut felmeddelande
            if(!(kid.equals(id)))
              
-         JOptionPane.showMessageDialog(null, id + " Kursnamn och kurs-id  överrens. Kontrollera inmatningen");
+         JOptionPane.showMessageDialog(null,  " Kursnamn och kurs-id stämmer ej  överrens. Kontrollera inmatningen");
              
            else{
                
@@ -133,11 +135,11 @@ public class TaBortKurs extends javax.swing.JFrame {
                String b = idb.fetchSingle("Select KURS_ID from REGISTRERAD_PA where KURS_ID="+"'"+ id+"'");
               if(!(null ==b)){
                   
-               // Tar bort kursen, visar meddelande att kursen är borttagen  
+              
               idb.delete("delete from REGISTRERAD_PA WHERE KURS_ID="+"'"+id+"'");
               }
                 
-               
+               // Tar bort kursen, visar meddelande att kursen är borttagen  
                idb.delete("Delete from kurs where KURS_ID=" + "'" + id + "'");
                
                   JOptionPane.showMessageDialog(null,  "  Kursen "+ knamn+ " är borttagen");
@@ -146,6 +148,7 @@ public class TaBortKurs extends javax.swing.JFrame {
            }
          } catch (Exception ex) {
              Logger.getLogger(TaBortKurs.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
                
              
        

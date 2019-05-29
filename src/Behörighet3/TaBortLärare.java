@@ -155,6 +155,7 @@ public class TaBortLärare extends javax.swing.JFrame {
                      
                  } catch (InfException ex) {
                      Logger.getLogger(TaBortLärare.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
                  }
                  
                
