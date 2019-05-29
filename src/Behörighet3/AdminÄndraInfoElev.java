@@ -5,9 +5,8 @@ package Behörighet3;
  */
 
 
-import HogIT.färdig.TaBortElev;
+
 import StartPaket.Validering;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,7 +18,7 @@ import oru.inf.InfException;
  * @author Dator
  */
 public class AdminÄndraInfoElev extends javax.swing.JFrame {
-    private InfDB idb;
+    private final InfDB idb;
     
     
     
@@ -346,7 +345,7 @@ public class AdminÄndraInfoElev extends javax.swing.JFrame {
                 }
 
             } catch (InfException ex) {
-                Logger.getLogger(TaBortElev.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AdminÄndraInfoElev.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
             }
         }
