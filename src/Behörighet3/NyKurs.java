@@ -189,7 +189,10 @@ public class NyKurs extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Fann inte tillhörande ämne");
                     } else {
                        // om allt var korrekt inmatat så skapas en nykurs i databasen
-                        idb.insert("insert into KURS values" + "(" + "'" + nextID + "'" + "," + "'" + k + "'" + "," + "'" + fran
+                       
+                       
+                       
+                       idb.insert("insert into KURS values" + "(" + "'" + nextID + "'" + "," + "'" + k + "'" + "," + "'" + fran
                                 + "'" + "," + "'" + till + "'" + "," + "'" + idf + "'" + "," + "'" + a + "')");
                         
                         JOptionPane.showMessageDialog(null, "Ny kurs tilllaggd");
