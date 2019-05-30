@@ -90,19 +90,18 @@ public class NyElev extends javax.swing.JFrame {
                                 .addGap(46, 46, 46))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(31, 31, 31)
                                 .addComponent(sovsal)
-                                .addGap(37, 37, 37)))
+                                .addGap(24, 24, 24)))
                         .addComponent(skapaKnapp))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(efternamn))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(fornamn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(fornamn, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                            .addComponent(efternamn))))
                 .addContainerGap(73, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,9 +134,8 @@ public class NyElev extends javax.swing.JFrame {
 
     private void skapaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaKnappActionPerformed
 // Ger felmeddelande vid tomma inmatningsrutor samt felaktiga inmatning
-        if (Validering.isHeltal(sovsal)
-                && Validering.textNamnHarVarde(fornamn, efternamn)
-                && Validering.textFaltHarVarde(sovsal) && (Validering.ingaSiffror(fornamn))) {
+           if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.ingaSiffror(efternamn)
+                && Validering.ingaSiffror(fornamn)) {
 
 // Deklarera variabler
             try {

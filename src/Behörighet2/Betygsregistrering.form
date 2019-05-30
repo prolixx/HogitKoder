@@ -45,7 +45,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel4" min="-2" pref="110" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="betyg" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jLabel5" min="-2" pref="104" max="-2" attributes="0"/>
@@ -112,17 +112,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Elev f&#xf6;rnamn"/>
+        <Property name="text" type="java.lang.String" value="Elev F&#xf6;rnamn"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Elev efternamn"/>
+        <Property name="text" type="java.lang.String" value="Elev Efternamn"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kurs namn"/>
+        <Property name="text" type="java.lang.String" value="Kurs Namn"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">

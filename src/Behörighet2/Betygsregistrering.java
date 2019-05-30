@@ -51,11 +51,11 @@ private final InfDB idb;
             }
         });
 
-        jLabel1.setText("Elev förnamn");
+        jLabel1.setText("Elev Förnamn");
 
-        jLabel2.setText("Elev efternamn");
+        jLabel2.setText("Elev Efternamn");
 
-        jLabel3.setText("Kurs namn");
+        jLabel3.setText("Kurs Namn");
 
         jLabel4.setText("Betygsbeteckning");
 
@@ -91,7 +91,7 @@ private final InfDB idb;
                                 .addComponent(efternamn)))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(betyg))
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
@@ -162,7 +162,7 @@ private final InfDB idb;
                         String a = idb.fetchSingle("SELECT KURSBETYG FROM HAR_BETYG_I where ELEV_ID=" + "'" + idf + "'" + "and KURS_ID=" + "'" + k + "'");
                         //Kollar att eleven inte redan har betyg i kursen.
                         if (!(null == a)) {
-                            JOptionPane.showMessageDialog(null, "Eleven har redan betyg i kursen. Välj ändra uppdatea betyg för ändring");
+                            JOptionPane.showMessageDialog(null, "Eleven har redan betyg i kursen. Välj ändra uppdatera betyg för ändring");
                         } else {
                             //Skapar en ArrayList av befitliga betygsbetckningar
                             ArrayList<String> bs = idb.fetchColumn("SELECT BETYGSBETECKNING from BETYG");

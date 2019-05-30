@@ -30,7 +30,7 @@ public class Validering {
 
         boolean resultat = true;
 
-        if (rutanAttKolla.getText().isEmpty()) {
+        if (rutanAttKolla.getText().isEmpty()||rutanAttKolla2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Inmatningsrutan är tom!");
             resultat = false;
 
@@ -62,16 +62,6 @@ public class Validering {
 
         }
 
-        return resultat;
-    }
-    public static boolean kollatecken(JTextField rutanAttKolla) {
-        boolean resultat = true;
-        Pattern kollatecken = Pattern.compile("0123456789");
-        if (!kollatecken.matcher(rutanAttKolla.getText()).matches()) {
-            resultat = false;
-            JOptionPane.showMessageDialog(null, "Använd endast bokstäver!");
-
-        }
         return resultat;
     }
     
