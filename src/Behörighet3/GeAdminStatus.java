@@ -45,9 +45,9 @@ public class GeAdminStatus extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Ge lärare administratörs status");
+        jLabel1.setText("Ge Lärare Administratörs Status");
 
-        jLabel2.setText("Lärar förnamn");
+        jLabel2.setText("Lärar Förnamn");
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -56,7 +56,7 @@ public class GeAdminStatus extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Lärar efternamn");
+        jLabel3.setText("Lärar Efternamn");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

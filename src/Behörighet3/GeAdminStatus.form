@@ -76,12 +76,12 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ge l&#xe4;rare administrat&#xf6;rs status"/>
+        <Property name="text" type="java.lang.String" value="Ge L&#xe4;rare Administrat&#xf6;rs Status"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="L&#xe4;rar f&#xf6;rnamn"/>
+        <Property name="text" type="java.lang.String" value="L&#xe4;rar F&#xf6;rnamn"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="fornamn">
@@ -96,7 +96,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="L&#xe4;rar efternamn"/>
+        <Property name="text" type="java.lang.String" value="L&#xe4;rar Efternamn"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="efternamn">

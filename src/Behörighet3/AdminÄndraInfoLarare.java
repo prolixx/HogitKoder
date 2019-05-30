@@ -1,9 +1,7 @@
 package Behörighet3;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Klass för att andra information om lärare
  */
 
 
@@ -248,6 +246,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
                 }
             } catch (InfException ex) {
                 Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, " Något gick fel");
             }
         }
 
@@ -269,6 +268,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
                 }
             } catch (InfException ex) {
                 Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, " Något gick fel");
             }
         }
 
@@ -288,6 +288,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
                 }
             } catch (InfException ex) {
                 Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, " Något gick fel");
             }
 
         }
@@ -322,6 +323,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
                         }
                     } catch (InfException ex) {
                         Logger.getLogger(GeAdminStatus.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, " Något gick fel");
                     }
                 }
             }
@@ -375,6 +377,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
                 }
             } catch (InfException ex) {
                 Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, " Något gick fel");
             }
 
         }

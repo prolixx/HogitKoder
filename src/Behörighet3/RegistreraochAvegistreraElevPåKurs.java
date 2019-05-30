@@ -9,7 +9,7 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /*
- * Klass för att registrera elev på kurs
+ * Klass för att registrera och avregistrera elev på kurs
 *
 
 /**
