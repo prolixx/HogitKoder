@@ -22,7 +22,7 @@ import oru.inf.InfException;
  */
 public class NyElev extends javax.swing.JFrame {
 
-    private InfDB idb;
+    private final InfDB idb;
 
     /**
      * Creates new form NyElev
@@ -137,8 +137,7 @@ public class NyElev extends javax.swing.JFrame {
 // Ger felmeddelande vid tomma inmatningsrutor samt felaktiga inmatning
         if (Validering.isHeltal(sovsal)
                 && Validering.textNamnHarVarde(fornamn, efternamn)
-                && Validering.textFaltHarVarde(sovsal) && Validering.ingaSiffror(efternamn)
-                && (Validering.ingaSiffror(fornamn))) {
+                && Validering.textFaltHarVarde(sovsal) && (Validering.ingaSiffror(fornamn))) {
 
 // Deklarera variabler
             try {

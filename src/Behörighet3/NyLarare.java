@@ -44,7 +44,7 @@ public class NyLarare extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Lärares förnamn:");
+        jLabel1.setText("Lärares Förnamn");
 
         skapaKnapp.setText("OK");
         skapaKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -53,7 +53,7 @@ public class NyLarare extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Lärares efternamn:");
+        jLabel2.setText("Lärares Efternamn");
 
         jLabel4.setText("Skapa ny lärare");
 

@@ -49,11 +49,11 @@ public class ÄndraLosenord extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Lärar id:");
+        jLabel1.setText("Lärar ID");
 
-        jLabel2.setText("Lösenord:");
+        jLabel2.setText("Lösenord");
 
-        jLabel3.setText("Nytt lösenord:");
+        jLabel3.setText("Nytt lösenord");
 
         jLabel4.setText("Ändra ditt lösenord");
 
@@ -94,7 +94,7 @@ public class ÄndraLosenord extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
+                .addContainerGap(101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -163,15 +163,18 @@ public class ÄndraLosenord extends javax.swing.JFrame {
                 String fraga2 = idb.fetchSingle("SELECT LOSENORD from LARARE where LOSENORD=" + "'" + pass + "'");
 
                 // Kollar så att id och lösenord överrenstämmer
-                if (user.getText().equals(fraga) && password.getText().equals(fraga2)
-                        && (newPassword.getText().equals(newPassword2.getText()))) {
-                    //Uppdaterar lösenordet
-                    idb.update("update larare set losenord=" + "'" + newPass + "'" + "where larar_ID =" + "'" + larare + "'");
-                    //Meddelar att lösenordet är ändrat
-                    JOptionPane.showMessageDialog(null, "Lösenord är nu ändrat!");
-                } else {
-                    // Skriv ut felmeddelande
+                if (!(user.getText().equals(fraga) && password.getText().equals(fraga2))) {
                     JOptionPane.showMessageDialog(null, "Fyll i ID och lösenord korrekt!");
+                } else {
+                    //kollar att det nya lösenordet stämmer överrens.
+                    if (!(newPassword.getText().equals(newPassword2.getText()))) {
+                        JOptionPane.showMessageDialog(null, "Nytt lösenord stämmer ej överrens!");
+                    } else {
+                        //Uppdaterar lösenordet
+                        idb.update("update larare set losenord=" + "'" + newPass + "'" + "where larar_ID =" + "'" + larare + "'");
+                        //Meddelar att lösenordet är ändrat
+                        JOptionPane.showMessageDialog(null, "Lösenord är nu ändrat!");
+                    }
                 }
             } catch (InfException ex) {
                 Logger.getLogger(ÄndraLosenord.class.getName()).log(Level.SEVERE, null, ex);

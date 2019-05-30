@@ -10,6 +10,7 @@ package Behörighet3;
 import StartPaket.Validering;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -61,6 +62,7 @@ public class NyKurs extends javax.swing.JFrame {
         startd = new com.toedter.calendar.JDateChooser();
         slutd = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +96,8 @@ public class NyKurs extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
+
+        jLabel1.setText("Registrera Ny Kurs");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,11 +139,17 @@ public class NyKurs extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(skapaKnapp)
                 .addGap(19, 19, 19))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(fornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,7 +174,7 @@ public class NyKurs extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(skapaKnapp)
                 .addGap(33, 33, 33))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -211,12 +221,18 @@ public class NyKurs extends javax.swing.JFrame {
                             if (a == null) {
                                 JOptionPane.showMessageDialog(null, "Fann inte tillhörande ämne");
                             } else {
-                                // om allt var korrekt inmatat så skapas en nykurs i databasen
+                                ArrayList<String> kursLista = idb.fetchColumn("SELECT KURSNAMN from KURS");
 
-                                idb.insert("insert into KURS values" + "(" + "'" + nextID + "'" + "," + "'" + k + "'" + "," + "'" + fran
-                                        + "'" + "," + "'" + till + "'" + "," + "'" + idf + "'" + "," + "'" + a + "')");
+                                if (kursLista.contains(k)) {
 
-                                JOptionPane.showMessageDialog(null, "Ny kurs tilllaggd");
+                                    JOptionPane.showMessageDialog(null, " Kurs " + k + " Finns redan");
+                                } // om allt var korrekt inmatat så skapas en nykurs i databasen
+                                else {
+                                    idb.insert("insert into KURS values" + "(" + "'" + nextID + "'" + "," + "'" + k + "'" + "," + "'" + fran
+                                            + "'" + "," + "'" + till + "'" + "," + "'" + idf + "'" + "," + "'" + a + "')");
+
+                                    JOptionPane.showMessageDialog(null, "Ny kurs tilllaggd");
+                                }
                             }
                         }
                     }
@@ -244,6 +260,7 @@ public class NyKurs extends javax.swing.JFrame {
     private javax.swing.JTextField amne;
     private javax.swing.JTextField efternamn;
     private javax.swing.JTextField fornamn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

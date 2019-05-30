@@ -78,11 +78,11 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Nytt namn:");
+        jLabel1.setText("Nytt Förnamn");
 
-        jLabel2.setText("Nytt efternamn:");
+        jLabel2.setText("Nytt Efternamn");
 
-        jLabel4.setText("Återställ Lösenord: 0000");
+        jLabel4.setText("Återställ Lösenord 0000");
 
         andraKnapp1.setText("Ändra");
         andraKnapp1.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +98,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
             }
         });
 
-        andraKnapp3.setText("Återställ");
+        andraKnapp3.setText("Ändra");
         andraKnapp3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 andraKnapp3ActionPerformed(evt);
@@ -111,7 +111,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
 
         jLabel8.setText("Vilken lärare vill du ändra?");
 
-        jLabel9.setText("Fyll informationen du vill ändra.");
+        jLabel9.setText("Fyll informationen du vill ändra");
 
         jLabel3.setText("<- Tillbaka");
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -121,14 +121,14 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("OK");
+        jButton1.setText("Ändra");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Ge Läraren Admin behöringhet:");
+        jLabel5.setText("Ge Läraren Admin behöringhet");
 
         taBortLarare.setForeground(new java.awt.Color(255, 0, 51));
         taBortLarare.setText("Ta bort Lärare");
@@ -138,7 +138,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
             }
         });
 
-        föreståndareKnapp.setText("OK");
+        föreståndareKnapp.setText("Ändra");
         föreståndareKnapp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 föreståndareKnappActionPerformed(evt);
@@ -151,7 +151,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setText("Gör Till Föreståndare:");
+        jLabel10.setText("Gör Till Föreståndare");
 
         jLabel11.setText("Elevhems Namn");
 
@@ -163,44 +163,18 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(andraKnapp3)
-                                            .addComponent(jButton1)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel2)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(andraEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(andraKnapp2)))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(187, 187, 187)
+                                .addComponent(taBortLarare)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(107, 107, 107)
                                         .addComponent(jLabel8))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jLabel1)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(andraFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(andraKnapp1))
                                     .addGroup(layout.createSequentialGroup()
                                         .addContainerGap()
                                         .addComponent(jLabel6)
@@ -209,21 +183,46 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
                                         .addGap(6, 6, 6)
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(efternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(167, 167, 167))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(efternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(187, 187, 187)
-                                .addComponent(taBortLarare))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(119, 119, 119)
-                                .addComponent(elevhem, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(föreståndareKnapp)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(elevhem, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(föreståndareKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(andraEfternamn)
+                                            .addComponent(andraFornamn))
+                                        .addGap(39, 39, 39)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(andraKnapp2, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                                            .addComponent(andraKnapp1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(39, 39, 39)))
+                                        .addGap(9, 9, 9)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(andraKnapp3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(148, 148, 148)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -280,16 +279,25 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
         //validerar inmatningsrutor
         if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.textFaltHarVarde(andraFornamn)) {
             //deklarerar variabler samt ger textfältet toUppercase
-            String fnamn = Validering.storBokstav(andraFornamn.getText());
+            String nyttfnamn = Validering.storBokstav(andraFornamn.getText());
 
             try {
                 //kollar att läraren finns
                 if (getID() == null) {
                     JOptionPane.showMessageDialog(null, "läraren finns inte!");
                 } else {
-                    //uppdaterar fornamnet
-                    idb.update("UPDATE LARARE SET FORNAMN=" + "'" + fnamn + "'" + "WHERE LARAR_ID=" + "'" + getID() + "'");
-                    JOptionPane.showMessageDialog(null, "Namnet är nu uppdaterat!");
+                    //kollar att namnet inte är upptaget
+                    String id = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where fornamn=" + "'" + nyttfnamn + "'"
+                            + "and efternamn=" + "'" + Validering.storBokstav(efternamn.getText()) + "'");
+                    //Om id hittas, skriv ut felmeddelande 
+                    if (!(id == null)) {
+                        JOptionPane.showMessageDialog(null, " Registrering ej möjlig larare med samma för "
+                                + "och efternamn finns redan");
+                    } else {
+                        //uppdaterar fornamnet
+                        idb.update("UPDATE LARARE SET FORNAMN=" + "'" + nyttfnamn + "'" + "WHERE LARAR_ID=" + "'" + getID() + "'");
+                        JOptionPane.showMessageDialog(null, "Namnet är nu uppdaterat!");
+                    }
                 }
             } catch (InfException ex) {
                 Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
@@ -303,15 +311,25 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
         //validerar inmatningsrutor
         if (Validering.textFaltHarVarde(andraEfternamn) && Validering.textNamnHarVarde(fornamn, efternamn)) {
             //deklarerar variabler samt ger textfältet toUppercase
-            String nyttEfternamn = Validering.storBokstav(andraEfternamn.getText());
+            String nyttEnamn = Validering.storBokstav(andraEfternamn.getText());
             try {
                 //kollar att läraren finns
                 if (getID() == null) {
                     JOptionPane.showMessageDialog(null, "läraren finns inte!");
                 } else {
-                    //uppdaterar efternamn
-                    idb.update("UPDATE LARARE SET EFTERNAMN=" + "'" + nyttEfternamn + "'" + "WHERE LARAR_ID=" + "'" + getID() + "'");
-                    JOptionPane.showMessageDialog(null, "namnet är nu uppdaterat!");
+                    //kollar att namnet inte är upptaget
+                    String id = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where efternamn=" + "'" + nyttEnamn + "'"
+                            + "and fornamn=" + "'" + Validering.storBokstav(fornamn.getText()) + "'");
+                    //Om id hittas, skriv ut felmeddelande 
+                    if (!(id == null)) {
+                        JOptionPane.showMessageDialog(null, " Registrering ej möjlig larare med samma för "
+                                + "och efternamn finns redan");
+                    } else {
+                        //uppdaterar efternamn
+                        idb.update("UPDATE LARARE SET EFTERNAMN=" + "'" + nyttEnamn + "'" + "WHERE LARAR_ID="
+                                + "'" + getID() + "'");
+                        JOptionPane.showMessageDialog(null, "namnet är nu uppdaterat!");
+                    }
                 }
             } catch (InfException ex) {
                 Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
@@ -386,9 +404,9 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
 
             try {
                 // Kontrollerar om läraren har listad kompetens och tar i så fall bort denna
-                if (JOptionPane.showConfirmDialog(null, "vill du tabort lärare: " + fornamn.getText()
-                        + " " + efternamn.getText() + " " + getID(), "",
-                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                if (getID() == null) {
+                    JOptionPane.showMessageDialog(null, "Läraren finns inte!");
+                } else {
                     String a = idb.fetchSingle("Select LARAR_ID from HAR_KOMPETENS_I where LARAR_ID=" + "'" + getID() + "'");
                     if (!(null == a)) {
                         ok = false;
@@ -409,19 +427,23 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
                             //Kontrollerar om läraren är föreståndare för ett elevhem och skickar i så fall felmeddelande att borttag ej möjligt
                             String c = idb.fetchSingle("Select FORESTANDARE from ELEVHEM where FORESTANDARE=" + "'" + getID() + "'");
                             if (!(null == c)) {
-                                JOptionPane.showMessageDialog(null, " Läraran är elevhemsföreståndare välj ny föreståndare innan borttag");
+                                JOptionPane.showMessageDialog(null, " Läraren är elevhemsföreståndare välj ny föreståndare innan borttag");
                             }
 
                             if (c == null) {
-                                //Tar bort läraren ut tabellen
-                                idb.delete("DELETE from LARARE where LARAR_ID=" + "'" + getID() + "'");
-                                {
+                                if (JOptionPane.showConfirmDialog(null, "Vill du ta bort lärare: " + fornamn.getText()
+                                        + " " + efternamn.getText() + " " + getID(), "",
+                                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                                    //Tar bort läraren ut tabellen
+                                    idb.delete("DELETE from LARARE where LARAR_ID=" + "'" + getID() + "'");
+                               
                                     JOptionPane.showMessageDialog(null, "  Läraren är nu borttagen");
                                 }
                             }
                         }
                     }
                 }
+
             } catch (InfException ex) {
                 Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, " Något gick fel");

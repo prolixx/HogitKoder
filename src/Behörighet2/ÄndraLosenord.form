@@ -35,7 +35,7 @@
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="100" max="32767" attributes="0"/>
+              <EmptySpace pref="101" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel2" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -107,12 +107,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="L&#xe4;rar id:"/>
+        <Property name="text" type="java.lang.String" value="L&#xe4;rar ID"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="L&#xf6;senord:"/>
+        <Property name="text" type="java.lang.String" value="L&#xf6;senord"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="password">
@@ -121,7 +121,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nytt l&#xf6;senord:"/>
+        <Property name="text" type="java.lang.String" value="Nytt l&#xf6;senord"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">

@@ -18,7 +18,7 @@ private final InfDB idb;
     
     public Betygsregistrering(InfDB idb) {
         initComponents();
-          this.idb =idb;
+        this.idb = idb;
     }
 
     /**
@@ -142,7 +142,7 @@ private final InfDB idb;
                 String enamn = Validering.storBokstav(efternamn.getText());
                 String b = Validering.storBokstav(betyg.getText());
 
-                String kursen = kurs.getText();
+                String kursen = Validering.storBokstav(kurs.getText());
 
                 boolean ok = true;
 
@@ -171,13 +171,14 @@ private final InfDB idb;
                             if (!bs.contains(b)) {
                                 ok = false;
                                 JOptionPane.showMessageDialog(null, "Betyg finns ej i skalan");
-                            }
+                            } else {
 
-                            if (ok = true) {
+                                if (ok = true) {
 
-                                // Lägger till i tabellen har betyg i; elevens id, kursens id och valt betyg
-                                idb.insert("insert into HAR_BETYG_I values" + "(" + "'" + idf + "'" + "," + "'" + k + "'" + "," + "'" + b + "')");
-                                JOptionPane.showMessageDialog(null, "Nytt betyg är nu registrerat");
+                                    // Lägger till i tabellen har betyg i; elevens id, kursens id och valt betyg
+                                    idb.insert("insert into HAR_BETYG_I values" + "(" + "'" + idf + "'" + "," + "'" + k + "'" + "," + "'" + b + "')");
+                                    JOptionPane.showMessageDialog(null, "Nytt betyg är nu registrerat");
+                                }
                             }
                         }
                     }

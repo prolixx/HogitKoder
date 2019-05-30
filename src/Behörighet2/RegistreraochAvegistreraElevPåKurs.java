@@ -25,7 +25,7 @@ public class RegistreraochAvegistreraElevPåKurs extends javax.swing.JFrame {
      */
     public RegistreraochAvegistreraElevPåKurs(InfDB idb) {
         initComponents();
-        this.idb =idb;
+        this.idb = idb;
     }
 
     /**

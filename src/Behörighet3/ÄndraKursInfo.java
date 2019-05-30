@@ -161,13 +161,13 @@ public class ÄndraKursInfo extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(namn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(startDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(slutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(amne, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel6)))
+                                        .addComponent(jLabel6)
+                                        .addComponent(namn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(amne, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(95, 95, 95)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -186,17 +186,16 @@ public class ÄndraKursInfo extends javax.swing.JFrame {
                                 .addComponent(kursnamn)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(9, 9, 9)))
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(fornamn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(efternamn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(42, 42, 42)
-                                    .addComponent(jButton5))))))
-                .addContainerGap(110, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(efternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(42, 42, 42)
+                                            .addComponent(jButton5))
+                                        .addComponent(fornamn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(102, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,30 +209,31 @@ public class ÄndraKursInfo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(kursNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(namn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kursnamn))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(kursnamn, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(namn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(startDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(kursstart))
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(startDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(kursstart))
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton3)
-                            .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(slutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(2, 2, 2)
+                            .addComponent(jLabel4))
+                        .addGap(2, 2, 2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(slutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(amne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4)
@@ -247,7 +247,7 @@ public class ÄndraKursInfo extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(efternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -351,7 +351,7 @@ public class ÄndraKursInfo extends javax.swing.JFrame {
 
                 //Kontrollerar att start datum inte är efter slutdatum
                 if (date1.after(date2)) {
-                    JOptionPane.showMessageDialog(null, "Kontrollera datumet: KURSSLUT INNAN START");
+                    JOptionPane.showMessageDialog(null, "Kontrollera datumet: Kursslut innan start!");
                 } else {
                     //uppdaterar kursens slutdatum
                     idb.update("UPDATE KURS SET KURSSLUT=" + "'" + till + "'" + "where KURS_ID=" + "'" + getID() + "'");
@@ -366,24 +366,27 @@ public class ÄndraKursInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //Validering
+        //Validering av inmatningsfält
         if (Validering.textNamnHarVarde(amne, kursNamn)){
         String amnet = Validering.storBokstav(amne.getText());
 
         boolean ok = true;
 
         try {
+            //SQL fråga hittar ämnes id
             String aid = idb.fetchSingle("SELECT AMNE_ID FROM AMNE WHERE AMNESNAMN=" + "'" + amnet + "'");
-
+            //Skapar en list över alla ämnen
             ArrayList<String> amneLista = idb.fetchColumn("SELECT AMNE_ID from AMNE");
-
+            //kontrollerar att valt ämne finns i listan, annars skriver ut felmeddelande
             if (!amneLista.contains(aid)) {
                 ok = false;
                 JOptionPane.showMessageDialog(null, "Ämne finns ej ");
             } else {
+                //kontrollerar att kurs finns
                 if (getID() == null) {
                     JOptionPane.showMessageDialog(null, "Kunde inte hitta kurs!");
                 } else {
+                    //Uppdaterar kursens ämnes tillhörighet
                     idb.update("UPDATE KURS SET AMNESTILLHORIGHET =" + "'" + aid + "'" + "where KURS_ID=" + "'" + getID() + "'");
 
                     JOptionPane.showMessageDialog(null, " Ämne är nu ändrat");
@@ -392,6 +395,7 @@ public class ÄndraKursInfo extends javax.swing.JFrame {
         
         } catch (InfException ex) {
             Logger.getLogger(ÄndraKursInfo.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
         }}
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -407,7 +411,7 @@ public class ÄndraKursInfo extends javax.swing.JFrame {
                         + "and EFTERNAMN=" + "'" + enamn + "'");
 
                 boolean ok = true;
-                //kollar om kursfins i lärar id
+                //kollar om kurs finns
                 if (getID() == null) {
                     JOptionPane.showMessageDialog(null, "Kurs finns ej ");
                 } else {
@@ -428,6 +432,7 @@ public class ÄndraKursInfo extends javax.swing.JFrame {
 
             } catch (InfException ex) {
                 Logger.getLogger(ÄndraKursInfo.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Något gick fel!");
             }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -439,37 +444,39 @@ public class ÄndraKursInfo extends javax.swing.JFrame {
 
         try{
          
-            //Kontrollerar att kursenfinns
-            if(getID()==null){
-            JOptionPane.showMessageDialog(null, "Hittade inte kurs!");
-            }
-            else{
+                //Kontrollerar att kursen finns
+                if (getID() == null) {
+                    JOptionPane.showMessageDialog(null, "Hittade inte kurs!");
+                } else {
+                    if (JOptionPane.showConfirmDialog(null, "Vill du ta bort kursen: " + kursNamn.getText(), "",
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                        // Kollar om kursen har elevbetyg listade, om ja tar bort dessa
 
-                // Kollar om kursen har elevbetyg listade, om ja tar bort dessa
+                        String a = idb.fetchSingle("Select KURS_ID from HAR_BETYG_I where KURS_ID=" + "'" + getID() + "'");
+                        if (!(null == a)) {
+                            idb.delete("delete from HAR_BETYG_I WHERE KURS_ID=" + "'" + getID() + "'");
 
-                String a = idb.fetchSingle("Select KURS_ID from HAR_BETYG_I where KURS_ID="+"'"+ getID()+"'");
-                if(!(null ==a)){
-                    idb.delete("delete from HAR_BETYG_I WHERE KURS_ID="+"'"+getID()+"'");
+                        }
+                        //Kollar om det finns några elever registrerade på kursen, om ja tar bort dessa
+                        String b = idb.fetchSingle("Select KURS_ID from REGISTRERAD_PA where KURS_ID=" + "'" + getID() + "'");
+                        if (!(null == b)) {
 
+                            idb.delete("delete from REGISTRERAD_PA WHERE KURS_ID=" + "'" + getID() + "'");
+                        }
+
+                        // Tar bort kursen, visar meddelande att kursen är borttagen
+                        idb.delete("Delete from kurs where KURS_ID=" + "'" + getID() + "'");
+
+                        JOptionPane.showMessageDialog(null, "  Kursen " + kursNamn.getText() + " är borttagen");
+
+                    }
                 }
-                //Kollar om det finns några elever registrerade på kursen, om ja tar bort dessa
-                String b = idb.fetchSingle("Select KURS_ID from REGISTRERAD_PA where KURS_ID="+"'"+ getID()+"'");
-                if(!(null ==b)){
-
-                    idb.delete("delete from REGISTRERAD_PA WHERE KURS_ID="+"'"+getID()+"'");
-                }
-
-                // Tar bort kursen, visar meddelande att kursen är borttagen
-                idb.delete("Delete from kurs where KURS_ID=" + "'" + getID() + "'");
-
-                JOptionPane.showMessageDialog(null,  "  Kursen "+kursNamn.getText()+ " är borttagen");
+            } catch (Exception ex) {
+                Logger.getLogger(ÄndraKursInfo.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
 
             }
-        } catch (Exception ex) {
-            Logger.getLogger(ÄndraKursInfo.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
-
-        }}
+        }
     }//GEN-LAST:event_tabortKursKnappActionPerformed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
