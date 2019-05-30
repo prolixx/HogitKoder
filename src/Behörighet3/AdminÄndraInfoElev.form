@@ -210,12 +210,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="F&#xf6;rnamn:"/>
+        <Property name="text" type="java.lang.String" value="F&#xf6;rnamn"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Efternamn:"/>
+        <Property name="text" type="java.lang.String" value="Efternamn"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">

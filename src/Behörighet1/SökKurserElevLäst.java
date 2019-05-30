@@ -54,7 +54,7 @@ public class SökKurserElevLäst extends javax.swing.JFrame {
 
         jLabel2.setText("Elev Förnamn");
 
-        jLabel3.setText("Elev Efternamn");
+        jLabel3.setText("Elev efternamn");
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

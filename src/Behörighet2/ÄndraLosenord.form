@@ -26,8 +26,6 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="tillbaka" min="-2" pref="63" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="changePass" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
@@ -56,6 +54,7 @@
                               <Component id="newPassword" pref="127" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                      <Component id="changePass" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
@@ -87,15 +86,10 @@
                   <Component id="newPassword2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="changePass" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="tillbaka" min="-2" pref="35" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tillbaka" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="changePass" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
           </Group>
@@ -126,7 +120,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc4;ndra ditt l&#xf6;senord"/>
+        <Property name="text" type="java.lang.String" value="&#xc4;ndra L&#xf6;senord"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JToggleButton" name="changePass">

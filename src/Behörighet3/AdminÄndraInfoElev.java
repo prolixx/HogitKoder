@@ -108,9 +108,9 @@ public class AdminÄndraInfoElev extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Förnamn:");
+        jLabel6.setText("Förnamn");
 
-        jLabel7.setText("Efternamn:");
+        jLabel7.setText("Efternamn");
 
         jLabel8.setText("Vilken elev vill du ändra?");
 
@@ -256,7 +256,9 @@ public class AdminÄndraInfoElev extends javax.swing.JFrame {
 
     private void andraKnapp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKnapp1ActionPerformed
         // validerar inmatningsrutor
-        if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.textFaltHarVarde(andraFornamn)) {
+        if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.textFaltHarVarde(andraFornamn)
+                && Validering.ingaSiffror(andraFornamn))
+        {
             //Deklarerar variabel samt använder toUppercase metod
             String fnamn = Validering.storBokstav(andraFornamn.getText());
 
@@ -278,8 +280,9 @@ public class AdminÄndraInfoElev extends javax.swing.JFrame {
     }//GEN-LAST:event_andraKnapp1ActionPerformed
 
     private void andraKnapp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKnapp2ActionPerformed
-            // validerar inmatningsrutor
-        if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.textFaltHarVarde(andraEfternamn)) {
+            // Validerar inmatningsrutor
+        if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.textFaltHarVarde(andraEfternamn)
+                && Validering.ingaSiffror(andraEfternamn)) {
             //Deklarerar variabel samt använder toUpperCase metod.
             String nyttEfternamn = Validering.storBokstav(andraEfternamn.getText());
             try {
@@ -315,11 +318,11 @@ public class AdminÄndraInfoElev extends javax.swing.JFrame {
       
              if(!sal.contains(nySovsal)){
                  
-                 JOptionPane.showMessageDialog(null," Sovsal " + nySovsal + " Finns ej väl en annan sovsal");} 
+                 JOptionPane.showMessageDialog(null," Sovsal " + nySovsal + " finns inte välj en annan sovsal");} 
              else{
                     //Uppdaterar sovsal
                     idb.update("UPDATE elev SET SOVSAL=" + "'" + nySovsal + "'" + "WHERE ELEV_ID=" + "'" + getID() + "'");
-                    JOptionPane.showMessageDialog(null, "Elevens sovsal är uppdaterat");
+                    JOptionPane.showMessageDialog(null, "Elevens sovsal är uppdaterad");
                 }}}
             } catch (InfException ex) {
                 Logger.getLogger(AdminÄndraInfoElev.class.getName()).log(Level.SEVERE, null, ex);
@@ -432,7 +435,7 @@ public class AdminÄndraInfoElev extends javax.swing.JFrame {
                                 idb.update("UPDATE ELEVHEM SET PREFEKT=" + id + "where ELEVHEMSNAMN=" + "'" + hem + "'");
                                 //Meddelar att uppdateringen är gjord
                                 {
-                                    JOptionPane.showMessageDialog(null, hem + "s Prefekt är nu updaterad");
+                                    JOptionPane.showMessageDialog(null, fnamn + " " + enamn + " är nu " + hem + "s prefekt");
                                 }
                             }
                         }

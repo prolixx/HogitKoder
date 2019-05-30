@@ -55,7 +55,7 @@ public class Poang extends javax.swing.JFrame {
             }
         });
 
-        ok.setText("ok");
+        ok.setText("OK");
         ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okActionPerformed(evt);

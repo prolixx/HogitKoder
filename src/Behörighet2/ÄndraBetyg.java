@@ -176,12 +176,15 @@ public class ÄndraBetyg extends javax.swing.JFrame {
                     if (eid == null) {
                         JOptionPane.showMessageDialog(null, " Eleven finns inte, kontrollera inmatningen");
                     } else {
+                         String finns =idb.fetchSingle("SELECT ELEV_ID FROM HAR_BETYG_I where elev_id=" + eid + "and kurs_id ="+kid);
+                         if(finns == null){ JOptionPane.showMessageDialog(null, " Eleven har ej betyg i kursen, välj Registrera Betyg");}
+                         else{
                         //Uppdaterar elevens betyg i kursen
                         idb.update("UPDATE HAR_BETYG_I SET KURSBETYG=" + "'" + betyget + "'" + "where ELEV_ID=" + "'" + eid + "'" + "and kurs_id=" + "'" + kid + "'");{
 
                         // Visar meddelande om utförd uppdateringen
                         JOptionPane.showMessageDialog(null, fnamn + " " + enamn + " har nu betyg " + betyget + " i kurs " + kursen);
-                    }}
+                    }}}
                 }
 
             }
