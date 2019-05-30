@@ -57,9 +57,10 @@ public class Larare extends javax.swing.JFrame {
         elevHemslistaKnapp = new javax.swing.JButton();
         nyElevKnapp = new javax.swing.JButton();
         nyttBetygKnapp = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         AndraLosenordKnapp.setText("Ändra Lösenord");
         AndraLosenordKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +68,8 @@ public class Larare extends javax.swing.JFrame {
                 AndraLosenordKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(AndraLosenordKnapp);
+        AndraLosenordKnapp.setBounds(310, 160, 153, 30);
 
         ändraHuspoängKnapp.setText("Ändra Huspoäng");
         ändraHuspoängKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +77,8 @@ public class Larare extends javax.swing.JFrame {
                 ändraHuspoängKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(ändraHuspoängKnapp);
+        ändraHuspoängKnapp.setBounds(310, 130, 153, 30);
 
         ändraBetygKnapp.setText("Ändra Betyg");
         ändraBetygKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +86,8 @@ public class Larare extends javax.swing.JFrame {
                 ändraBetygKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(ändraBetygKnapp);
+        ändraBetygKnapp.setBounds(310, 100, 153, 30);
 
         LoggUtKnapp.setText("Logga Ut");
         LoggUtKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +95,8 @@ public class Larare extends javax.swing.JFrame {
                 LoggUtKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(LoggUtKnapp);
+        LoggUtKnapp.setBounds(0, 300, 129, 51);
 
         RegistreraElevPåKursKnapp.setText("Registrera På Kurs");
         RegistreraElevPåKursKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +104,8 @@ public class Larare extends javax.swing.JFrame {
                 RegistreraElevPåKursKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(RegistreraElevPåKursKnapp);
+        RegistreraElevPåKursKnapp.setBounds(310, 30, 153, 37);
 
         visaPrefektKnapp.setText("Visa Prefekt");
         visaPrefektKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +113,8 @@ public class Larare extends javax.swing.JFrame {
                 visaPrefektKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(visaPrefektKnapp);
+        visaPrefektKnapp.setBounds(0, 120, 139, 30);
 
         visaBetygKnapp.setText("Visa Betyg");
         visaBetygKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +122,8 @@ public class Larare extends javax.swing.JFrame {
                 visaBetygKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(visaBetygKnapp);
+        visaBetygKnapp.setBounds(0, 90, 139, 30);
 
         läraresKurserKnapp.setText("Lärares Kurser");
         läraresKurserKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +131,8 @@ public class Larare extends javax.swing.JFrame {
                 läraresKurserKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(läraresKurserKnapp);
+        läraresKurserKnapp.setBounds(0, 60, 139, 31);
 
         lästaKurserKnapp.setText("Lästa Kurser");
         lästaKurserKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +140,8 @@ public class Larare extends javax.swing.JFrame {
                 lästaKurserKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(lästaKurserKnapp);
+        lästaKurserKnapp.setBounds(0, 30, 139, 32);
 
         elevHemslistaKnapp.setText("Elevhems Lista");
         elevHemslistaKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +149,8 @@ public class Larare extends javax.swing.JFrame {
                 elevHemslistaKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(elevHemslistaKnapp);
+        elevHemslistaKnapp.setBounds(0, 0, 139, 29);
 
         nyElevKnapp.setText("Registrera Ny Elev");
         nyElevKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -137,6 +158,8 @@ public class Larare extends javax.swing.JFrame {
                 nyElevKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(nyElevKnapp);
+        nyElevKnapp.setBounds(310, 0, 153, 30);
 
         nyttBetygKnapp.setText("Registrera Betyg");
         nyttBetygKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -144,81 +167,14 @@ public class Larare extends javax.swing.JFrame {
                 nyttBetygKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(nyttBetygKnapp);
+        nyttBetygKnapp.setBounds(310, 60, 153, 40);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("HogIT");
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gabriel\\Documents\\NetBeansProjects\\Hogwartz.färdig\\harry-potter-hogwarts-crest-i67939.jpg")); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-70, -10, 550, 390);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(167, 167, 167))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(visaPrefektKnapp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(visaBetygKnapp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(läraresKurserKnapp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lästaKurserKnapp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(elevHemslistaKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(114, 114, 114)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ändraBetygKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ändraHuspoängKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AndraLosenordKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nyttBetygKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RegistreraElevPåKursKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nyElevKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(LoggUtKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(94, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(nyElevKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RegistreraElevPåKursKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(elevHemslistaKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lästaKurserKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(nyttBetygKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(läraresKurserKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ändraBetygKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ändraHuspoängKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(visaBetygKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AndraLosenordKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(visaPrefektKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 141, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(LoggUtKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-
-        pack();
+        setBounds(0, 0, 482, 393);
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -290,7 +246,7 @@ public class Larare extends javax.swing.JFrame {
     private javax.swing.JButton LoggUtKnapp;
     private javax.swing.JButton RegistreraElevPåKursKnapp;
     private javax.swing.JButton elevHemslistaKnapp;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton läraresKurserKnapp;
     private javax.swing.JButton lästaKurserKnapp;
     private javax.swing.JButton nyElevKnapp;

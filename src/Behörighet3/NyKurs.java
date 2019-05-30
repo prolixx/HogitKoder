@@ -188,58 +188,49 @@ public class NyKurs extends javax.swing.JFrame {
     private void skapaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaKnappActionPerformed
         try {   //Validerar inmatningsrutor
             if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.textFaltHarVarde(kursnamn)
-                    && Validering.textFaltHarVarde(amne)) {
-                 // Dklarerar variabler och importarar simpelDateFormat till datepickern
+                    && Validering.textFaltHarVarde(amne) && Validering.datumFoljd(startd, slutd)) {
+                // Dklarerar variabler och importarar simpelDateFormat till datepickern
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 String fran = sdf1.format(startd.getDate());
                 String till = sdf2.format(slutd.getDate());
 
-                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                String fnamn = Validering.storBokstav(fornamn.getText());
+                String enamn = Validering.storBokstav(efternamn.getText());
+                String ämne = Validering.storBokstav(amne.getText());
+                String k = Validering.storBokstav(kursnamn.getText());
 
-                Date date1 = format.parse(fran);
-                Date date2 = format.parse(till);
-
-                //Kontrollerar att start datum inte är efter slutdatum
-                if (date1.after(date2)) {
-                    JOptionPane.showMessageDialog(null, "Kontrollera datum följden");
+                // rader med if och else sattser för att hindra programmet att krascha
+                //vid eventuella fel inmatningar.
+                String nextID = idb.getAutoIncrement("Kurs", "Kurs_id");
+                if (nextID == null) {
+                    JOptionPane.showMessageDialog(null, "Kunde inte skapa nytt iD");
                 } else {
-                    String fnamn = Validering.storBokstav(fornamn.getText());
-                    String enamn = Validering.storBokstav(efternamn.getText());
-                    String ämne = Validering.storBokstav(amne.getText());
-                    String k = Validering.storBokstav(kursnamn.getText());
-
-                    // rader med if och else sattser för att hindra programmet att krascha
-                    //vid eventuella fel inmatningar.
-                    String nextID = idb.getAutoIncrement("Kurs", "Kurs_id");
-                    if (nextID == null) {
-                        JOptionPane.showMessageDialog(null, "Kunde inte skapa nytt iD");
+                    String idf = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where fornamn=" + "'"
+                            + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
+                    if (idf == null) {
+                        JOptionPane.showMessageDialog(null, "Kunde inte hitta lärare");
                     } else {
-                        String idf = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where fornamn=" + "'"
-                                + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
-                        if (idf == null) {
-                            JOptionPane.showMessageDialog(null, "Kunde inte hitta lärare");
+                        String a = idb.fetchSingle("SELECT AMNE_ID FROM AMNE where AMNESNAMN=" + "'" + ämne + "'");
+                        if (a == null) {
+                            JOptionPane.showMessageDialog(null, "Hittade inte ämnet");
                         } else {
-                            String a = idb.fetchSingle("SELECT AMNE_ID FROM AMNE where AMNESNAMN=" + "'" + ämne + "'");
-                            if (a == null) {
-                                JOptionPane.showMessageDialog(null, "Hittade inte ämnet");
-                            } else {
-                                ArrayList<String> kursLista = idb.fetchColumn("SELECT KURSNAMN from KURS");
+                            ArrayList<String> kursLista = idb.fetchColumn("SELECT KURSNAMN from KURS");
 
-                                if (kursLista.contains(k)) {
+                            if (kursLista.contains(k)) {
 
-                                    JOptionPane.showMessageDialog(null, " Kursen " + k + " finns redan");
-                                } // om allt var korrekt inmatat så skapas en nykurs i databasen
-                                else {
-                                    idb.insert("insert into KURS values" + "(" + "'" + nextID + "'" + "," + "'" + k + "'" + "," + "'" + fran
-                                            + "'" + "," + "'" + till + "'" + "," + "'" + idf + "'" + "," + "'" + a + "')");
+                                JOptionPane.showMessageDialog(null, " Kursen " + k + " finns redan");
+                            } // om allt var korrekt inmatat så skapas en nykurs i databasen
+                            else {
+                                idb.insert("insert into KURS values" + "(" + "'" + nextID + "'" + "," + "'" + k + "'" + "," + "'" + fran
+                                        + "'" + "," + "'" + till + "'" + "," + "'" + idf + "'" + "," + "'" + a + "')");
 
-                                    JOptionPane.showMessageDialog(null, "Ny kurs tilllaggd");
-                                }
+                                JOptionPane.showMessageDialog(null, "Ny kurs tilllaggd");
                             }
                         }
                     }
                 }
+
             }
         } catch (InfException ex) {
             Logger.getLogger(NyKurs.class.getName()).log(Level.SEVERE, null, ex);

@@ -50,12 +50,9 @@ public class Startsida extends javax.swing.JFrame {
     private void initComponents() {
 
         user = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         loggInKnapp = new javax.swing.JToggleButton();
         password = new javax.swing.JPasswordField();
         elevHemslistaKnapp = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         lästaKurserKnapp = new javax.swing.JButton();
         läraresKurserKnapp = new javax.swing.JButton();
         visaBetygKnapp = new javax.swing.JButton();
@@ -63,18 +60,19 @@ public class Startsida extends javax.swing.JFrame {
         pokalenKnapp = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         resultat = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        user.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userActionPerformed(evt);
+        user.setText("Lärar ID");
+        user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userMouseClicked(evt);
             }
         });
-
-        jLabel1.setText("Lärar ID:");
-
-        jLabel2.setText("Lösenord:");
+        getContentPane().add(user);
+        user.setBounds(70, 320, 100, 20);
 
         loggInKnapp.setText("Logga in");
         loggInKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +80,17 @@ public class Startsida extends javax.swing.JFrame {
                 loggInKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(loggInKnapp);
+        loggInKnapp.setBounds(310, 320, 90, 23);
+
+        password.setText("oooooooo");
+        password.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passwordMouseClicked(evt);
+            }
+        });
+        getContentPane().add(password);
+        password.setBounds(180, 320, 122, 20);
 
         elevHemslistaKnapp.setText("Elevhems Lista");
         elevHemslistaKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -89,9 +98,8 @@ public class Startsida extends javax.swing.JFrame {
                 elevHemslistaKnappActionPerformed(evt);
             }
         });
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("HogIT");
+        getContentPane().add(elevHemslistaKnapp);
+        elevHemslistaKnapp.setBounds(0, 0, 117, 30);
 
         lästaKurserKnapp.setText("Lästa Kurser");
         lästaKurserKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +107,8 @@ public class Startsida extends javax.swing.JFrame {
                 lästaKurserKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(lästaKurserKnapp);
+        lästaKurserKnapp.setBounds(0, 30, 117, 30);
 
         läraresKurserKnapp.setText("Lärares Kurser");
         läraresKurserKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +116,8 @@ public class Startsida extends javax.swing.JFrame {
                 läraresKurserKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(läraresKurserKnapp);
+        läraresKurserKnapp.setBounds(0, 60, 117, 30);
 
         visaBetygKnapp.setText("Visa Betyg");
         visaBetygKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +125,8 @@ public class Startsida extends javax.swing.JFrame {
                 visaBetygKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(visaBetygKnapp);
+        visaBetygKnapp.setBounds(0, 90, 117, 30);
 
         visaPrefektKnapp.setText("Visa Prefekt");
         visaPrefektKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +134,8 @@ public class Startsida extends javax.swing.JFrame {
                 visaPrefektKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(visaPrefektKnapp);
+        visaPrefektKnapp.setBounds(0, 120, 117, 30);
 
         pokalenKnapp.setText("Elevhems Pokalen");
         pokalenKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -127,78 +143,23 @@ public class Startsida extends javax.swing.JFrame {
                 pokalenKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(pokalenKnapp);
+        pokalenKnapp.setBounds(0, 150, 117, 30);
 
+        resultat.setBackground(new java.awt.Color(243, 225, 183));
         resultat.setColumns(20);
         resultat.setRows(5);
         jScrollPane1.setViewportView(resultat);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(loggInKnapp))
-                    .addComponent(jLabel2)))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(elevHemslistaKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pokalenKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(visaPrefektKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(visaBetygKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(läraresKurserKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lästaKurserKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(126, 126, 126))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(elevHemslistaKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lästaKurserKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(läraresKurserKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(visaBetygKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(16, 16, 16)
-                        .addComponent(visaPrefektKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pokalenKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loggInKnapp)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(160, 120, 129, 114);
 
-        pack();
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gabriel\\Documents\\NetBeansProjects\\Hogwartz.färdig\\harry-potter-hogwarts-crest-i67939.jpg")); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(-80, -30, 520, 430);
+
+        setBounds(0, 0, 442, 388);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userActionPerformed
 
     private void loggInKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggInKnappActionPerformed
         //kontrollerar inmatningsrutorna
@@ -293,12 +254,20 @@ public class Startsida extends javax.swing.JFrame {
         new VisaKursBetyg(idb).setVisible(true);
     }//GEN-LAST:event_visaBetygKnappActionPerformed
 
+    private void userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseClicked
+    //Tömmer Användar textfältet
+        user.setText("");
+    }//GEN-LAST:event_userMouseClicked
+
+    private void passwordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordMouseClicked
+       //tömmer lösenord fältet
+       password.setText("");
+    }//GEN-LAST:event_passwordMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton elevHemslistaKnapp;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton loggInKnapp;
     private javax.swing.JButton läraresKurserKnapp;

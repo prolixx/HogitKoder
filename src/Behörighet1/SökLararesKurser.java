@@ -160,67 +160,56 @@ public class SökLararesKurser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokActionPerformed
-        // Kontrollerar att inmatningens rutorn inte är tomma
-        if (Validering.textNamnHarVarde(fornamn, efternamn)) {
+        try {
+            // Kontrollerar att inmatningens rutorna
 
-            try {
-                //deklarerar variabler samt importerar datumFormat till datepickern
+            if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.datumFoljd(fDatum, tDatum)) {
+//                    try {
+//deklarerar variabler samt importerar datumFormat till datepickern
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 String fran = sdf1.format(fDatum.getDate());
                 String till = sdf2.format(tDatum.getDate());
 
-                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+//Deklarerar variabler och to Uppercase metod
+                String fnamn = Validering.storBokstav(fornamn.getText());
+                String enamn = Validering.storBokstav(efternamn.getText());
+                try {
 
-                Date date1 = format.parse(fran);
-                Date date2 = format.parse(till);
-                
-                //Kontrollerar att start datum inte är efter slutdatum
-                if (date1.after(date2)) {
-                    JOptionPane.showMessageDialog(null, "Kontrollera datum följden");
-                } else {
-                    
-                    //Deklarerar variabler och to Uppercase metod
-                    String fnamn = Validering.storBokstav(fornamn.getText());
-                    String enamn = Validering.storBokstav(efternamn.getText());
-                    try {
-                        
-                        //Hämta lärar id utifrån inmatat för och efternamn
-                        String lid = idb.fetchSingle("select larar_id from larare where fornamn=" + "'" + fnamn + "'"
-                                + "and efternamn=" + "'" + enamn + "'");
-                        //Kontrollerar att läraren finns, om inte skriver ut felmeddelande
-                        if (lid == null) {
-                            JOptionPane.showMessageDialog(null, "Kunde inte hitta lärare");
+                    //Hämta lärar id utifrån inmatat för och efternamn
+                    String lid = idb.fetchSingle("select larar_id from larare where fornamn=" + "'" + fnamn + "'"
+                            + "and efternamn=" + "'" + enamn + "'");
+                    //Kontrollerar att läraren finns, om inte skriver ut felmeddelande
+                    if (lid == null) {
+                        JOptionPane.showMessageDialog(null, "Kunde inte hitta lärare");
+                    } else {
+                        //Hämtar kurser med inmatad lärare samt inom valt datuminterall
+                        ArrayList<String> kurser = idb.fetchColumn("SELECT  KURSNAMN from KURS where KURSLARARE="
+                                + "'" + lid + "'" + "and"
+                                + " KURSSTART   >=" + "'" + fran + "'" + "and Kursslut <=" + "'" + till + "'");
+                        // Om inga kurser funna, skriv ut felmeddelande
+                        if (kurser == null) {
+                            JOptionPane.showMessageDialog(null, "Kunde inte finna kurser för läraren innom tidsramen!");
                         } else {
-                            //Hämtar kurser med inmatad lärare samt inom valt datuminterall 
-                            ArrayList<String> kurser = idb.fetchColumn("SELECT  KURSNAMN from KURS where KURSLARARE="
-                                    + "'" + lid + "'" + "and"
-                                    + " KURSSTART   >=" + "'" + fran + "'" + "and Kursslut <=" + "'" + till + "'");
-                            // Om inga kurser funna, skriv ut felmeddelande
-                            if (kurser == null) {
-                                JOptionPane.showMessageDialog(null, "Kunde inte finna kurser för läraren innom tidsramen!");
-                            } else {
-                                //Om en eller fler kurser funna, sätter ihop en string presenterar svaret
-                                String svar = "";
+                            //Om en eller fler kurser funna, sätter ihop en string presenterar svaret
+                            String svar = "";
 
-                                for (String s : kurser) {
-                                    svar += s + "\t";
-                                }
-
-                                resultat.setText(svar);
+                            for (String s : kurser) {
+                                svar += s + "\t";
                             }
+
+                            resultat.setText(svar);
                         }
-                    } catch (InfException ex) {
-                        Logger.getLogger(SökLararesKurser.class.getName()).log(Level.SEVERE, null, ex);
-                        JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
-
                     }
-                }
-            } catch (ParseException ex) {
-                Logger.getLogger(SökLararesKurser.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
-            }
+                } catch (InfException ex) {
+                    Logger.getLogger(SökLararesKurser.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
 
+                }
+
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(SökLararesKurser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_sokActionPerformed
 
