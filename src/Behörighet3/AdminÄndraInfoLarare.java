@@ -105,9 +105,9 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Namn:");
+        jLabel6.setText("Förnamn");
 
-        jLabel7.setText("Efternamn:");
+        jLabel7.setText("Efternamn");
 
         jLabel8.setText("Vilken lärare vill du ändra?");
 
@@ -296,7 +296,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
                     } else {
                         //uppdaterar fornamnet
                         idb.update("UPDATE LARARE SET FORNAMN=" + "'" + nyttfnamn + "'" + "WHERE LARAR_ID=" + "'" + getID() + "'");
-                        JOptionPane.showMessageDialog(null, "Namnet är nu uppdaterat!");
+                        JOptionPane.showMessageDialog(null, "Namnet är nu uppdaterat");
                     }
                 }
             } catch (InfException ex) {
@@ -328,7 +328,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
                         //uppdaterar efternamn
                         idb.update("UPDATE LARARE SET EFTERNAMN=" + "'" + nyttEnamn + "'" + "WHERE LARAR_ID="
                                 + "'" + getID() + "'");
-                        JOptionPane.showMessageDialog(null, "namnet är nu uppdaterat!");
+                        JOptionPane.showMessageDialog(null, "Namnet är nu uppdaterat");
                     }
                 }
             } catch (InfException ex) {
@@ -364,7 +364,8 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+//validerar inmatningsrutor
+        if (Validering.textNamnHarVarde(fornamn, efternamn)) {
         try {
             //deklarerar variabler
             String setToAdmin = "'T'";
@@ -395,7 +396,7 @@ public class AdminÄndraInfoLarare extends javax.swing.JFrame {
         } catch (HeadlessException | NumberFormatException | InfException ex) {
             JOptionPane.showMessageDialog(null, " Något gick fel");
             Logger.getLogger(AdminÄndraInfoLarare.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void taBortLarareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortLarareActionPerformed
