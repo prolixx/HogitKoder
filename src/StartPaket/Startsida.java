@@ -4,13 +4,19 @@ package StartPaket;
 
 /*
 Startsidan ger användaren möjligheten att loggain 
-eller att fortsätta utan behörighet.
+eller använda funktioner med lågbehörighet
  */
 
 
+import Behörighet1.ListaEleverpåElevhem;
+import Behörighet1.SökKurserElevLäst;
+import Behörighet1.SökLararesKurser;
+import Behörighet1.SökPrefekt;
+import Behörighet1.VisaKursBetyg;
 import Behörighet2.Larare;
 import Behörighet3.Admin;
 import StartPaket.Validering;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -30,6 +36,7 @@ public class Startsida extends javax.swing.JFrame {
     public Startsida(InfDB idb) {
         initComponents();
         this.idb=idb;
+        resultat.setVisible(false);
         
     }
 
@@ -47,7 +54,15 @@ public class Startsida extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         loggInKnapp = new javax.swing.JToggleButton();
         password = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
+        elevHemslistaKnapp = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        lästaKurserKnapp = new javax.swing.JButton();
+        läraresKurserKnapp = new javax.swing.JButton();
+        visaBetygKnapp = new javax.swing.JButton();
+        visaPrefektKnapp = new javax.swing.JButton();
+        pokalenKnapp = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        resultat = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,9 +72,9 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Lärar id:");
+        jLabel1.setText("Lärar ID:");
 
-        jLabel2.setText("lösenord:");
+        jLabel2.setText("Lösenord:");
 
         loggInKnapp.setText("Logga in");
         loggInKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -68,20 +83,61 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
 
-        password.addActionListener(new java.awt.event.ActionListener() {
+        elevHemslistaKnapp.setText("Elevhems Lista");
+        elevHemslistaKnapp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
+                elevHemslistaKnappActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("jLabel3");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("HogIT");
+
+        lästaKurserKnapp.setText("Lästa Kurser");
+        lästaKurserKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lästaKurserKnappActionPerformed(evt);
+            }
+        });
+
+        läraresKurserKnapp.setText("Lärares Kurser");
+        läraresKurserKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                läraresKurserKnappActionPerformed(evt);
+            }
+        });
+
+        visaBetygKnapp.setText("Visa Betyg");
+        visaBetygKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaBetygKnappActionPerformed(evt);
+            }
+        });
+
+        visaPrefektKnapp.setText("Visa Prefekt");
+        visaPrefektKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaPrefektKnappActionPerformed(evt);
+            }
+        });
+
+        pokalenKnapp.setText("Elevhems Pokalen");
+        pokalenKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pokalenKnappActionPerformed(evt);
+            }
+        });
+
+        resultat.setColumns(20);
+        resultat.setRows(5);
+        jScrollPane1.setViewportView(resultat);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(91, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -93,16 +149,40 @@ public class Startsida extends javax.swing.JFrame {
                         .addComponent(loggInKnapp))
                     .addComponent(jLabel2)))
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(elevHemslistaKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pokalenKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(visaPrefektKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(visaBetygKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(läraresKurserKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lästaKurserKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(126, 126, 126))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(elevHemslistaKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lästaKurserKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(läraresKurserKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(visaBetygKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(16, 16, 16)
+                        .addComponent(visaPrefektKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pokalenKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -152,23 +232,82 @@ public class Startsida extends javax.swing.JFrame {
 
             } catch (InfException ex) {
                 Logger.getLogger(Startsida.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Något gick fel!");
 
             }
 
     }              // TODO add your handling code here:
     }//GEN-LAST:event_loggInKnappActionPerformed
 
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
+    private void pokalenKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokalenKnappActionPerformed
+         
+       
+        try {
+            //Skapar två listor av elevhem och elevhemspoäng
+            ArrayList <String> hem = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
+           
+            ArrayList <String> poäng = idb.fetchColumn("SELECT HUSPOANG from ELEVHEM");
+            
+            String svar ="";
+            //sätter i hopp svaret i en string
+            for ( int i = 0; i<hem.size();i++)
+            {
+                svar +=   hem.get(i)+ " " + poäng.get(i) + "\n";
+                //visar resultatet i ett jTextarea
+                resultat.setText(svar);
+                resultat.setVisible(true);
+                
+            }
+        } catch (InfException ex) {
+            Logger.getLogger(Larare.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, " Något gick fel");
+          
+        }
+        
+        
+
+    }//GEN-LAST:event_pokalenKnappActionPerformed
+
+    private void elevHemslistaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_elevHemslistaKnappActionPerformed
+        //Öppnar funktionen list elever på elevhem
+        new ListaEleverpåElevhem(idb).setVisible(true);
+    }//GEN-LAST:event_elevHemslistaKnappActionPerformed
+
+    private void lästaKurserKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lästaKurserKnappActionPerformed
+        // öppnar funktionen sökkurser elever har läst
+        new SökKurserElevLäst(idb).setVisible(true);
+    }//GEN-LAST:event_lästaKurserKnappActionPerformed
+
+    private void läraresKurserKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_läraresKurserKnappActionPerformed
+        // Öppnar funktionen sök lärares kurser
+        new SökLararesKurser(idb).setVisible(true);
+    }//GEN-LAST:event_läraresKurserKnappActionPerformed
+
+    private void visaPrefektKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaPrefektKnappActionPerformed
+        // Öppnar visa prefekt
+        new SökPrefekt(idb).setVisible(true);
+    }//GEN-LAST:event_visaPrefektKnappActionPerformed
+
+    private void visaBetygKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaBetygKnappActionPerformed
+        //  Öpnnar visa betyg för elever
+        new VisaKursBetyg(idb).setVisible(true);
+    }//GEN-LAST:event_visaBetygKnappActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton elevHemslistaKnapp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton loggInKnapp;
+    private javax.swing.JButton läraresKurserKnapp;
+    private javax.swing.JButton lästaKurserKnapp;
     private javax.swing.JPasswordField password;
+    private javax.swing.JButton pokalenKnapp;
+    private javax.swing.JTextArea resultat;
     private javax.swing.JTextField user;
+    private javax.swing.JButton visaBetygKnapp;
+    private javax.swing.JButton visaPrefektKnapp;
     // End of variables declaration//GEN-END:variables
 }

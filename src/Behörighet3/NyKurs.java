@@ -60,6 +60,7 @@ public class NyKurs extends javax.swing.JFrame {
         Namn = new javax.swing.JLabel();
         startd = new com.toedter.calendar.JDateChooser();
         slutd = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +86,14 @@ public class NyKurs extends javax.swing.JFrame {
         startd.setDateFormatString("yyyy-MM-dd");
 
         slutd.setDateFormatString("yyyy-MM-dd");
+
+        jLabel5.setText("<- Tillbaka");
+        jLabel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,7 +131,8 @@ public class NyKurs extends javax.swing.JFrame {
                     .addComponent(efternamn))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(skapaKnapp)
                 .addGap(19, 19, 19))
         );
@@ -154,6 +164,9 @@ public class NyKurs extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(skapaKnapp)
                 .addGap(33, 33, 33))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -219,6 +232,10 @@ public class NyKurs extends javax.swing.JFrame {
 
     }//GEN-LAST:event_skapaKnappActionPerformed
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Lärare;
@@ -230,6 +247,7 @@ public class NyKurs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField kursnamn;
     private javax.swing.JToggleButton skapaKnapp;
     private com.toedter.calendar.JDateChooser slutd;

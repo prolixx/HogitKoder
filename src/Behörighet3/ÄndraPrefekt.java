@@ -5,11 +5,8 @@ package Behörighet3;
  */
 
 import StartPaket.Validering;
-import Behörighet3.ÄndraFöreståndare;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -27,8 +24,8 @@ public class ÄndraPrefekt extends javax.swing.JFrame {
      *
      * @throws oru.inf.InfException
      */
-    public ÄndraPrefekt() throws InfException {
-        idb = new InfDB("c:\\db\\hogdb.fdb");
+    public ÄndraPrefekt(InfDB idb)  {
+        this.idb = idb;
         initComponents();
     }
 
@@ -63,19 +60,7 @@ public class ÄndraPrefekt extends javax.swing.JFrame {
             }
         });
 
-        elevhem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                elevhemActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Förnamn");
-
-        fornamn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fornamnActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Efternamn");
 
@@ -178,53 +163,6 @@ public class ÄndraPrefekt extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void elevhemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_elevhemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_elevhemActionPerformed
-
-    private void fornamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fornamnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fornamnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ÄndraFöreståndare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ÄndraFöreståndare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ÄndraFöreståndare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ÄndraFöreståndare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new ÄndraPrefekt().setVisible(true);
-                } catch (InfException ex) {
-                    Logger.getLogger(ÄndraFöreståndare.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField efternamn;
