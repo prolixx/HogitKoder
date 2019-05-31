@@ -11,11 +11,11 @@ samt gjorde vi en toUppercase metod här för att göra förstabokstaven stor.
 
 
 import com.toedter.calendar.JDateChooser;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import oru.inf.InfDB;
@@ -31,8 +31,9 @@ public class Validering {
     private final InfDB idb;
 
     public Validering() throws InfException {
-
-        idb = new InfDB("c:\\db\\hogdb.fdb");
+            File fil = new File("HOGDB.FDB");
+           String path = fil.getAbsolutePath();
+           idb = new InfDB(path);
     }
 
     public static boolean textNamnHarVarde(JTextField rutanAttKolla, JTextField rutanAttKolla2) {

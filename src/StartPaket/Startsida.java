@@ -99,7 +99,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(elevHemslistaKnapp);
-        elevHemslistaKnapp.setBounds(0, 0, 117, 30);
+        elevHemslistaKnapp.setBounds(0, 0, 130, 30);
 
         lästaKurserKnapp.setText("Lästa Kurser");
         lästaKurserKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +108,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lästaKurserKnapp);
-        lästaKurserKnapp.setBounds(0, 30, 117, 30);
+        lästaKurserKnapp.setBounds(0, 30, 130, 30);
 
         läraresKurserKnapp.setText("Lärares Kurser");
         läraresKurserKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +117,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(läraresKurserKnapp);
-        läraresKurserKnapp.setBounds(0, 60, 117, 30);
+        läraresKurserKnapp.setBounds(0, 60, 130, 30);
 
         visaBetygKnapp.setText("Visa Betyg");
         visaBetygKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +126,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(visaBetygKnapp);
-        visaBetygKnapp.setBounds(0, 90, 117, 30);
+        visaBetygKnapp.setBounds(0, 90, 130, 30);
 
         visaPrefektKnapp.setText("Visa Prefekt");
         visaPrefektKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +135,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(visaPrefektKnapp);
-        visaPrefektKnapp.setBounds(0, 120, 117, 30);
+        visaPrefektKnapp.setBounds(0, 120, 130, 30);
 
         pokalenKnapp.setText("Elevhems Pokalen");
         pokalenKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +144,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pokalenKnapp);
-        pokalenKnapp.setBounds(0, 150, 117, 30);
+        pokalenKnapp.setBounds(0, 150, 130, 30);
 
         resultat.setBackground(new java.awt.Color(243, 225, 183));
         resultat.setColumns(20);
@@ -154,7 +154,7 @@ public class Startsida extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(160, 120, 129, 114);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gabriel\\Documents\\NetBeansProjects\\Hogwartz.färdig\\harry-potter-hogwarts-crest-i67939.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPaket/Bakgrund.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
         jLabel3.setBounds(-80, -30, 520, 430);
 
@@ -197,7 +197,7 @@ public class Startsida extends javax.swing.JFrame {
 
             }
 
-    }              // TODO add your handling code here:
+    }              
     }//GEN-LAST:event_loggInKnappActionPerformed
 
     private void pokalenKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokalenKnappActionPerformed
@@ -205,27 +205,26 @@ public class Startsida extends javax.swing.JFrame {
        
         try {
             //Skapar två listor av elevhem och elevhemspoäng
-            ArrayList <String> hem = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
-           
-            ArrayList <String> poäng = idb.fetchColumn("SELECT HUSPOANG from ELEVHEM");
-            
-            String svar ="";
+            ArrayList<String> hem = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
+
+            ArrayList<String> poäng = idb.fetchColumn("SELECT HUSPOANG from ELEVHEM");
+
+            String svar = "";
             //sätter i hopp svaret i en string
-            for ( int i = 0; i<hem.size();i++)
-            {
-                svar +=   hem.get(i)+ " " + poäng.get(i) + "\n";
+            for (int i = 0; i < hem.size(); i++) {
+                svar += hem.get(i) + " " + poäng.get(i) + "\n";
                 //visar resultatet i ett jTextarea
                 resultat.setText(svar);
                 resultat.setVisible(true);
-                
+
             }
         } catch (InfException ex) {
             Logger.getLogger(Larare.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, " Något gick fel");
-          
+
         }
-        
-        
+
+
 
     }//GEN-LAST:event_pokalenKnappActionPerformed
 

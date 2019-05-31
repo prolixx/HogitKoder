@@ -7,6 +7,7 @@ package StartPaket;
  */
 
 
+import java.io.File;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -24,7 +25,9 @@ public class Start {
 public static void main(String[] args) throws InfException
 {
    try {
-       idb = new InfDB("c:\\db\\hogdb.fdb");
+         File fil = new File("HOGDB.FDB");
+           String path = fil.getAbsolutePath();
+           idb = new InfDB(path);
    }
    catch(InfException ettUndantag) {
    JOptionPane.showMessageDialog(null,"något gick fel!");

@@ -86,7 +86,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(hanteraLärareKnapp);
-        hanteraLärareKnapp.setBounds(333, 270, 150, 30);
+        hanteraLärareKnapp.setBounds(330, 270, 150, 30);
 
         nyLarareKnapp.setText("Registrera Ny Lärare");
         nyLarareKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -223,7 +223,7 @@ public class Admin extends javax.swing.JFrame {
         getContentPane().add(ändraKursInfoKnapp);
         ändraKursInfoKnapp.setBounds(330, 210, 150, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gabriel\\Documents\\NetBeansProjects\\Hogwartz.färdig\\harry-potter-hogwarts-crest-i67939.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPaket/Bakgrund.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-60, 0, 560, 410);
 
