@@ -65,7 +65,6 @@ public class Admin extends javax.swing.JFrame {
         ändraBetygKnapp = new javax.swing.JToggleButton();
         ändraElevKnapp = new javax.swing.JButton();
         ändraKursInfoKnapp = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -223,10 +222,6 @@ public class Admin extends javax.swing.JFrame {
         getContentPane().add(ändraKursInfoKnapp);
         ändraKursInfoKnapp.setBounds(330, 210, 150, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPaket/Bakgrund.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-60, 0, 560, 410);
-
         setBounds(0, 0, 493, 377);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -326,7 +321,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton RegistreraElevPåKursKnapp;
     private javax.swing.JButton elevHemslistaKnapp;
     private javax.swing.JButton hanteraLärareKnapp;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton loggaUtKnapp;
     private javax.swing.JButton läraresKurserKnapp;
     private javax.swing.JButton lästaKurserKnapp;

@@ -7,6 +7,7 @@ import StartPaket.Validering;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -43,13 +44,13 @@ public class NyElev extends javax.swing.JFrame {
 
         fornamn = new javax.swing.JTextField();
         efternamn = new javax.swing.JTextField();
-        sovsal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         skapaKnapp = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        elevhemCombo = new javax.swing.JComboBox<>();
+        sovsalCombo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,8 +65,6 @@ public class NyElev extends javax.swing.JFrame {
 
         jLabel2.setText("Elev Efternamn");
 
-        jLabel3.setText("Sovsal");
-
         jLabel4.setText("Registrera Ny Elev ");
 
         jLabel6.setText("<- Tillbaka");
@@ -75,6 +74,15 @@ public class NyElev extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
+
+        elevhemCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elevhem", "Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin" }));
+        elevhemCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                elevhemComboItemStateChanged(evt);
+            }
+        });
+
+        sovsalCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sovsal" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,9 +97,9 @@ public class NyElev extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(46, 46, 46))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(sovsal)
+                                .addComponent(elevhemCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(sovsalCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24)))
                         .addComponent(skapaKnapp))
                     .addGroup(layout.createSequentialGroup()
@@ -122,9 +130,9 @@ public class NyElev extends javax.swing.JFrame {
                     .addComponent(efternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(sovsal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(skapaKnapp))
+                    .addComponent(skapaKnapp)
+                    .addComponent(elevhemCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sovsalCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -134,14 +142,14 @@ public class NyElev extends javax.swing.JFrame {
 
     private void skapaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skapaKnappActionPerformed
 // Ger felmeddelande vid tomma inmatningsrutor samt felaktiga inmatning
-           if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.ingaSiffror(efternamn)
+        if (Validering.textNamnHarVarde(fornamn, efternamn) && Validering.ingaSiffror(efternamn)
                 && Validering.ingaSiffror(fornamn)) {
 
 // Deklarera variabler
             try {
                 String fnamn = Validering.storBokstav(fornamn.getText());
                 String enamn = Validering.storBokstav(efternamn.getText());
-                String sov = sovsal.getText();
+                String sov = sovsalCombo.getSelectedItem().toString();
 
                 //Kollar om det redan finns en elev registrerarad med samma för och efternamn
                 String id = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn="
@@ -160,10 +168,14 @@ public class NyElev extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Sovsalen finns inte välj en annan");
                     } else {
 //Skapa ny rad i tabellen med id, förnamn, efternamn och sovsal utifrån inmatade värden
-                        idb.insert("insert into elev values" + "(" + "'" + nextID
-                                + "'" + "," + "'" + fnamn + "'" + "," + "'" + enamn + "'" + "," + "'" + sov + "')");
-                        //Visar meddelande att eleven lagts till
-                        JOptionPane.showMessageDialog(null, "Ny elev tilllaggd");
+                        if (JOptionPane.showConfirmDialog(null, "Vill du registrera: " + fornamn.getText()
+                                + " " + efternamn.getText()+ " " + elevhemCombo.getSelectedItem().toString() + " i sovsal " + sov, "",
+                                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                            idb.insert("insert into elev values" + "(" + "'" + nextID
+                                    + "'" + "," + "'" + fnamn + "'" + "," + "'" + enamn + "'" + "," + "'" + sov + "')");
+                            //Visar meddelande att eleven lagts till
+                            JOptionPane.showMessageDialog(null, "Ny elev tilllaggd");
+                        }
                     }
                 }
 
@@ -181,15 +193,28 @@ public class NyElev extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabel6MouseClicked
 
+    private void elevhemComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_elevhemComboItemStateChanged
+        try {
+            ArrayList<String> ehLista = new ArrayList<>();
+            ehLista = idb.fetchColumn("Select SOVSAL_ID from SOVSAL\n"
+                + "join ELEVHEM\n"
+                + "on SOVSAL.ELEVHEM = ELEVHEM.ELEVHEM_ID\n"
+                + "where ELEVHEMSNAMN ='"+ elevhemCombo.getSelectedItem().toString() +"'");
+            sovsalCombo.setModel(new DefaultComboBoxModel(ehLista.toArray()));
+        } catch (InfException ex) {
+            Logger.getLogger(NyElev.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_elevhemComboItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField efternamn;
+    private javax.swing.JComboBox<String> elevhemCombo;
     private javax.swing.JTextField fornamn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JToggleButton skapaKnapp;
-    private javax.swing.JTextField sovsal;
+    private javax.swing.JComboBox<String> sovsalCombo;
     // End of variables declaration//GEN-END:variables
 }

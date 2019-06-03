@@ -39,19 +39,16 @@ public class ÄndraPrefekt extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        elevhem = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         fornamn = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         efternamn = new javax.swing.JTextField();
+        elevhemCombo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Ändra Prefekt");
-
-        jLabel2.setText("Elevhems namn");
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +61,8 @@ public class ÄndraPrefekt extends javax.swing.JFrame {
 
         jLabel4.setText("Efternamn");
 
+        elevhemCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elevhem", "Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,6 +74,7 @@ public class ÄndraPrefekt extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(elevhemCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -83,11 +83,7 @@ public class ÄndraPrefekt extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(fornamn)
                             .addComponent(efternamn, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(elevhem, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,9 +92,7 @@ public class ÄndraPrefekt extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(elevhem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(elevhemCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -107,7 +101,7 @@ public class ÄndraPrefekt extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(efternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(24, 24, 24))
         );
@@ -117,47 +111,46 @@ public class ÄndraPrefekt extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Ger felmeddelande vid tomma inmatningsrutor
-        if (Validering.textFaltHarVarde(elevhem)) {
-            if (Validering.textNamnHarVarde(fornamn, efternamn)) {
-                try {
-                    //Deklarerar variabler  
-                    String hem = Validering.storBokstav(elevhem.getText());
-                    String fnamn = Validering.storBokstav(fornamn.getText());
-                    String enamn = Validering.storBokstav(efternamn.getText());
+        if (Validering.textNamnHarVarde(fornamn, efternamn)) {
+            try {
+                //Deklarerar variabler  
+                String hem = elevhemCombo.getSelectedItem().toString();
+                String fnamn = Validering.storBokstav(fornamn.getText());
+                String enamn = Validering.storBokstav(efternamn.getText());
 
-                    //Skapa en ArrayLista med alla elevhems namn
-                    ArrayList<String> h = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
-                    //Kontrollerar att inmatat namn finns i listan,  om inte skickar felmeddelande  
-                    if (!(h.contains(hem))) {
-                        JOptionPane.showMessageDialog(null, "Elevhemmet finns inte, kontrollera stavningen");
+                //Skapa en ArrayLista med alla elevhems namn
+                ArrayList<String> h = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
+                //Kontrollerar att inmatat namn finns i listan,  om inte skickar felmeddelande  
+                if (!(h.contains(hem))) {
+                    JOptionPane.showMessageDialog(null, "Elevhemmet finns inte");
+                } else {
+                    // Hämta Lärar id för inmatat för och efternamn
+                    String id = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
+                    //Kontrollerar så att idet finns, om inte skickar felmeddelande  
+                    if (id == null) {
+                        JOptionPane.showMessageDialog(null, " Eleven finns inte");
                     } else {
-                        // Hämta Lärar id för inmatat för och efternamn
-                        String id = idb.fetchSingle("SELECT ELEV_ID FROM ELEV where fornamn=" + "'" + fnamn + "'" + "and efternamn=" + "'" + enamn + "'");
-                        //Kontrollerar så att idet finns, om inte skickar felmeddelande  
-                        if (id == null) {
-                            JOptionPane.showMessageDialog(null, " Eleven finns inte");
-                        } else {
 
-                            //Kollar om läraren redan är föreståndare och skikcar i så fall felmeddelande
-                            String finns = idb.fetchSingle("SELECT PREFEKT FROM ELEVHEM where PREFEKT =" + id);
-                            if (!(finns == null)) {
-                                JOptionPane.showMessageDialog(null, " Eleven är redan prefekt för ett elevhem");
-                            } else {
-                                //Om idet finns sätts detta som  prefekt för angivet elevhem, 
-                                idb.update("UPDATE ELEVHEM SET PREFEKT=" + id + "where ELEVHEMSNAMN=" + "'" + hem + "'");
-                                //Meddelar att uppdateringen är gjord
-                                {
-                                    JOptionPane.showMessageDialog(null, hem + "s föreståndare är nu updaterad");
-                                }
+                        //Kollar om läraren redan är föreståndare och skikcar i så fall felmeddelande
+                        String finns = idb.fetchSingle("SELECT PREFEKT FROM ELEVHEM where PREFEKT =" + id);
+                        if (!(finns == null)) {
+                            JOptionPane.showMessageDialog(null, " Eleven är redan prefekt för ett elevhem");
+                        } else {
+                            //Om idet finns sätts detta som  prefekt för angivet elevhem, 
+                            idb.update("UPDATE ELEVHEM SET PREFEKT=" + id + "where ELEVHEMSNAMN=" + "'" + hem + "'");
+                            //Meddelar att uppdateringen är gjord
+                            {
+                                JOptionPane.showMessageDialog(null, hem + "s föreståndare är nu updaterad");
                             }
                         }
                     }
-
-                } catch (HeadlessException | NumberFormatException | InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
-                    System.out.println("Internt felmeddelande" + e.getMessage());
                 }
+
+            } catch (HeadlessException | NumberFormatException | InfException e) {
+                JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera inmatningen");
+                System.out.println("Internt felmeddelande" + e.getMessage());
             }
+
         }
 
 
@@ -166,11 +159,10 @@ public class ÄndraPrefekt extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField efternamn;
-    private javax.swing.JTextField elevhem;
+    private javax.swing.JComboBox<String> elevhemCombo;
     private javax.swing.JTextField fornamn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables

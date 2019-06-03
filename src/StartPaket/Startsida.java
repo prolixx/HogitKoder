@@ -60,7 +60,6 @@ public class Startsida extends javax.swing.JFrame {
         pokalenKnapp = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         resultat = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -153,10 +152,6 @@ public class Startsida extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(160, 120, 129, 114);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPaket/Bakgrund.jpg"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(-80, -30, 520, 430);
 
         setBounds(0, 0, 442, 388);
     }// </editor-fold>//GEN-END:initComponents
@@ -266,7 +261,6 @@ public class Startsida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton elevHemslistaKnapp;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton loggInKnapp;
     private javax.swing.JButton läraresKurserKnapp;

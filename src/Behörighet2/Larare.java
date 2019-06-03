@@ -57,7 +57,6 @@ public class Larare extends javax.swing.JFrame {
         elevHemslistaKnapp = new javax.swing.JButton();
         nyElevKnapp = new javax.swing.JButton();
         nyttBetygKnapp = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -170,10 +169,6 @@ public class Larare extends javax.swing.JFrame {
         getContentPane().add(nyttBetygKnapp);
         nyttBetygKnapp.setBounds(310, 60, 153, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPaket/Bakgrund.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-70, -10, 550, 390);
-
         setBounds(0, 0, 482, 393);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -246,7 +241,6 @@ public class Larare extends javax.swing.JFrame {
     private javax.swing.JButton LoggUtKnapp;
     private javax.swing.JButton RegistreraElevPåKursKnapp;
     private javax.swing.JButton elevHemslistaKnapp;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton läraresKurserKnapp;
     private javax.swing.JButton lästaKurserKnapp;
     private javax.swing.JButton nyElevKnapp;

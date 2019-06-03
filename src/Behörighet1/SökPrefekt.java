@@ -6,8 +6,6 @@ package Behörighet1;
 
 
 
-import StartPaket.Validering;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -38,23 +36,13 @@ private final InfDB idb;
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        elevhem = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        resultat = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        elevhemCombo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Sök Prefekt");
-
-        jLabel2.setText("Elevhems Namn");
-
-        jToggleButton1.setText("SÖK");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
 
         jLabel7.setText("<- Tillbaka");
         jLabel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -64,92 +52,85 @@ private final InfDB idb;
             }
         });
 
+        elevhemCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elevhem", "Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin" }));
+        elevhemCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                elevhemComboItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToggleButton1)
-                .addGap(127, 127, 127))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(elevhem, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(65, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(elevhemCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(resultat, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(elevhem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addComponent(jToggleButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                    .addComponent(elevhemCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resultat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // Ger felmeddelande vid tomma inmatningsrutor.
-        if (Validering.textFaltHarVarde(elevhem)) {
-            try {
-
-                //Deklarear variabel och hämtar medtod för Upppercase
-                String hem = Validering.storBokstav(elevhem.getText());
-
-                //Skapa en ArrayLista med alla elevhems namn
-                ArrayList<String> h = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
-                //Kontrollerar att inmatat namn finns i listan
-                if (!(h.contains(hem))) {
-                    JOptionPane.showMessageDialog(null, "Elevhemmet finns inte, kontrollera stavningen");
-                } else //Söker fram elevidt på prefekten på angivet elevhem
-                {
-                    String id = idb.fetchSingle("SELECT PREFEKT FROM ELEVHEM\n"
-                            + "join ELEV \n"
-                            + "on ELEV_ID = PREFEKT\n"
-                            + "Where ELEVHEMSNAMN = " + "'" + hem + "'");
-                    //Söker fram förnamn på det hittade idt
-                    String fornamn = idb.fetchSingle(" SELECT FORNAMN from ELEV where ELEV_ID = " + "'" + id + "'");
-                    //Söker fram efternamn på det hittade idt
-                    String efternamn = idb.fetchSingle(" SELECT EFTERNAMN from ELEV where ELEV_ID = " + "'" + id + "'");
-
-                    //Skriver ut för och efternamn på prefekten 
-                    JOptionPane.showMessageDialog(null, fornamn + " " + efternamn + " är prefekt på " + hem);
-                }
-
-            } catch (InfException ex) {
-                Logger.getLogger(SökPrefekt.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
-            }
-        }
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         //Går tillbaka till meny
         dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    private void elevhemComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_elevhemComboItemStateChanged
+
+        try {
+
+            //Deklarear variabel och hämtar medtod för Upppercase
+            String hem = elevhemCombo.getSelectedItem().toString();
+                 //Söker fram elevidt på prefekten på angivet elevhem
+                String id = idb.fetchSingle("SELECT PREFEKT FROM ELEVHEM\n"
+                        + "join ELEV \n"
+                        + "on ELEV_ID = PREFEKT\n"
+                        + "Where ELEVHEMSNAMN = " + "'" + hem + "'");
+                //Söker fram förnamn på det hittade idt
+                String fornamn = idb.fetchSingle(" SELECT FORNAMN from ELEV where ELEV_ID = " + "'" + id + "'");
+                //Söker fram efternamn på det hittade idt
+                String efternamn = idb.fetchSingle(" SELECT EFTERNAMN from ELEV where ELEV_ID = " + "'" + id + "'");
+
+                //Skriver ut för och efternamn på prefekten 
+                resultat.setText(fornamn + " " + efternamn);
+            
+
+        } catch (InfException ex) {
+            Logger.getLogger(SökPrefekt.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, " Något gick fel");
+        }
+
+    }//GEN-LAST:event_elevhemComboItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField elevhem;
+    private javax.swing.JComboBox<String> elevhemCombo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTextField resultat;
     // End of variables declaration//GEN-END:variables
 }
