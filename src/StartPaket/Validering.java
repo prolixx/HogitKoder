@@ -79,7 +79,8 @@ public class Validering {
     }
 
     public static boolean ingaSiffror(JTextField rutanAttKolla) {
-        for (char c : rutanAttKolla.getText().toCharArray()) {       //kollar så att det inte finns några siffror i inmatningsfältet och skickar ut felmeddelande
+        //kollar så att det inte finns några siffror i inmatningsfältet och skickar ut felmeddelande
+        for (char c : rutanAttKolla.getText().toCharArray()) {       
             if (Character.isDigit(c)) {
                 JOptionPane.showMessageDialog(null, " Kontrollera inmatningen inga siffror i namn!");
                 return false;

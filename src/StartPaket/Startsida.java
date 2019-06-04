@@ -166,26 +166,26 @@ public class Startsida extends javax.swing.JFrame {
                 // deklarerar variabler
                 String larare = user.getText();
                 String pass = password.getText();
-                // Sql frågor hämtar Lösenord och ID från Lösenordet som inmatas
-                String fraga = idb.fetchSingle("SELECT LARAR_ID from LARARE where LOSENORD=" + "'" + pass + "'");
-                String fraga2 = idb.fetchSingle("SELECT LOSENORD from LARARE where LOSENORD=" + "'" + pass + "'");
+                // Sql frågor hämtar Lösenord och ID    från Lösenordet som inmatas
+                String fraga = idb.fetchSingle("SELECT LOSENORD from LARARE where Larar_ID=" + "'" + larare + "'");
+//                String fraga2 = idb.fetchSingle("SELECT Larar_ID from LARARE where LOSENORD=" + "'" + fraga + "'");
                 //Sql fråga för att stämma av om läraren är Admin
-                String fraga3 = idb.fetchSingle(
-                        "Select LARAR_ID from larare where LOSENORD =" + "'" + pass + "'" + "and administrator = 'T'");
+                String a = idb.fetchSingle("SELECT ADMINISTRATOR from LARARE where LARAR_ID=" + larare);
                 //Loggin för admin kontrollerar inmating gentemot Sql-frågorna.
-                if (user.getText().equals(fraga3) && password.getText().equals(fraga2)) // om Användaren är Administratör kommer den skickas till Admin Klassen
-                {
-                    new Admin(idb).setVisible(true);
-                    dispose();
-                } //Pass och ID kontrolleras mot sql-frågorna.
-                else if (user.getText().equals(fraga) && password.getText().equals(fraga2)) {
-                    // för lärare utan administratörs status öppnas larare-klassen            
-                    new Larare(idb).setVisible(true);
-                    dispose();
-
-                } //Vid fel lösenord eller användarnamn kommer ett felmeddelande
-                else {
+                if (!(fraga.equals(pass))) {
                     JOptionPane.showMessageDialog(null, "Fyll i ID och lösenord korrekt!");
+                } else {
+                    if (a.startsWith("T")) // om Användaren är Administratör kommer den skickas till Admin Klassen
+                    {
+                        new Admin(idb).setVisible(true);
+                        dispose();
+                    } //Pass och ID kontrolleras mot sql-frågorna.
+                    else {
+                        // för lärare utan administratörs status öppnas larare-klassen            
+                        new Larare(idb).setVisible(true);
+                        dispose();
+
+                    } //Vid fel lösenord eller användarnamn kommer ett felmeddelande
 
                 }
 
@@ -195,7 +195,7 @@ public class Startsida extends javax.swing.JFrame {
 
             }
 
-    }              
+        }
     }//GEN-LAST:event_loggInKnappActionPerformed
 
     private void pokalenKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokalenKnappActionPerformed

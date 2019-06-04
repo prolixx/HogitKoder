@@ -21,7 +21,7 @@ public class Poang extends javax.swing.JFrame {
     /**
      * Creates new form Huvudfonster
      *
-     * @throws oru.inf.InfException
+     * 
      */
     public Poang(InfDB idb){
         initComponents();

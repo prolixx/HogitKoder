@@ -74,24 +74,23 @@ public class NyLarare extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(skapaKnapp)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(efternamn, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                        .addComponent(fornamn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 163, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(skapaKnapp)
+                    .addComponent(efternamn, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                    .addComponent(fornamn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,6 +124,7 @@ public class NyLarare extends javax.swing.JFrame {
                 // Skapar variabler och använder en toUpperCase metod
                 String fnamn = Validering.storBokstav(fornamn.getText());
                 String enamn = Validering.storBokstav(efternamn.getText());
+                
                 String nextID = idb.getAutoIncrement("larare", "larar_id");
                 //Kollar om det redan finns en lärare registrerarad med samm för och efternamn
                 String id = idb.fetchSingle("SELECT LARAR_ID FROM LARARE where fornamn=" + "'" + fnamn + "'"
@@ -136,7 +136,7 @@ public class NyLarare extends javax.swing.JFrame {
                 } else {
 
                     // confirmdialog ger möjligheten att avbryta vid evenutella fel
-                    if (JOptionPane.showConfirmDialog(null, "Lägg till lärare: " + fnamn + " " + enamn + " Id: "+ nextID  +  " " + "Lösenord:0000", "Nylärare",
+                    if (JOptionPane.showConfirmDialog(null, "Lägg till lärare: " + fnamn + " " + enamn + " Id: "+ nextID  +  " " + "Lösenord: 0000", "Nylärare",
                             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                         // Lägger till lärare med skickat namn och efternamn, samt genererat id och standar lösenord
                         idb.insert("insert into larare values" + "(" + "'" + nextID + "'" + "," + "'" + fnamn
