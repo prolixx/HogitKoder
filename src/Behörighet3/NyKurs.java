@@ -7,6 +7,7 @@ package Behörighet3;
 
 
 
+import StartPaket.MaxTecken;
 import StartPaket.Validering;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,6 +37,8 @@ public class NyKurs extends javax.swing.JFrame {
     public NyKurs(InfDB idb) {
         initComponents();
         this.idb = idb;
+        kursnamn.setDocument(new MaxTecken(50));
+       
     }
 
     /**

@@ -41,11 +41,10 @@ public class Poang extends javax.swing.JFrame {
         antal = new javax.swing.JTextField();
         ok = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        hem = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         info1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        elevhemCombo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,8 +63,6 @@ public class Poang extends javax.swing.JFrame {
 
         jLabel1.setText("Poäng för Elevhemspokalen");
 
-        jLabel2.setText("Elevhems Namn");
-
         jLabel3.setText("Ge poäng eller dra av");
 
         info1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -82,6 +79,8 @@ public class Poang extends javax.swing.JFrame {
             }
         });
 
+        elevhemCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elevhem", "Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,32 +88,24 @@ public class Poang extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(119, 119, 119)
-                                .addComponent(ok))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(antal)
-                                    .addComponent(hem))
-                                .addGap(52, 52, 52))))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(info1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(155, 155, 155)
+                        .addComponent(ok))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(elevhemCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(antal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -122,15 +113,14 @@ public class Poang extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGap(47, 47, 47)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(antal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(antal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(elevhemCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(info1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -148,18 +138,18 @@ public class Poang extends javax.swing.JFrame {
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
 
         // Ger felmeddelande vid tomma inmatningsrutor samt felaktig inmatning
-        if (Validering.textFaltHarVarde(hem) && (Validering.isHeltal(antal))) {
+        if  (Validering.isHeltal(antal)) {
 
             // Deklarerar varibler  och kör toUpperCase metod
             try {
-                String namn = Validering.storBokstav(hem.getText());
+                String enamn = elevhemCombo.getSelectedItem().toString();
                 // Kontrollerar att valt elevhem finns 
-                String svar = idb.fetchSingle("SELECT ELEVHEMSNAMN from ELEVHEM where ELEVHEMSNAMN =" + "'" + namn + "'");
+                String svar = idb.fetchSingle("SELECT ELEVHEMSNAMN from ELEVHEM where ELEVHEMSNAMN =" + "'" + enamn + "'");
                 if (svar == null) {
                     JOptionPane.showMessageDialog(null, " Elevhemmet finns inte, kontrollera inmatningen");
                 } else {
                     // Hämtar nuvarande poäng
-                    String hamtad = idb.fetchSingle("SELECT HUSPOANG from ELEVHEM where ELEVHEMSNAMN =" + "'" + namn + "'");
+                    String hamtad = idb.fetchSingle("SELECT HUSPOANG from ELEVHEM where ELEVHEMSNAMN =" + "'" + enamn + "'");
 
                     // Konverterar Strängar till int för att kunna summera
                     String talstrang = antal.getText();
@@ -174,7 +164,7 @@ public class Poang extends javax.swing.JFrame {
                     String summaStrang = Integer.toString(summa);
 
                     // Ändrar poängen till den gamla poängen + den nya
-                    idb.update("UPDATE ELEVHEM SET HUSPOANG=" + summaStrang + "where ELEVHEMSNAMN=" + "'" + namn + "'");
+                    idb.update("UPDATE ELEVHEM SET HUSPOANG=" + summaStrang + "where ELEVHEMSNAMN=" + "'" + enamn + "'");
 
                     // Meddelar uppdateringen som skett
                     JOptionPane.showMessageDialog(null, svar + " har fått " + talstrang + " poäng" + " "
@@ -207,10 +197,9 @@ public class Poang extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField antal;
-    private javax.swing.JTextField hem;
+    private javax.swing.JComboBox<String> elevhemCombo;
     private javax.swing.JLabel info1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JButton ok;

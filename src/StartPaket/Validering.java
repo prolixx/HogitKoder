@@ -27,13 +27,15 @@ import oru.inf.InfException;
  */
 public class Validering {
 
-
     private final InfDB idb;
-
+  
+    
     public Validering() throws InfException {
-            File fil = new File("HOGDB.FDB");
-           String path = fil.getAbsolutePath();
-           idb = new InfDB(path);
+        File fil = new File("HOGDB.FDB");
+        String path = fil.getAbsolutePath();
+        idb = new InfDB(path);
+        
+
     }
 
     public static boolean textNamnHarVarde(JTextField rutanAttKolla, JTextField rutanAttKolla2) {

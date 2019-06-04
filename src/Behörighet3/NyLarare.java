@@ -1,4 +1,5 @@
 package Behörighet3;
+import StartPaket.MaxTecken;
 import StartPaket.Validering;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +17,7 @@ import oru.inf.InfException;
 public class NyLarare extends javax.swing.JFrame {
 
     private InfDB idb;
+   
 
     /**
      * Creates new form NyElev
@@ -23,6 +25,8 @@ public class NyLarare extends javax.swing.JFrame {
     public NyLarare(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fornamn.setDocument(new MaxTecken(15));
+        efternamn.setDocument(new MaxTecken(20));
     }
 
     /**

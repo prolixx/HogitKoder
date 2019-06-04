@@ -3,6 +3,7 @@ package Behörighet2;
 /*
  * Klass för att registera ny elev
  */
+import StartPaket.MaxTecken;
 import StartPaket.Validering;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -31,6 +32,8 @@ public class NyElev extends javax.swing.JFrame {
     public NyElev(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fornamn.setDocument(new MaxTecken(15));
+        efternamn.setDocument(new MaxTecken(20));
     }
 
     /**
@@ -147,6 +150,8 @@ public class NyElev extends javax.swing.JFrame {
 
 // Deklarera variabler
             try {
+                
+                
                 String fnamn = Validering.storBokstav(fornamn.getText());
                 String enamn = Validering.storBokstav(efternamn.getText());
                 String sov = sovsalCombo.getSelectedItem().toString();
