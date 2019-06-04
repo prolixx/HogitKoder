@@ -136,7 +136,7 @@ public class NyLarare extends javax.swing.JFrame {
                 } else {
 
                     // confirmdialog ger möjligheten att avbryta vid evenutella fel
-                    if (JOptionPane.showConfirmDialog(null, "Lägg till lärare: " + fnamn + " " + enamn + " " + "Lösenord:0000", "Nylärare",
+                    if (JOptionPane.showConfirmDialog(null, "Lägg till lärare: " + fnamn + " " + enamn + " Id: "+ nextID  +  " " + "Lösenord:0000", "Nylärare",
                             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                         // Lägger till lärare med skickat namn och efternamn, samt genererat id och standar lösenord
                         idb.insert("insert into larare values" + "(" + "'" + nextID + "'" + "," + "'" + fnamn

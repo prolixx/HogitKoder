@@ -99,7 +99,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(elevHemslistaKnapp);
-        elevHemslistaKnapp.setBounds(0, 0, 130, 30);
+        elevHemslistaKnapp.setBounds(0, 0, 140, 30);
 
         lästaKurserKnapp.setText("Lästa Kurser");
         lästaKurserKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +108,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lästaKurserKnapp);
-        lästaKurserKnapp.setBounds(0, 30, 130, 30);
+        lästaKurserKnapp.setBounds(0, 30, 140, 30);
 
         läraresKurserKnapp.setText("Lärares Kurser");
         läraresKurserKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +117,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(läraresKurserKnapp);
-        läraresKurserKnapp.setBounds(0, 60, 130, 30);
+        läraresKurserKnapp.setBounds(0, 60, 140, 30);
 
         visaBetygKnapp.setText("Visa Betyg");
         visaBetygKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +126,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(visaBetygKnapp);
-        visaBetygKnapp.setBounds(0, 90, 130, 30);
+        visaBetygKnapp.setBounds(0, 90, 140, 30);
 
         visaPrefektKnapp.setText("Visa Prefekt");
         visaPrefektKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +135,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(visaPrefektKnapp);
-        visaPrefektKnapp.setBounds(0, 120, 130, 30);
+        visaPrefektKnapp.setBounds(0, 120, 140, 30);
 
         pokalenKnapp.setText("Elevhems Pokalen");
         pokalenKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +144,7 @@ public class Startsida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pokalenKnapp);
-        pokalenKnapp.setBounds(0, 150, 130, 30);
+        pokalenKnapp.setBounds(0, 150, 140, 30);
 
         resultat.setBackground(new java.awt.Color(243, 225, 183));
         resultat.setColumns(10);
@@ -153,8 +153,6 @@ public class Startsida extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(160, 140, 129, 90);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gabriel\\Documents\\NetBeansProjects\\harry-potter-hogwarts-crest-i67939.jpg")); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-80, -20, 590, 410);
 
