@@ -19,7 +19,12 @@ import Behörighet2.RegistreraochAvegistreraElevPåKurs;
 import Behörighet2.ÄndraBetyg;
 import Behörighet2.ÄndraLosenord;
 import StartPaket.Startsida;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -29,13 +34,14 @@ public class Admin extends javax.swing.JFrame {
  
     private InfDB idb;
     
+    
     /**
     * Creates new form Larare
      */
     public Admin(InfDB idb) {
         initComponents();
         this.idb=idb;
-        //idb = new InfDB("c:\\db\\hogdb.fdb");
+        
      }
     
 
@@ -65,6 +71,10 @@ public class Admin extends javax.swing.JFrame {
         ändraBetygKnapp = new javax.swing.JToggleButton();
         ändraElevKnapp = new javax.swing.JButton();
         ändraKursInfoKnapp = new javax.swing.JButton();
+        pokalenKnapp = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        resultat = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -76,7 +86,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(loggaUtKnapp);
-        loggaUtKnapp.setBounds(0, 280, 129, 51);
+        loggaUtKnapp.setBounds(0, 290, 129, 51);
 
         hanteraLärareKnapp.setText("Ändra Lärar Info");
         hanteraLärareKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +95,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(hanteraLärareKnapp);
-        hanteraLärareKnapp.setBounds(330, 270, 150, 30);
+        hanteraLärareKnapp.setBounds(320, 270, 150, 30);
 
         nyLarareKnapp.setText("Registrera Ny Lärare");
         nyLarareKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +104,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(nyLarareKnapp);
-        nyLarareKnapp.setBounds(330, 240, 150, 30);
+        nyLarareKnapp.setBounds(320, 240, 150, 30);
 
         nyKursKnapp.setText("Registrera Ny Kurs");
         nyKursKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +113,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(nyKursKnapp);
-        nyKursKnapp.setBounds(330, 180, 150, 30);
+        nyKursKnapp.setBounds(320, 180, 150, 30);
 
         elevHemslistaKnapp.setText("Elevhems Lista");
         elevHemslistaKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +167,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ändraHuspoängKnapp);
-        ändraHuspoängKnapp.setBounds(330, 150, 153, 30);
+        ändraHuspoängKnapp.setBounds(320, 150, 153, 30);
 
         AndraLosenordKnapp.setText("Ändra Lösenord");
         AndraLosenordKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +176,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(AndraLosenordKnapp);
-        AndraLosenordKnapp.setBounds(330, 300, 153, 30);
+        AndraLosenordKnapp.setBounds(320, 300, 153, 30);
 
         RegistreraElevPåKursKnapp.setText("Registrera På Kurs");
         RegistreraElevPåKursKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +185,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(RegistreraElevPåKursKnapp);
-        RegistreraElevPåKursKnapp.setBounds(330, 60, 153, 30);
+        RegistreraElevPåKursKnapp.setBounds(320, 60, 153, 30);
 
         nyttBetygKnapp.setText("Registrera Betyg");
         nyttBetygKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -184,7 +194,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(nyttBetygKnapp);
-        nyttBetygKnapp.setBounds(330, 90, 153, 30);
+        nyttBetygKnapp.setBounds(320, 90, 153, 30);
 
         nyElevKnapp.setText("Registrera Ny Elev");
         nyElevKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +203,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(nyElevKnapp);
-        nyElevKnapp.setBounds(330, 0, 153, 30);
+        nyElevKnapp.setBounds(320, 0, 153, 30);
 
         ändraBetygKnapp.setText("Ändra Betyg");
         ändraBetygKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -202,7 +212,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ändraBetygKnapp);
-        ändraBetygKnapp.setBounds(330, 120, 150, 30);
+        ändraBetygKnapp.setBounds(320, 120, 150, 30);
 
         ändraElevKnapp.setText("Ändra Elev Info");
         ändraElevKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +221,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ändraElevKnapp);
-        ändraElevKnapp.setBounds(330, 30, 150, 30);
+        ändraElevKnapp.setBounds(320, 30, 150, 30);
 
         ändraKursInfoKnapp.setText("Ändra Kurs Info");
         ändraKursInfoKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -220,9 +230,30 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ändraKursInfoKnapp);
-        ändraKursInfoKnapp.setBounds(330, 210, 150, 30);
+        ändraKursInfoKnapp.setBounds(320, 210, 150, 30);
 
-        setBounds(0, 0, 493, 377);
+        pokalenKnapp.setText("Elevhems Pokalen");
+        pokalenKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pokalenKnappActionPerformed(evt);
+            }
+        });
+        getContentPane().add(pokalenKnapp);
+        pokalenKnapp.setBounds(0, 150, 130, 30);
+
+        resultat.setBackground(new java.awt.Color(243, 225, 183));
+        resultat.setColumns(10);
+        resultat.setRows(4);
+        jScrollPane1.setViewportView(resultat);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(160, 140, 129, 80);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gabriel\\Documents\\NetBeansProjects\\harry-potter-hogwarts-crest-i67939.jpg")); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-70, -20, 590, 380);
+
+        setBounds(0, 0, 486, 377);
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -316,11 +347,40 @@ public class Admin extends javax.swing.JFrame {
         new AdminÄndraInfoElev(idb).setVisible(true);
     }//GEN-LAST:event_ändraElevKnappActionPerformed
 
+    private void pokalenKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokalenKnappActionPerformed
+
+        
+        try {
+            //Skapar två listor av elevhem och elevhemspoäng
+            ArrayList<String> hem = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
+
+            ArrayList<String> poäng = idb.fetchColumn("SELECT HUSPOANG from ELEVHEM");
+
+            String svar = "";
+            //sätter i hopp svaret i en string
+            for (int i = 0; i < hem.size(); i++) {
+                svar += hem.get(i) + " " + poäng.get(i) + "\n";
+                //visar resultatet i ett jTextarea
+                resultat.setText(svar);
+                
+
+            }
+        } catch (InfException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+
+        
+
+    }//GEN-LAST:event_pokalenKnappActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AndraLosenordKnapp;
     private javax.swing.JButton RegistreraElevPåKursKnapp;
     private javax.swing.JButton elevHemslistaKnapp;
     private javax.swing.JButton hanteraLärareKnapp;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loggaUtKnapp;
     private javax.swing.JButton läraresKurserKnapp;
     private javax.swing.JButton lästaKurserKnapp;
@@ -328,6 +388,8 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton nyKursKnapp;
     private javax.swing.JButton nyLarareKnapp;
     private javax.swing.JButton nyttBetygKnapp;
+    private javax.swing.JButton pokalenKnapp;
+    private javax.swing.JTextArea resultat;
     private javax.swing.JButton visaBetygKnapp;
     private javax.swing.JButton visaPrefektKnapp;
     private javax.swing.JToggleButton ändraBetygKnapp;

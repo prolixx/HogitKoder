@@ -57,6 +57,10 @@ public class Larare extends javax.swing.JFrame {
         elevHemslistaKnapp = new javax.swing.JButton();
         nyElevKnapp = new javax.swing.JButton();
         nyttBetygKnapp = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        resultat = new javax.swing.JTextArea();
+        pokalenKnapp = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -169,6 +173,27 @@ public class Larare extends javax.swing.JFrame {
         getContentPane().add(nyttBetygKnapp);
         nyttBetygKnapp.setBounds(310, 60, 153, 40);
 
+        resultat.setBackground(new java.awt.Color(243, 225, 183));
+        resultat.setColumns(10);
+        resultat.setRows(4);
+        jScrollPane1.setViewportView(resultat);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(170, 140, 129, 90);
+
+        pokalenKnapp.setText("Elevhems Pokalen");
+        pokalenKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pokalenKnappActionPerformed(evt);
+            }
+        });
+        getContentPane().add(pokalenKnapp);
+        pokalenKnapp.setBounds(0, 150, 140, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gabriel\\Documents\\NetBeansProjects\\harry-potter-hogwarts-crest-i67939.jpg")); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-70, -20, 590, 390);
+
         setBounds(0, 0, 482, 393);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -235,16 +260,45 @@ public class Larare extends javax.swing.JFrame {
         // Öppnar funktionen ge nytt betyg
         new Betygsregistrering(idb).setVisible(true);
     }//GEN-LAST:event_nyttBetygKnappActionPerformed
+
+    private void pokalenKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokalenKnappActionPerformed
+
+        try {
+            //Skapar två listor av elevhem och elevhemspoäng
+            ArrayList<String> hem = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
+
+            ArrayList<String> poäng = idb.fetchColumn("SELECT HUSPOANG from ELEVHEM");
+
+            String svar = "";
+            //sätter i hopp svaret i en string
+            for (int i = 0; i < hem.size(); i++) {
+                svar += hem.get(i) + " " + poäng.get(i) + "\n";
+                //visar resultatet i ett jTextarea
+                resultat.setText(svar);
+               
+
+            }
+        } catch (InfException ex) {
+            Logger.getLogger(Larare.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, " Något gick fel");
+
+        }
+
+    }//GEN-LAST:event_pokalenKnappActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AndraLosenordKnapp;
     private javax.swing.JButton LoggUtKnapp;
     private javax.swing.JButton RegistreraElevPåKursKnapp;
     private javax.swing.JButton elevHemslistaKnapp;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton läraresKurserKnapp;
     private javax.swing.JButton lästaKurserKnapp;
     private javax.swing.JButton nyElevKnapp;
     private javax.swing.JButton nyttBetygKnapp;
+    private javax.swing.JButton pokalenKnapp;
+    private javax.swing.JTextArea resultat;
     private javax.swing.JButton visaBetygKnapp;
     private javax.swing.JButton visaPrefektKnapp;
     private javax.swing.JToggleButton ändraBetygKnapp;

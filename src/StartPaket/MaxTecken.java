@@ -32,7 +32,7 @@ public final class MaxTecken extends PlainDocument {
         }
         if ((getLength() + str.length()) >= limit) {
             super.insertString(offs, str, a);
-            JOptionPane.showMessageDialog(null, "För långt namn!");
+            JOptionPane.showMessageDialog(null, "För mycket tecken i textrutan!");
         }
     }
 }

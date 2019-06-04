@@ -15,7 +15,6 @@ import Behörighet1.SökPrefekt;
 import Behörighet1.VisaKursBetyg;
 import Behörighet2.Larare;
 import Behörighet3.Admin;
-import StartPaket.Validering;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,13 +29,14 @@ import oru.inf.InfException;
 public class Startsida extends javax.swing.JFrame {
 
     public InfDB idb;
+    
     /**
      * Creates new form Startsida
      */
     public Startsida(InfDB idb) {
         initComponents();
         this.idb=idb;
-        resultat.setVisible(false);
+        
         
     }
 
@@ -60,6 +60,7 @@ public class Startsida extends javax.swing.JFrame {
         pokalenKnapp = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         resultat = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -146,12 +147,16 @@ public class Startsida extends javax.swing.JFrame {
         pokalenKnapp.setBounds(0, 150, 130, 30);
 
         resultat.setBackground(new java.awt.Color(243, 225, 183));
-        resultat.setColumns(20);
-        resultat.setRows(5);
+        resultat.setColumns(10);
+        resultat.setRows(4);
         jScrollPane1.setViewportView(resultat);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(160, 120, 129, 114);
+        jScrollPane1.setBounds(160, 140, 129, 90);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gabriel\\Documents\\NetBeansProjects\\harry-potter-hogwarts-crest-i67939.jpg")); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-80, -20, 590, 410);
 
         setBounds(0, 0, 442, 388);
     }// </editor-fold>//GEN-END:initComponents
@@ -210,7 +215,7 @@ public class Startsida extends javax.swing.JFrame {
                 svar += hem.get(i) + " " + poäng.get(i) + "\n";
                 //visar resultatet i ett jTextarea
                 resultat.setText(svar);
-                resultat.setVisible(true);
+              
 
             }
         } catch (InfException ex) {
@@ -261,6 +266,7 @@ public class Startsida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton elevHemslistaKnapp;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton loggInKnapp;
     private javax.swing.JButton läraresKurserKnapp;

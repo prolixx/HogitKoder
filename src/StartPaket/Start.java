@@ -39,6 +39,7 @@ public static void main(String[] args) throws InfException
     //Skickar dig vidare till startsidan
     
     new Startsida(idb).setVisible(true);
+    
 }
   
 }
