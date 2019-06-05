@@ -190,7 +190,7 @@ public class Larare extends javax.swing.JFrame {
         getContentPane().add(pokalenKnapp);
         pokalenKnapp.setBounds(0, 150, 140, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gabriel\\Documents\\NetBeansProjects\\harry-potter-hogwarts-crest-i67939.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPaket/harry-potter-hogwarts-crest-i67939.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-70, -20, 590, 390);
 

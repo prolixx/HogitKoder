@@ -22,7 +22,6 @@ import StartPaket.Startsida;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -249,7 +248,7 @@ public class Admin extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(160, 140, 129, 80);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Gabriel\\Documents\\NetBeansProjects\\harry-potter-hogwarts-crest-i67939.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPaket/harry-potter-hogwarts-crest-i67939.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-70, -20, 590, 380);
 

@@ -153,6 +153,8 @@ public class Startsida extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(160, 140, 129, 90);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPaket/harry-potter-hogwarts-crest-i67939.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-80, -20, 590, 410);
 

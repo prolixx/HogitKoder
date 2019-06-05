@@ -122,8 +122,8 @@ public class NyLarare extends javax.swing.JFrame {
 
             try {
                 // Skapar variabler och använder en toUpperCase metod
-                String fnamn = Validering.storBokstav(fornamn.getText());
-                String enamn = Validering.storBokstav(efternamn.getText());
+                String fnamn = Validering.storBokstav(fornamn.getText().trim());
+                String enamn = Validering.storBokstav(efternamn.getText().trim());
                 
                 String nextID = idb.getAutoIncrement("larare", "larar_id");
                 //Kollar om det redan finns en lärare registrerarad med samm för och efternamn

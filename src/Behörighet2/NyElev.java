@@ -152,8 +152,8 @@ public class NyElev extends javax.swing.JFrame {
             try {
                 
                 
-                String fnamn = Validering.storBokstav(fornamn.getText());
-                String enamn = Validering.storBokstav(efternamn.getText());
+                String fnamn = Validering.storBokstav(fornamn.getText().trim());
+                String enamn = Validering.storBokstav(efternamn.getText().trim());
                 String sov = sovsalCombo.getSelectedItem().toString();
 
                 //Kollar om det redan finns en elev registrerarad med samma för och efternamn
