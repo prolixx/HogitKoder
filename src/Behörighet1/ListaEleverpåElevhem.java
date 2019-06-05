@@ -4,7 +4,7 @@ package Behörighet1;
  * Klass som listar för och efternamn på alla elever som är registerade på det 
 angivna elvehemmmet. 
  */
-import StartPaket.Validering;
+import StartPaket.HämtaID;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,18 +19,14 @@ import oru.inf.InfException;
 public class ListaEleverpåElevhem extends javax.swing.JFrame {
 
     private final InfDB idb;
-
+    
     /**
-     * /**
-     *
-     * /**
-     * Creates new form ListaEleverpåElevhem
-     *
-     * @throws oru.inf.InfException
+    
      */
     public ListaEleverpåElevhem(InfDB idb) {
         initComponents();
         this.idb =idb;
+       
     }
 
     /**
@@ -96,7 +92,7 @@ public class ListaEleverpåElevhem extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(elevhemCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,7 +159,7 @@ public class ListaEleverpåElevhem extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, " Något gick fel, kontrollera inmatningen");
             }
         
-
+            
 
     }//GEN-LAST:event_elevhemComboItemStateChanged
 

@@ -9,13 +9,13 @@ eller använda funktioner med lågbehörighet
 
 
 import Behörighet1.ListaEleverpåElevhem;
+import Behörighet1.Ställning;
 import Behörighet1.SökKurserElevLäst;
 import Behörighet1.SökLararesKurser;
 import Behörighet1.SökPrefekt;
 import Behörighet1.VisaKursBetyg;
 import Behörighet2.Larare;
 import Behörighet3.Admin;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -36,6 +36,7 @@ public class Startsida extends javax.swing.JFrame {
     public Startsida(InfDB idb) {
         initComponents();
         this.idb=idb;
+       
         
         
     }
@@ -60,7 +61,6 @@ public class Startsida extends javax.swing.JFrame {
         pokalenKnapp = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         resultat = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -154,10 +154,6 @@ public class Startsida extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(160, 140, 129, 90);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPaket/harry-potter-hogwarts-crest-i67939.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-80, -20, 590, 410);
-
         setBounds(0, 0, 442, 388);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -201,29 +197,12 @@ public class Startsida extends javax.swing.JFrame {
     }//GEN-LAST:event_loggInKnappActionPerformed
 
     private void pokalenKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokalenKnappActionPerformed
-         
-       
-        try {
-            //Skapar två listor av elevhem och elevhemspoäng
-            ArrayList<String> hem = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
-
-            ArrayList<String> poäng = idb.fetchColumn("SELECT HUSPOANG from ELEVHEM");
-
-            String svar = "";
-            //sätter i hopp svaret i en string
-            for (int i = 0; i < hem.size(); i++) {
-                svar += hem.get(i) + " " + poäng.get(i) + "\n";
-                //visar resultatet i ett jTextarea
-                resultat.setText(svar);
-              
-
-            }
+        try { 
+             //skapar ett objekt av Ställning och använder dess metod sePoäng
+            new Ställning().sePoang(resultat);
         } catch (InfException ex) {
-            Logger.getLogger(Larare.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, " Något gick fel");
-
+            Logger.getLogger(Startsida.class.getName()).log(Level.SEVERE, null, ex);
         }
-
 
 
     }//GEN-LAST:event_pokalenKnappActionPerformed
@@ -266,7 +245,6 @@ public class Startsida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton elevHemslistaKnapp;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton loggInKnapp;
     private javax.swing.JButton läraresKurserKnapp;

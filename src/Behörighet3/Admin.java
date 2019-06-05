@@ -8,6 +8,7 @@ package Behörighet3;
 
 
 import Behörighet1.ListaEleverpåElevhem;
+import Behörighet1.Ställning;
 import Behörighet1.SökKurserElevLäst;
 import Behörighet1.SökLararesKurser;
 import Behörighet1.SökPrefekt;
@@ -19,7 +20,6 @@ import Behörighet2.RegistreraochAvegistreraElevPåKurs;
 import Behörighet2.ÄndraBetyg;
 import Behörighet2.ÄndraLosenord;
 import StartPaket.Startsida;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
@@ -73,7 +73,6 @@ public class Admin extends javax.swing.JFrame {
         pokalenKnapp = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         resultat = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -248,10 +247,6 @@ public class Admin extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(160, 140, 129, 80);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StartPaket/harry-potter-hogwarts-crest-i67939.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-70, -20, 590, 380);
-
         setBounds(0, 0, 486, 377);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -347,29 +342,13 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_ändraElevKnappActionPerformed
 
     private void pokalenKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pokalenKnappActionPerformed
-
-        
-        try {
-            //Skapar två listor av elevhem och elevhemspoäng
-            ArrayList<String> hem = idb.fetchColumn("SELECT ELEVHEMSNAMN from ELEVHEM");
-
-            ArrayList<String> poäng = idb.fetchColumn("SELECT HUSPOANG from ELEVHEM");
-
-            String svar = "";
-            //sätter i hopp svaret i en string
-            for (int i = 0; i < hem.size(); i++) {
-                svar += hem.get(i) + " " + poäng.get(i) + "\n";
-                //visar resultatet i ett jTextarea
-                resultat.setText(svar);
-                
-
-            }
+        try {   
+             //Skapar ett obejekt av klassen Ställning och anroppar dess metod sePoäng
+            new Ställning().sePoang(resultat);
         } catch (InfException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Startsida.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-
-        
+          
 
     }//GEN-LAST:event_pokalenKnappActionPerformed
 
@@ -378,7 +357,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton RegistreraElevPåKursKnapp;
     private javax.swing.JButton elevHemslistaKnapp;
     private javax.swing.JButton hanteraLärareKnapp;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loggaUtKnapp;
     private javax.swing.JButton läraresKurserKnapp;
